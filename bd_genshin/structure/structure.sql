@@ -1,4 +1,4 @@
--- Active: 1730657326662@@127.0.0.1@3306@genshin_build
+-- Active: 1729445084290@@127.0.0.1@3306@genshin_build
 
 -- Version : MariaDB Server 11.5.2 Rolling
 
@@ -19,6 +19,13 @@ CREATE OR REPLACE TABLE `Regions` (
 -- Structure table Bannière
 
 CREATE OR REPLACE TABLE `Bannieres` (
+    `nom` VARCHAR(30) PRIMARY KEY
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-----------------------------------------------
+-- Structure table Elements
+
+CREATE OR REPLACE TABLE `Elements` (
     `nom` VARCHAR(10) PRIMARY KEY
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -59,9 +66,10 @@ CREATE OR REPLACE TABLE `Regions`(
 -- Structure table Donjons
 
 CREATE OR REPLACE TABLE `Donjons`(
-    `nom` VARCHAR(20),
-    `type` VARCHAR(20),
+    `nom` VARCHAR(50),
+    `type` VARCHAR(40),
     `debloque` BOOL,
+    `region` VARCHAR(20),
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -71,6 +79,7 @@ CREATE OR REPLACE TABLE `Donjons`(
 CREATE OR REPLACE TABLE `Monstres`(
     `nom` VARCHAR(20),
     `type` VARCHAR(20),
+    `element` VARCHAR(10),
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -81,8 +90,9 @@ CREATE OR REPLACE TABLE `Materiaux`(
     `nom` VARCHAR(30),
     `niveau` VARCHAR(20) NOT NULL,
     `jour` VARCHAR(10),
-    `donjon` VARCHAR(20),
+    `donjon` VARCHAR(50),
     `evolution` VARCHAR(30),
+    `jour2` varchar(10),
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -99,9 +109,8 @@ CREATE OR REPLACE TABLE `Artefacts`(
 
 CREATE OR REPLACE TABLE `Sets`(
     `nom` VARCHAR(60),
-    `effet` VARCHAR(300) NOT NULL,
-    `jour` VARCHAR(10) NOT NULL,
-    `donjon` VARCHAR(30) NOT NULL,
+    `effet` VARCHAR(1100) NOT NULL,
+    `donjon` VARCHAR(50) NOT NULL,
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -111,7 +120,7 @@ CREATE OR REPLACE TABLE `Sets`(
 -- Structure table Pull Personnages
 
 CREATE OR REPLACE TABLE `Pull_Personnages`(
-    `banniere` VARCHAR(10),
+    `banniere` VARCHAR(30),
     `personnage` VARCHAR(20),
     `datedeb` date,
     `datefin` date,
@@ -125,7 +134,7 @@ CREATE OR REPLACE TABLE `Pull_Personnages`(
 -- Structure table Pull Armes
 
 CREATE OR REPLACE TABLE `Pull_Armes`(
-    `banniere` VARCHAR(10),
+    `banniere` VARCHAR(30),
     `arme` VARCHAR(30),
     `datedeb` date,
     `datefin` date,
@@ -228,9 +237,62 @@ CREATE OR REPLACE TABLE `Meilleurs_Artefacts`(
 -- Structure table Donjons_Monstres
 
 CREATE OR REPLACE TABLE `Donjons_Monstres`(
-    `donjon` VARCHAR(30),
+    `donjon` VARCHAR(50),
     `monstre` VARCHAR(20),
     FOREIGN KEY (`monstre`) REFERENCES monstres(`nom`),
     FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`),
     PRIMARY KEY(`monstre`, `donjon`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-----------------------------------------------
+-------------Clefs étrangères -----------------
+-----------------------------------------------
+ALTER TABLE `personnages` 
+    ADD FOREIGN KEY (`region`) REFERENCES regions(`nom`);
+
+ALTER TABLE `personnages` 
+    ADD FOREIGN KEY (`element`) REFERENCES elements(`nom`);
+
+ALTER TABLE `donjons`
+    ADD FOREIGN KEY (`region`) REFERENCES  regions(`nom`);
+
+ALTER TABLE `materiaux` 
+    ADD FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`);
+ALTER TABLE `materiaux`
+    ADD FOREIGN KEY (`evolution`) REFERENCES  materiaux(`nom`);
+
+ALTER TABLE `sets` 
+    ADD FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`);
+
+ALTER TABLE `monstres` 
+    ADD FOREIGN KEY (`element`) REFERENCES elements(`nom`);
+
+
+-----------------------------------------------
+--------- Contraintes d'intégrité -------------
+-----------------------------------------------
+
+ALTER TABLE armes 
+ADD CONSTRAINT armes_etoile CHECK(nbretoile BETWEEN 1 AND 5);
+
+ALTER TABLE armes 
+ADD CONSTRAINT armes_raffinage CHECK(raffinage BETWEEN 0 AND 5);
+
+ALTER TABLE personnages 
+ADD CONSTRAINT perso_etoile CHECK(nbretoile BETWEEN 4 AND 5);
+
+ALTER TABLE pull_personnages
+ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
+
+ALTER TABLE materiaux
+ADD CONSTRAINT mat_jour CHECK(jour ="lundi" OR "mardi" OR "mercredi" OR "jeudi" OR "vendredi" OR "samedi");
+
+ALTER TABLE materiaux
+ADD CONSTRAINT mat_jour2 CHECK(jour2 = "lundi" OR "mardi" OR "mercredi" OR "jeudi" OR "vendredi" OR "samedi");
+
+
+set foreign_key_checks = 1;
+
+ALTER TABLE monstres
+drop constraint monstres_element;
