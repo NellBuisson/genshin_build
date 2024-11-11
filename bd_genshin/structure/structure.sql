@@ -30,14 +30,24 @@ CREATE OR REPLACE TABLE `Elements` (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
+-- Structure table Types_Arme
+
+CREATE OR REPLACE TABLE `Types_Arme` (
+    `nom` VARCHAR(20) PRIMARY KEY
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-----------------------------------------------
 -- Structure table Armes
 
 CREATE OR REPLACE TABLE `Armes` (
-    `nom` VARCHAR(30), 
+    `nom` VARCHAR(50), 
     `nbretoile` INT NOT NULL,
-    `raffinage` INT,
+    `type_arme` VARCHAR(20),
+    `effet` VARCHAR(700),
+    `obtention` VARCHAR(40),
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -----------------------------------------------
 -- Structure table Personnages
@@ -51,6 +61,7 @@ CREATE OR REPLACE TABLE `Personnages`(
     `ssstat1` VARCHAR(10),
     `ssstat2` VARCHAR(10),
     `region` VARCHAR(20),
+    `type_arme` VARCHAR(20)
     PRIMARY KEY(`prenom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -135,7 +146,7 @@ CREATE OR REPLACE TABLE `Pull_Personnages`(
 
 CREATE OR REPLACE TABLE `Pull_Armes`(
     `banniere` VARCHAR(30),
-    `arme` VARCHAR(30),
+    `arme` VARCHAR(50),
     `datedeb` date,
     `datefin` date,
     `obtenu` BOOL NOT NULL,
@@ -149,19 +160,7 @@ CREATE OR REPLACE TABLE `Pull_Armes`(
 
 CREATE OR REPLACE TABLE `Meilleures_Armes`(
     `personnage` VARCHAR(20),
-    `arme` VARCHAR(30),
-    `rang` INT,
-    FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
-    FOREIGN KEY (`arme`) REFERENCES armes(`nom`),
-    PRIMARY KEY(`personnage`, `arme`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
------------------------------------------------
--- Structure table Materiaux Armes
-
-CREATE OR REPLACE TABLE `Meilleures_Armes`(
-    `personnage` VARCHAR(20),
-    `arme` VARCHAR(30),
+    `arme` VARCHAR(50),
     `rang` INT,
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`arme`) REFERENCES armes(`nom`),
@@ -173,9 +172,8 @@ CREATE OR REPLACE TABLE `Meilleures_Armes`(
 
 CREATE OR REPLACE TABLE `Materiaux_Armes`(
     `materiel` VARCHAR(30),
-    `arme` VARCHAR(30),
+    `arme` VARCHAR(50),
     `niveau` INT,
-    `fini` BOOL,
     `quantite` INT,
     FOREIGN KEY (`materiel`) REFERENCES materiaux(`nom`),
     FOREIGN KEY (`arme`) REFERENCES armes(`nom`),
@@ -244,6 +242,35 @@ CREATE OR REPLACE TABLE `Donjons_Monstres`(
     PRIMARY KEY(`monstre`, `donjon`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-----------------------------------------------
+-- Structure table Armes Associées
+CREATE OR REPLACE TABLE `Armes_Associees`(
+    `personnage` VARCHAR(20),
+    `arme` VARCHAR(50),
+    `raffinage` INT,
+    `Lvl` INT NOT NULL,
+    FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
+    FOREIGN KEY (`arme`) REFERENCES armes(`nom`),
+    PRIMARY KEY(`personnage`, `arme`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-----------------------------------------------
+-- Structure table Artéfacts Associés
+
+CREATE OR REPLACE TABLE `Artefacts_Associes` (
+    `personnage` VARCHAR(20),
+    `artefact` VARCHAR(20),
+    `set` VARCHAR(60),
+    `stat` VARCHAR(20),
+    `ssstat1` VARCHAR(20),
+    `ssstat2` VARCHAR(20),
+    `ssstat3` VARCHAR(20),
+    `Lvl` INT NOT NULL,
+    FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
+    FOREIGN KEY (`artefact`) REFERENCES artefacts(`type`),
+    FOREIGN KEY (`set`) REFERENCES sets(`nom`),
+    PRIMARY KEY(`personnage`, `artefact`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
 -------------Clefs étrangères -----------------
@@ -253,6 +280,12 @@ ALTER TABLE `personnages`
 
 ALTER TABLE `personnages` 
     ADD FOREIGN KEY (`element`) REFERENCES elements(`nom`);
+
+ALTER TABLE `personnages` 
+    ADD FOREIGN KEY (`type_arme`) REFERENCES types_arme(`nom`);
+
+ALTER TABLE `armes` 
+    ADD FOREIGN KEY (`type_arme`) REFERENCES types_arme(`nom`);
 
 ALTER TABLE `donjons`
     ADD FOREIGN KEY (`region`) REFERENCES  regions(`nom`);
@@ -276,7 +309,7 @@ ALTER TABLE `monstres`
 ALTER TABLE armes 
 ADD CONSTRAINT armes_etoile CHECK(nbretoile BETWEEN 1 AND 5);
 
-ALTER TABLE armes 
+ALTER TABLE armes_associees
 ADD CONSTRAINT armes_raffinage CHECK(raffinage BETWEEN 0 AND 5);
 
 ALTER TABLE personnages 
@@ -292,7 +325,4 @@ ALTER TABLE materiaux
 ADD CONSTRAINT mat_jour2 CHECK(jour2 = "lundi" OR "mardi" OR "mercredi" OR "jeudi" OR "vendredi" OR "samedi");
 
 
-set foreign_key_checks = 1;
-
-ALTER TABLE monstres
-drop constraint monstres_element;
+set foreign_key_checks = 0;
