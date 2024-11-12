@@ -43,11 +43,13 @@ CREATE OR REPLACE TABLE `Armes` (
     `nom` VARCHAR(50), 
     `nbretoile` INT NOT NULL,
     `type_arme` VARCHAR(20),
-    `effet` VARCHAR(700),
+    `effet` VARCHAR(900),
     `obtention` VARCHAR(40),
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+alter table armes
+modify effet varchar(900);
 
 -----------------------------------------------
 -- Structure table Personnages
