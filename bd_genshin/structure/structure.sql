@@ -108,8 +108,8 @@ CREATE OR REPLACE TABLE `Monstres`(
 -- Structure table Materiaux
 
 CREATE OR REPLACE TABLE `Materiaux`(
-    `nom` VARCHAR(30),
-    `evolution` VARCHAR(30),
+    `nom` VARCHAR(60),
+    `evolution` VARCHAR(60),
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -188,7 +188,7 @@ CREATE OR REPLACE TABLE `Meilleures_Armes`(
 -- Structure table Matériaux Armes
 
 CREATE OR REPLACE TABLE `Materiaux_Armes`(
-    `materiel` VARCHAR(30),
+    `materiel` VARCHAR(60),
     `arme` VARCHAR(50),
     `niveau` INT,
     `quantite` INT,
@@ -201,7 +201,7 @@ CREATE OR REPLACE TABLE `Materiaux_Armes`(
 -- Structure table Matériaux Personnages
 
 CREATE OR REPLACE TABLE `Materiaux_Personnages`(
-    `materiel` VARCHAR(30),
+    `materiel` VARCHAR(60),
     `personnage` VARCHAR(20),
     `type` VARCHAR(20),
     `niveau` INT,
@@ -230,7 +230,7 @@ CREATE OR REPLACE TABLE `Sets_Recommandes`(
 
 CREATE OR REPLACE TABLE `Drop_Monstres`(
     `monstre` VARCHAR(50),
-    `materiel` VARCHAR(30),
+    `materiel` VARCHAR(60),
     FOREIGN KEY (`monstre`) REFERENCES monstres(`nom`),
     FOREIGN KEY (`materiel`) REFERENCES materiaux(`nom`),
     PRIMARY KEY(`monstre`, `materiel`)
@@ -241,7 +241,7 @@ CREATE OR REPLACE TABLE `Drop_Monstres`(
 
 CREATE OR REPLACE TABLE `Drop_Donjons`(
     `donjon` VARCHAR(50),
-    `materiel` VARCHAR(30),
+    `materiel` VARCHAR(60),
     `jour` VARCHAR(10),
     `jour2`VARCHAR(10),
     FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`),
