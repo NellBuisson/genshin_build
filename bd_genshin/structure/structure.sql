@@ -19,8 +19,9 @@ CREATE OR REPLACE TABLE `Regions` (
 -- Structure table Bannière
 
 CREATE OR REPLACE TABLE `Bannieres` (
-    `nom` VARCHAR(30) PRIMARY KEY
+    `type` VARCHAR(30) PRIMARY KEY
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -----------------------------------------------
 -- Structure table Elements
@@ -72,9 +73,15 @@ CREATE OR REPLACE TABLE `Personnages`(
     `ssstat1` VARCHAR(10),
     `ssstat2` VARCHAR(10),
     `region` VARCHAR(20),
-    `type_arme` VARCHAR(20)
+    `type_arme` VARCHAR(20),
+    `possedee` BOOL,
+    `constellation` INT,
     PRIMARY KEY(`prenom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+alter table personnages
+add `possedee` BOOL,
+add `constellation` INT;
 
 -----------------------------------------------
 -- Structure table Regions
@@ -149,13 +156,20 @@ CREATE OR REPLACE TABLE `Sets`(
 
 CREATE OR REPLACE TABLE `Pull_Personnages`(
     `banniere` VARCHAR(30),
-    `personnage` VARCHAR(20),
     `datedeb` date,
+    `personnage5_1` VARCHAR(20),
+    `personnage5_2` VARCHAR(20),
+    `personnage4_1` VARCHAR(20),
+    `personnage4_2` VARCHAR(20),
+    `personnage4_3` VARCHAR(20),
     `datefin` date,
-    `obtenu` BOOL NOT NULL,
     FOREIGN KEY (`banniere`) REFERENCES bannieres(`nom`),
-    FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
-    PRIMARY KEY(`banniere`, `personnage`, `datedeb`)
+    FOREIGN KEY (`personnage5_1`) REFERENCES personnages(`prenom`),
+    FOREIGN KEY (`personnage5_2`) REFERENCES personnages(`prenom`),
+    FOREIGN KEY (`personnage4_1`) REFERENCES personnages(`prenom`),
+    FOREIGN KEY (`personnage4_2`) REFERENCES personnages(`prenom`),
+    FOREIGN KEY (`personnage4_3`) REFERENCES personnages(`prenom`),
+    PRIMARY KEY(`banniere`, `datedeb`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
@@ -163,13 +177,20 @@ CREATE OR REPLACE TABLE `Pull_Personnages`(
 
 CREATE OR REPLACE TABLE `Pull_Armes`(
     `banniere` VARCHAR(30),
-    `arme` VARCHAR(50),
     `datedeb` date,
     `datefin` date,
-    `obtenu` BOOL NOT NULL,
+    `arme5_1` VARCHAR(50),
+    `arme5_2` VARCHAR(50),
+    `arme4_1` VARCHAR(50),
+    `arme4_2` VARCHAR(50),
+    `arme4_3` VARCHAR(50),
     FOREIGN KEY (`banniere`) REFERENCES bannieres(`nom`),
-    FOREIGN KEY (`arme`) REFERENCES armes(`nom`),
-    PRIMARY KEY(`banniere`, `arme`, `datedeb`)
+    FOREIGN KEY (`arme5_1`) REFERENCES armes(`nom`),
+    FOREIGN KEY (`arme5_2`) REFERENCES armes(`nom`),
+    FOREIGN KEY (`arme4_1`) REFERENCES armes(`nom`),
+    FOREIGN KEY (`arme4_2`) REFERENCES armes(`nom`),
+    FOREIGN KEY (`arme4_3`) REFERENCES armes(`nom`),
+    PRIMARY KEY(`banniere`, `datedeb`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
@@ -218,7 +239,7 @@ CREATE OR REPLACE TABLE `Materiaux_Personnages`(
 CREATE OR REPLACE TABLE `Sets_Recommandes`(
     `set` VARCHAR(60),
     `personnage` VARCHAR(20),
-    `option` INT,
+    `option` VARCHAR(10),
     `nbr` INT,
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`set`) REFERENCES sets(`nom`),
