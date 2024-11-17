@@ -112,7 +112,7 @@ VALUES ("Colère du tonnerre", "2 pièces : Confère un bonus de DGT Électro de
 ("Parchemin du héros de la Cité de braise","2 pièces : Lorsqu'un membre de l'équipe à proximité déclenche une éruption noctâme, le personnage équipé de l'artéfact récupère 6 pts d'énergie élémentaire. \r 4 pièces : Lorsque le personnage équipé de l'artéfact a déclenché une réaction liée à son type élémentaire, le bonus de DGT élémentaires des éléments concernés par cette réaction augmente de 12 % pendant 15 s pour tous les personnages de l'équipe à proximité. Si le personnage équipé de l'artéfact bénéficie d'une bénédiction noctâme lors du déclenchement de cet effet, le bonus de DGT élémentaires des éléments concernés par cette réaction augmente de 28 % supplémentaires pendant 20 s pour tous les personnages de l'équipe à proximité. L'effet ci-dessus peut être déclenché même si le personnage n'est pas déployé, et les effets d'augmentation des DGT accordés par les sets d'artéfacts du même nom ne se cumulent pas.","Sanctuaire des esprits arc-en-ciel"),
 ("Codex d'obsidienne","2 pièces : Lorsque le personnage équipé de l'artéfact bénéficie d'une bénédiction noctâme et est sur le terrain, les DGT qu'il inflige augmentent de 15 %. \r 4 pièces : Lorsque le personnage équipé de l'artéfact a consommé 1 pt de noctâme sur le terrain, le taux CRIT augmente de 40 % pendant 6 s. Cet effet peut être déclenché une fois toutes les secondes.","Sanctuaire des esprits arc-en-ciel");
 
-INSERT INTO `personnages` 
+INSERT INTO `personnages` (prenom, nom, image, element, nbretoile, sstat1, ssstat2, region, type_arme)
 VALUES ("Voyageur", NULL, NULL, "all", 5, "Maîtrise", "Recharge", NULL, "Epée"),
 ("Xiao", NULL, NULL, "anemo", 5, "DGT crit", "Taux Crit", "Liyue", "Lance"),
 ("Venti", NULL, NULL, "anemo", 5, "Recharge", "Maîtrise", "Mondstadt", "Arc"),
@@ -406,3 +406,14 @@ VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un 
 ("Lance du débutant", 1, "Lance", "Stats : 23 base ATQ ", "Craft drop");
 
 
+INSERT INTO `monstres`
+VALUES("Arlecchino",NULL,"boss"),
+("","","boss"),
+("","","boss"),
+("","","boss"),
+("","","boss"),
+("","","boss"),
+("","","boss"),
+("","","boss"),
+("","","boss"),
+("","","boss"),

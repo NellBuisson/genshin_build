@@ -48,8 +48,17 @@ CREATE OR REPLACE TABLE `Armes` (
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-alter table armes
-modify effet varchar(900);
+
+-----------------------------------------------
+-- Structure table Armes Possédées
+
+CREATE OR REPLACE TABLE `Armes_Possedees` (
+    `nom` VARCHAR(50),
+    `id` INT,
+    `lvl` INT, 
+    `raffinage` INT,
+    PRIMARY KEY (`nom`,`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
 -- Structure table Personnages
@@ -90,9 +99,8 @@ CREATE OR REPLACE TABLE `Donjons`(
 -- Structure table Monstres
 
 CREATE OR REPLACE TABLE `Monstres`(
-    `nom` VARCHAR(20),
+    `nom` VARCHAR(50),
     `type` VARCHAR(20),
-    `element` VARCHAR(10),
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -101,11 +109,7 @@ CREATE OR REPLACE TABLE `Monstres`(
 
 CREATE OR REPLACE TABLE `Materiaux`(
     `nom` VARCHAR(30),
-    `niveau` VARCHAR(20) NOT NULL,
-    `jour` VARCHAR(10),
-    `donjon` VARCHAR(50),
     `evolution` VARCHAR(30),
-    `jour2` varchar(10),
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -115,6 +119,17 @@ CREATE OR REPLACE TABLE `Materiaux`(
 CREATE OR REPLACE TABLE `Artefacts`(
     `type` VARCHAR(20),
     PRIMARY KEY(`type`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-----------------------------------------------
+-- Structure table Artefacts Possédés
+
+CREATE OR REPLACE TABLE `Artefacts_Possedes` (
+    `nom` VARCHAR(50),
+    `id` INT,
+    `lvl` INT, 
+    `raffinage` INT,
+    PRIMARY KEY (`nom`,`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
@@ -214,11 +229,24 @@ CREATE OR REPLACE TABLE `Sets_Recommandes`(
 -- Structure table Drop Monstres
 
 CREATE OR REPLACE TABLE `Drop_Monstres`(
-    `monstre` VARCHAR(20),
+    `monstre` VARCHAR(50),
     `materiel` VARCHAR(30),
     FOREIGN KEY (`monstre`) REFERENCES monstres(`nom`),
     FOREIGN KEY (`materiel`) REFERENCES materiaux(`nom`),
     PRIMARY KEY(`monstre`, `materiel`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-----------------------------------------------
+-- Structure table Drop Donjons
+
+CREATE OR REPLACE TABLE `Drop_Donjons`(
+    `donjon` VARCHAR(50),
+    `materiel` VARCHAR(30),
+    `jour` VARCHAR(10),
+    `jour2`VARCHAR(10),
+    FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`),
+    FOREIGN KEY (`materiel`) REFERENCES materiaux(`nom`),
+    PRIMARY KEY(`donjon`, `materiel`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
@@ -229,7 +257,7 @@ CREATE OR REPLACE TABLE `Meilleurs_Artefacts`(
     `artefact` VARCHAR(20),
     `stat` VARCHAR(20) NOT NULL,
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
-    FOREIGN KEY (`artefact`) REFERENCES materiaux(`nom`),
+    FOREIGN KEY (`artefact`) REFERENCES artefacts(`type`),
     PRIMARY KEY(`personnage`, `artefact`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -238,22 +266,10 @@ CREATE OR REPLACE TABLE `Meilleurs_Artefacts`(
 
 CREATE OR REPLACE TABLE `Donjons_Monstres`(
     `donjon` VARCHAR(50),
-    `monstre` VARCHAR(20),
+    `monstre` VARCHAR(50),
     FOREIGN KEY (`monstre`) REFERENCES monstres(`nom`),
     FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`),
     PRIMARY KEY(`monstre`, `donjon`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
------------------------------------------------
--- Structure table Armes Associées
-CREATE OR REPLACE TABLE `Armes_Associees`(
-    `personnage` VARCHAR(20),
-    `arme` VARCHAR(50),
-    `raffinage` INT,
-    `Lvl` INT NOT NULL,
-    FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
-    FOREIGN KEY (`arme`) REFERENCES armes(`nom`),
-    PRIMARY KEY(`personnage`, `arme`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
@@ -289,6 +305,9 @@ ALTER TABLE `personnages`
 ALTER TABLE `armes` 
     ADD FOREIGN KEY (`type_arme`) REFERENCES types_arme(`nom`);
 
+ALTER TABLE `armes_possedees` 
+    ADD FOREIGN KEY (`nom`) REFERENCES armes(`nom`);
+
 ALTER TABLE `donjons`
     ADD FOREIGN KEY (`region`) REFERENCES  regions(`nom`);
 
@@ -300,8 +319,8 @@ ALTER TABLE `materiaux`
 ALTER TABLE `sets` 
     ADD FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`);
 
-ALTER TABLE `monstres` 
-    ADD FOREIGN KEY (`element`) REFERENCES elements(`nom`);
+ALTER TABLE `personnages`
+    ADD FOREIGN KEY (`arme`,`id_arme`) REFERENCES armes_possedees(`nom`, `id`);
 
 
 -----------------------------------------------
@@ -327,4 +346,4 @@ ALTER TABLE materiaux
 ADD CONSTRAINT mat_jour2 CHECK(jour2 = "lundi" OR "mardi" OR "mercredi" OR "jeudi" OR "vendredi" OR "samedi");
 
 
-set foreign_key_checks = 0;
+set foreign_key_checks = 1;
