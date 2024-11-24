@@ -157,12 +157,12 @@ CREATE OR REPLACE TABLE `Sets`(
 CREATE OR REPLACE TABLE `Pull_Personnages`(
     `banniere` VARCHAR(30),
     `datedeb` date,
+    `datefin` date,
     `personnage5_1` VARCHAR(20),
     `personnage5_2` VARCHAR(20),
     `personnage4_1` VARCHAR(20),
     `personnage4_2` VARCHAR(20),
     `personnage4_3` VARCHAR(20),
-    `datefin` date,
     FOREIGN KEY (`banniere`) REFERENCES bannieres(`nom`),
     FOREIGN KEY (`personnage5_1`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`personnage5_2`) REFERENCES personnages(`prenom`),
@@ -222,12 +222,12 @@ CREATE OR REPLACE TABLE `Materiaux_Armes`(
 -- Structure table Matériaux Personnages
 
 CREATE OR REPLACE TABLE `Materiaux_Personnages`(
-    `materiel` VARCHAR(60),
     `personnage` VARCHAR(20),
     `type` VARCHAR(20),
+    `materiel` VARCHAR(60),
+    `quantite` INT,
     `niveau` INT,
     `fini` BOOL,
-    `quantite` INT,
     FOREIGN KEY (`materiel`) REFERENCES materiaux(`nom`),
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     PRIMARY KEY(`materiel`, `personnage`, `niveau`, `type`)

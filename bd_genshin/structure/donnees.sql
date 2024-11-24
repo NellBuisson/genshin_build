@@ -897,3 +897,9 @@ VALUES("Essense de Blob", NULL),
 ("Chrysanthème brillant", NULL),
 ("Baie de quenettier", NULL),
 ("Patte saurienne", NULL);
+
+INSERT INTO `materiaux_personnages`
+VALUES("","","")
+
+
+
