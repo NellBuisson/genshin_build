@@ -11,10 +11,10 @@
 -----------------------------------------------
 -- Structure table Regions
 
-CREATE OR REPLACE TABLE `Regions` (
+CREATE OR REPLACE TABLE `Regions` ( 
     `nom` VARCHAR(20)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+ 
 -----------------------------------------------
 -- Structure table Bannière
 
@@ -359,12 +359,6 @@ ADD CONSTRAINT perso_etoile CHECK(nbretoile BETWEEN 4 AND 5);
 
 ALTER TABLE pull_personnages
 ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
-
-ALTER TABLE materiaux
-ADD CONSTRAINT mat_jour CHECK(jour ="lundi" OR "mardi" OR "mercredi" OR "jeudi" OR "vendredi" OR "samedi");
-
-ALTER TABLE materiaux
-ADD CONSTRAINT mat_jour2 CHECK(jour2 = "lundi" OR "mardi" OR "mercredi" OR "jeudi" OR "vendredi" OR "samedi");
 
 
 set foreign_key_checks = 1;
