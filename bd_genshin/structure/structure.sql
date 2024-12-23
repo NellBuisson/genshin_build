@@ -209,9 +209,9 @@ CREATE OR REPLACE TABLE `Meilleures_Armes`(
 -- Structure table Matériaux Armes
 
 CREATE OR REPLACE TABLE `Materiaux_Armes`(
-    `materiel` VARCHAR(60),
     `arme` VARCHAR(50),
     `niveau` INT,
+    `materiel` VARCHAR(60),
     `quantite` INT,
     FOREIGN KEY (`materiel`) REFERENCES materiaux(`nom`),
     FOREIGN KEY (`arme`) REFERENCES armes(`nom`),
@@ -360,5 +360,38 @@ ADD CONSTRAINT perso_etoile CHECK(nbretoile BETWEEN 4 AND 5);
 ALTER TABLE pull_personnages
 ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
 
+-----------------------------------------------
+----------------- Triggers --------------------
+-----------------------------------------------
 
-set foreign_key_checks = 1;
+-- Trigger 1
+-- Materiaux armes
+-- insert into et update. Before
+-- pas plus de 4 matériaux pour une arme. 
+-- pour les différents lvl des valeurs fixes de nombres en fonction du nombre d'étoile de l'arme
+-- nouvelle arme, intégration de la ligne de moras en fonction du niveau
+
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_insert_materiaux_armes
+BEFORE INSERT
+ON materiaux_armes
+FOR EACH ROW
+BEGIN
+    SET @nbMat = NULL;
+    -- vérifier qu'il n'y a pas plus de 4 matériaux pour une arme
+    select COUNT(*) into @nbMat from materiaux_armes 
+        where arme = NEW.arme AND niveau = NEW.niveau;
+    IF (@nbMat > 4) THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Insertion refusée. Trop de matériaux d'amélioration";
+    END IF;
+END #
+DELIMITER ;
+
+
+
+-----------------------------------------------
+----------------- Fonction --------------------
+-----------------------------------------------
+
