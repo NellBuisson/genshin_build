@@ -364,15 +364,8 @@ ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
 ----------------- Triggers --------------------
 -----------------------------------------------
 
--- Trigger 1
--- Materiaux armes
--- insert into et update. Before
--- pas plus de 4 matériaux pour une arme. 
--- pour les différents lvl des valeurs fixes de nombres en fonction du nombre d'étoile de l'arme
--- nouvelle arme, intégration de la ligne de moras en fonction du niveau
-
+-- Le delimiter ne fonctionne pas ??? 
 DELIMITER #
-
 CREATE OR REPLACE TRIGGER before_insert_materiaux_armes
 BEFORE INSERT
 ON materiaux_armes
@@ -394,4 +387,29 @@ DELIMITER ;
 -----------------------------------------------
 ----------------- Fonction --------------------
 -----------------------------------------------
+-- Le delimiter ne fonctionne pas ??? 
+DELIMITER #
+CREATE OR REPLACE PROCEDURE elevationArme (p_nom VARCHAR(50), p_mat1 VARCHAR(60), p_mat2 VARCHAR(60), p_mat3 VARCHAR(60))
+BEGIN
+    set @newMat1 = NULL
+    set @newMat2 = NULL
+    set @newMat3 = NULL
+    set @nbrEtoile = NULL
+    select nbretoile into @nbrEtoile FROM armes
+        where nom = p_nom;
+    IF (@nbrEtoile = 5) THEN
+        insert into materiaux_armes
+        values(p_nom,20,p_mat1, 5),
+        (p_nom,20,p_mat2, 5),
+        (p_nom,20,p_mat3, 3);
+        select evolution into @newMat1 from materiaux where nom = p_mat1;
+        insert into materiaux_armes
+        values(p_nom,40, @newMat1, 5),
+        (p_nom,40,p_mat2, 5),
+        (p_nom,40,p_mat3, 3);
 
+        select evolution into @newMat2 from materiaux where nom = p_mat2;
+        select evolution into @newMat3 from materiaux where nom = p_mat3;
+    END IF ;
+END #
+DELIMITER ;
