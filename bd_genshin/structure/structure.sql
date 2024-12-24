@@ -74,14 +74,16 @@ CREATE OR REPLACE TABLE `Personnages`(
     `ssstat2` VARCHAR(10),
     `region` VARCHAR(20),
     `type_arme` VARCHAR(20),
+    `arme` VARCHAR(50),
+    `id_arme` INT,
     `possedee` BOOL,
     `constellation` INT,
+    `niveau` INT,
     PRIMARY KEY(`prenom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 alter table personnages
-add `possedee` BOOL,
-add `constellation` INT;
+add `niveau` INT;
 
 -----------------------------------------------
 -- Structure table Regions
@@ -364,7 +366,6 @@ ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
 ----------------- Triggers --------------------
 -----------------------------------------------
 
--- Le delimiter ne fonctionne pas ??? 
 DELIMITER #
 CREATE OR REPLACE TRIGGER before_insert_materiaux_armes
 BEFORE INSERT
@@ -387,29 +388,225 @@ DELIMITER ;
 -----------------------------------------------
 ----------------- Fonction --------------------
 -----------------------------------------------
--- Le delimiter ne fonctionne pas ??? 
+-- Création de la fonction pour automatiser l'entrée des matériaux d'amélioration d'arme
 DELIMITER #
+
 CREATE OR REPLACE PROCEDURE elevationArme (p_nom VARCHAR(50), p_mat1 VARCHAR(60), p_mat2 VARCHAR(60), p_mat3 VARCHAR(60))
 BEGIN
-    set @newMat1 = NULL
-    set @newMat2 = NULL
-    set @newMat3 = NULL
-    set @nbrEtoile = NULL
+    set @newMat1 = NULL;
+    set @newMat2 = NULL;
+    set @newMat3 = NULL;
+    set @nbrEtoile = NULL;
     select nbretoile into @nbrEtoile FROM armes
         where nom = p_nom;
     IF (@nbrEtoile = 5) THEN
         insert into materiaux_armes
         values(p_nom,20,p_mat1, 5),
         (p_nom,20,p_mat2, 5),
-        (p_nom,20,p_mat3, 3);
+        (p_nom,20,p_mat3, 3),
+        (p_nom,20,"Moras", 10000);
+
         select evolution into @newMat1 from materiaux where nom = p_mat1;
         insert into materiaux_armes
         values(p_nom,40, @newMat1, 5),
-        (p_nom,40,p_mat2, 5),
-        (p_nom,40,p_mat3, 3);
+        (p_nom,40,p_mat2, 18),
+        (p_nom,40,p_mat3, 12),
+        (p_nom,40,"Moras", 20000);
 
         select evolution into @newMat2 from materiaux where nom = p_mat2;
         select evolution into @newMat3 from materiaux where nom = p_mat3;
+        insert into materiaux_armes
+        values(p_nom,50, @newMat1, 9),
+        (p_nom,50,@newMat2, 9),
+        (p_nom,50,@newMat3, 9),
+        (p_nom,50,"Moras", 30000);
+
+        select evolution into @newMat1 from materiaux where nom = @newMat1;
+
+        insert into materiaux_armes
+        values(p_nom,60, @newMat1, 5),
+        (p_nom,60,@newMat2, 18),
+        (p_nom,60,@newMat3, 14),
+        (p_nom,60,"Moras", 45000);
+
+        select evolution into @newMat2 from materiaux where nom = p_mat2;
+        select evolution into @newMat3 from materiaux where nom = p_mat3;
+        insert into materiaux_armes
+        values(p_nom,70, @newMat1, 9),
+        (p_nom,70,@newMat2, 14),
+        (p_nom,70,@newMat3, 9),
+        (p_nom,70,"Moras", 55000);
+
+        select evolution into @newMat1 from materiaux where nom = @newMat1;
+
+        insert into materiaux_armes
+        values(p_nom,80, @newMat1, 6),
+        (p_nom,80,@newMat2, 18),
+        (p_nom,80,@newMat3, 27),
+        (p_nom,80,"Moras", 65000);
+
+    END IF ;
+
+    IF (@nbrEtoile = 4) THEN
+        insert into materiaux_armes
+        values(p_nom,20,p_mat1, 3),
+        (p_nom,20,p_mat2, 3),
+        (p_nom,20,p_mat3, 2),
+        (p_nom,20,"Moras", 5000);
+
+        select evolution into @newMat1 from materiaux where nom = p_mat1;
+        insert into materiaux_armes
+        values(p_nom,40, @newMat1, 3),
+        (p_nom,40,p_mat2, 12),
+        (p_nom,40,p_mat3, 8),
+        (p_nom,40,"Moras", 15000);
+
+        select evolution into @newMat2 from materiaux where nom = p_mat2;
+        select evolution into @newMat3 from materiaux where nom = p_mat3;
+        insert into materiaux_armes
+        values(p_nom,50, @newMat1, 6),
+        (p_nom,50,@newMat2, 6),
+        (p_nom,50,@newMat3, 6),
+        (p_nom,50,"Moras", 20000);
+
+        select evolution into @newMat1 from materiaux where nom = @newMat1;
+
+        insert into materiaux_armes
+        values(p_nom,60, @newMat1, 3),
+        (p_nom,60,@newMat2, 12),
+        (p_nom,60,@newMat3, 9),
+        (p_nom,60,"Moras", 30000);
+
+        select evolution into @newMat2 from materiaux where nom = p_mat2;
+        select evolution into @newMat3 from materiaux where nom = p_mat3;
+        insert into materiaux_armes
+        values(p_nom,70, @newMat1, 6),
+        (p_nom,70,@newMat2, 9),
+        (p_nom,70,@newMat3, 6),
+        (p_nom,70,"Moras", 35000);
+
+        select evolution into @newMat1 from materiaux where nom = @newMat1;
+
+        insert into materiaux_armes
+        values(p_nom,80, @newMat1, 4),
+        (p_nom,80,@newMat2, 18),
+        (p_nom,80,@newMat3, 14),
+        (p_nom,80,"Moras", 45000);
+
+    END IF ;
+
+    IF (@nbrEtoile = 3) THEN
+        insert into materiaux_armes
+        values(p_nom,20,p_mat1, 2),
+        (p_nom,20,p_mat2, 2),
+        (p_nom,20,p_mat3, 1),
+        (p_nom,20,"Moras", 5000);
+
+        select evolution into @newMat1 from materiaux where nom = p_mat1;
+        insert into materiaux_armes
+        values(p_nom,40, @newMat1, 2),
+        (p_nom,40,p_mat2, 8),
+        (p_nom,40,p_mat3, 5),
+        (p_nom,40,"Moras", 10000);
+
+        select evolution into @newMat2 from materiaux where nom = p_mat2;
+        select evolution into @newMat3 from materiaux where nom = p_mat3;
+        insert into materiaux_armes
+        values(p_nom,50, @newMat1, 4),
+        (p_nom,50,@newMat2, 4),
+        (p_nom,50,@newMat3, 4),
+        (p_nom,50,"Moras", 15000);
+
+        select evolution into @newMat1 from materiaux where nom = @newMat1;
+
+        insert into materiaux_armes
+        values(p_nom,60, @newMat1, 2),
+        (p_nom,60,@newMat2, 8),
+        (p_nom,60,@newMat3, 6),
+        (p_nom,60,"Moras", 20000);
+
+        select evolution into @newMat2 from materiaux where nom = p_mat2;
+        select evolution into @newMat3 from materiaux where nom = p_mat3;
+        insert into materiaux_armes
+        values(p_nom,70, @newMat1, 4),
+        (p_nom,70,@newMat2, 6),
+        (p_nom,70,@newMat3, 4),
+        (p_nom,70,"Moras", 25000);
+
+        select evolution into @newMat1 from materiaux where nom = @newMat1;
+
+        insert into materiaux_armes
+        values(p_nom,80, @newMat1, 3),
+        (p_nom,80,@newMat2, 12),
+        (p_nom,80,@newMat3, 8),
+        (p_nom,80,"Moras", 30000);
+
+    END IF ;
+
+    IF (@nbrEtoile = 2) THEN
+        insert into materiaux_armes
+        values(p_nom,20,p_mat1, 1),
+        (p_nom,20,p_mat2, 1),
+        (p_nom,20,p_mat3, 1),
+        (p_nom,20,"Moras", 5000);
+
+        select evolution into @newMat1 from materiaux where nom = p_mat1;
+        insert into materiaux_armes
+        values(p_nom,40, @newMat1, 1),
+        (p_nom,40,p_mat2, 5),
+        (p_nom,40,p_mat3, 4),
+        (p_nom,40,"Moras", 5000);
+
+        select evolution into @newMat2 from materiaux where nom = p_mat2;
+        select evolution into @newMat3 from materiaux where nom = p_mat3;
+        insert into materiaux_armes
+        values(p_nom,50, @newMat1, 3),
+        (p_nom,50,@newMat2, 3),
+        (p_nom,50,@newMat3, 3),
+        (p_nom,50,"Moras", 10000);
+
+        select evolution into @newMat1 from materiaux where nom = @newMat1;
+
+        insert into materiaux_armes
+        values(p_nom,60, @newMat1, 1),
+        (p_nom,60,@newMat2, 5),
+        (p_nom,60,@newMat3, 4),
+        (p_nom,60,"Moras", 15000);
+
+    END IF ;
+
+    IF (@nbrEtoile = 2) THEN
+        insert into materiaux_armes
+        values(p_nom,20,p_mat1, 1),
+        (p_nom,20,p_mat2, 1),
+        (p_nom,20,p_mat3, 1);
+
+        select evolution into @newMat1 from materiaux where nom = p_mat1;
+        insert into materiaux_armes
+        values(p_nom,40, @newMat1, 1),
+        (p_nom,40,p_mat2, 4),
+        (p_nom,40,p_mat3, 2),
+        (p_nom,40,"Moras", 5000);
+
+        select evolution into @newMat2 from materiaux where nom = p_mat2;
+        select evolution into @newMat3 from materiaux where nom = p_mat3;
+        insert into materiaux_armes
+        values(p_nom,50, @newMat1, 2),
+        (p_nom,50,@newMat2, 2),
+        (p_nom,50,@newMat3, 2),
+        (p_nom,50,"Moras", 5000);
+
+        select evolution into @newMat1 from materiaux where nom = @newMat1;
+
+        insert into materiaux_armes
+        values(p_nom,60, @newMat1, 1),
+        (p_nom,60,@newMat2, 4),
+        (p_nom,60,@newMat3, 3),
+        (p_nom,60,"Moras", 10000);
+
     END IF ;
 END #
 DELIMITER ;
+
+
+
