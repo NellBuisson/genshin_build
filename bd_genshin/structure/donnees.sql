@@ -231,7 +231,7 @@ VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un 
 ("Rugissement du lion", 4, "Epée","Stats : 42 base ATQ, ATQ% \r Augmente les DGT infligés aux ennemis affectés par l'état Pyro ou Électro de 20%.", "Voeux permanents"),
 ("Epée rituelle", 4, "Epée", "Stats : 41 base ATQ, Recharge d'énergie \r Les compétences ont 40% de chance de réinitialiser leur propre TdR lorsqu'elles infligent des DGT. Cet effet peut être déclenché une fois toute les 30s.", "Voeux permanents"),
 ("Epée de Favonius", 4, "Epée", "Stats : 41 base ATQ, Recharge d'énergie \r Les coups CRIT ont 60% de chance de générer un orbe élémentaire qui restaure 6pts d'énergie. Cet effet peut être déclenché une fois toutes les 12s.", "Voeux permanents"),
-("La flûte", 4, "Epée", "Stats : 42 base ATQ, ATQ% \r Les attaques normales et chargées confèrent une harmonie à chaque fois qu'elles touchent. Au bout de 5 harmonies, Le pouvoir de la musique est libéré, et inflige 100% de DGT d'ATQ aux ennemis proches. Les harmonies durent jusqu'à 30 s, et une harmonie peut être obtenue toutes Les 0,5 s max.", "Voeux permanents"),
+("Flûte", 4, "Epée", "Stats : 42 base ATQ, ATQ% \r Les attaques normales et chargées confèrent une harmonie à chaque fois qu'elles touchent. Au bout de 5 harmonies, Le pouvoir de la musique est libéré, et inflige 100% de DGT d'ATQ aux ennemis proches. Les harmonies durent jusqu'à 30 s, et une harmonie peut être obtenue toutes Les 0,5 s max.", "Voeux permanents"),
 ("Eclair des impasses", 4, "Epée", "Stats : 45 base ATQ, Maîtrise élémentaire \r Augmente les DGT infligés par le personnage de 12%. Cet effet disparaît pendant 5s lorsque le personnage subit des DGT.", "Voeux temporaires"),
 ("Clair de lune de Xiphos", 4, "Epée", "Stats : 42 base ATQ, Maîtrise élémentaire \r L'effet suivant se déclenche toutes les 10 s : le personnage équipé de l'arme obtient 0,036 % de recharge d'énergie pour chaque point de maîtrise élémentaire qu'il possède pendant 12 s, alors que les autres personnages de l'équipe à proximité obtiennent 30 % de ce bonus. Plusieurs armes du même nom peuvent permettre à ce bonus de se cumuler. L'effet peut être déclenché même lorsque le personnage fait partie de l'équipe mais n'est pas déployé.", "Voeux temporaires"),
 ("L'assistant du docker", 4, "Epée", "Stats : 42 base ATQ, PV% \r Lorsque le personnage reçoit ou effectue des soins, il obtient une marque stoïque pendant 30 s, un maximum de 3 marques stoïques pouvant être obtenu. Utiliser une compétence ou un déchaînement élémentaires consomme toutes les marques stoïques et accorde un effet de surrection pendant 10 s : chaque marque stoïque consommée augmente la maîtrise élémentaire de 40 pts puis, 2 s après le début de l'effet, restaure l'énergie élémentaire du personnage équipé de l'arme de 2 pts. Un effet de surrection peut être déclenché une fois toutes les 15 s, et des marques stoïques peuvent être obtenues même lorsque le personnage fait partie de l'équipe mais n'est pas déployé.", "Voeux temporaires"),
@@ -243,7 +243,7 @@ VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un 
 ("Croc Suppurant", 4, "Epée", "Stats : 42 base ATQ, Recharge d'énergie \r Augmente les DGT de la compétence élémentaire de 16%et son taux de CRIT de 6%.", "Evènement"),
 ("Fuseau de cinabre", 5, "Epée", "Stats : 41 base ATQ, DEF% \r Augmente les dégâts infligés par la compétence élémentaire d'une valeur équivalant à 40 % de la DÉF. Cet effet peut être déclenché une fois toutes les 1,5 s, et est annulé 0,1 s après que la compétence élémentaire inflige des DGT.", "Evènement"),
 ("Pluie florale", 4, "Epée", "Stats : 42 base ATQ, Maîtrise élémentaire \r Lorsqu'une attaque a touché, elle inflige l'état Ombrelle maudite à un des ennemis touchés pendant 10 s. Cet effet peut être déclenché une fois toutes les 15 s. Si l'ennemi affecté est éliminé pendant la durée de l'effet Ombrelle maudite, son TdR est immédiatement réinitialisé. Les DGT infligés par le personnage équipé de l'arme aux ennemis affectés par l'état Ombrelle maudite augmentent de 16 %.", "Evènement"),
-("Taille de pierre", 4, "Epée", "Stats : 44 base ATQ, DGT physiques \r Les attaques normales et chargées augmentent l'ATQ et la DÉF de 4 % pendant 6 s. Cet effet peut être cumulé 4 fois au maximum, et peut être déclenché 1 fois toutes les 0,3 s.", "Craft / AR"),
+("Tailleur de pierre", 4, "Epée", "Stats : 44 base ATQ, DGT physiques \r Les attaques normales et chargées augmentent l'ATQ et la DÉF de 4 % pendant 6 s. Cet effet peut être cumulé 4 fois au maximum, et peut être déclenché 1 fois toutes les 0,3 s.", "Craft / AR"),
 ("Piqûre de fer", 4, "Epée", "Stats : 42 base ATQ, maîtrise élémentaire \r Infliger des DGT élémentaires augmente tous les DGT de 6% pendant 6s. Cet effet peut être cumulé 2 fois, et peut être déclenché une fois toutes les 1s.", "Craft"),
 ("Lame kageuchi d'Amenoma", 4, "Epée","Stats : 41 base ATQ, ATQ% \r L'utilisation d'une compétence élémentaire accorde 1 graine d'héritage. Cet effet peut être déclenché une fois toutes les 5s. Chaque graine d'héritage dure 30s, et un maximum de 3 graines d'héritage peuvent être cumulées simultanément. Après avoir utilisé un déchaînement élémentaire, toutes les graines d'héritage sont consommées et après 2s, le personnage récupère 6 pts d'énergie élémentaire pour chaque graine consommée.", "Craft"),
 ("Lame d'aubier", 4, "Epée","Stats : 44 base ATQ, Recharge d'énergie \r Après avoir déclenché une réaction de Brûlure, de Stimulation, de Suractivation, de Propagation, de Fleurissement, d'Exubérance ou de Bourgeonnement, une feuille de conscience est générée autour du personnage pendant un maximum de 10 s. Une fois collectée, la feuille augmente la maîtrise élémentaire du personnage de 60 pts pendant 12 s. Une feuille de conscience peut être créée de cette manière une fois toutes les 20 s. L'effet peut être déclenché même lorsque le personnage fait partie de l'équipe mais n'est pas déployé. L'effet de la feuille de conscience ne se cumule pas.", "Craft"),
@@ -413,8 +413,8 @@ VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un 
 ("Pointe de fer", 2, "Lance", "Stats : 33 base ATQ ", "Craft drop"),
 ("Lance du débutant", 1, "Lance", "Stats : 23 base ATQ ", "Craft drop"),
 ("Plumage cramoisi du vautour astral", 5, "Arc", "Stats : 46 base ATQ, DGT Crit \r Après avoir déclenché une réaction de Dispersion, l'ATQ augmente de 24 % pendant 12 s. De plus, lorsque l'équipe contient 1/2+ personnages d'un type élémentaire différent de celui du personnage équipé de l'arme, les DGT infligés par les attaques chargées de ce dernier augmentent de 20 %/48 % et les ceux infligés par ses déchaînements élémentaires de 10 %/24 %.", "Voeux temporaires"),
-("Plumard de fleurs", 4, "Arc", "Stats : 42 base ATQ, ATQ% \r La consommation d'endurance lors du planage diminue de 15 %. Lors d'un tir visé, les DGT infligés par les attaques chargées augmentent de 6 % toutes les 0,5 s. Cet effet peut être cumulé 6 fois maximum et prend fin 10 s après avoir quitté le mode visée.", "Voeux temporaires");
-
+("Plumard de fleurs", 4, "Arc", "Stats : 42 base ATQ, ATQ% \r La consommation d'endurance lors du planage diminue de 15 %. Lors d'un tir visé, les DGT infligés par les attaques chargées augmentent de 6 % toutes les 0,5 s. Cet effet peut être cumulé 6 fois maximum et prend fin 10 s après avoir quitté le mode visée.", "Voeux temporaires"),
+("La calamité d'Eshu", 4, "Epée", "44 base ATQ, ATQ% \r Lorsque le personnage est sous la protection d'un bouclier, les DGT infligés par les attaques normales et chargées augmentent de 20 % et leur taux CRIT de 8 %.", "Event");
 INSERT INTO `monstres`
 VALUES("Arlecchino","boss"),
 ("Narval stellavore", "boss"),
@@ -1161,6 +1161,38 @@ call `elevationArme`("Clé de Khaj-Nisut","Talisman en cuivre de la rosée","Pri
 call `elevationArme`("Lumière d'incision foliaire","Talisman en cuivre de la rosée","Coque desséchée","Satin rouge délavé");
 call `elevationArme`("Splendeur des eaux calmes","Résidu de rosée sacrée pure","Goutte d'eau croupie","Perle transocéanique");
 call `elevationArme`("Uraku Misugiri", "Branche marine de corail", "Engrenage du chaos","Garde-main ancien");
+call `elevationArme`("Absolution", "Fragment d'un accord ancien", "Vieille montre à gousset d'opérateur", "Engrenage de maillage");
+call `elevationArme`("Chanson de patrouille de sommet","Considération mystique du vent nocturne", "Axe de la source secrète", "Croc juvénile");
+call `elevationArme`("Piqûre de fer","Grain d'aérosidérite noire", "Fragment d'os fragile", "Nectar de Fleur mensongère");
+call `elevationArme`("Rugissement du Lion","Sable lumineux de Guyun", "Dague de chasse rituelle","Insigne du Pilleur");
+call `elevationArme`("Épée rituelle", "Entraves du Chevalier du Croc de Lion","Dispositif du chaos","Parchemin divinatoire");
+call `elevationArme`("Épée longue royale", "Tuile cassée de Décabarian", "Corne lourde");
+call `elevationArme`("Épée longue de Rochenoire", "Sable lumineux de Guyun","Dague de chasse rituelle", "Insigne du Pilleur");
+call `elevationArme`("Épée de Favonius", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Épée noire", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
+call `elevationArme`("Flûte", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
+call `elevationArme`("Epée de la descente", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Insigne du Pilleur");
+call `elevationArme`("Croc suppurant", "Entraves du Chevalier du Croc de Lion", "Corne lourde", "Insigne de nouvelle recrue");
+call `elevationArme`("Eclair des impasses", "Tuile cassée de Décabarian", "Corne lourde", "Parchemin divinatoire");
+call `elevationArme`("Lame kageuchi d'Amenoma", "Branche marine de corail", "Engrenage du chaos", "Garde-main ancien");
+call `elevationArme`("Tailleur de pierre", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne de nouvelle recrue");
+call `elevationArme`("Fuseau de cinabre", "Tuile cassée de Décabarian", "Dispositif du chaos", "Masque endommagé");
+call `elevationArme`("Kagotsurube Isshin", "Masque du lieutenant pernicieux", "Statuette sinistre", "Coquille spectrale");
+call `elevationArme`("Lame d'aubier", "Talisman en cuivre de la rosée", "Conteneur du chaos", "Satin rouge délavé");
+call `elevationArme`("Clair de lune de Xiphos", "Talisman en cuivre de la rosée", "Prisme endommagé", "Satin rouge délavé");
+call `elevationArme`("Pluie florale", "Sagesse de Narukami", "Prisme endommagé", "Garde-main ancien");
+call `elevationArme`("Final des profondeurs", "Résidu de rosée sacrée pure", "Goutte d'eau croupie", "Garde-main ancien");
+call `elevationArme`("Croc de loup", "Tuile cassée de Décabarian", "Dispositif du chaos", "Masque endommagé");
+call `elevationArme`("Passeur du Fleuve cendré", "Fragment d'un accord ancien", "Goutte d'eau croupie", "Perle transocéanique");
+call `elevationArme`("L'assistant du docker", "Résidu de rosée sacrée pure", "Vieille montre à gousset d'opérateur", "Perle transocéanique");
+call `elevationArme`("Lame du Narzissenkreuz", "Fragment d'un accord ancien", "Vieille montre à gousset d'opérateur", "Perle transocéanique");
+call `elevationArme`("Flûte d'ezpitzal", "Terreur du cœur sacrificiel flamboyant", "Pommeau abîmé", "Croc juvénile");
+call `elevationArme`("Os robuste", "Terreur du cœur sacrificiel flamboyant", "Fragment de volonté brisée", "Sifflet en bois de sentinelle");
+call `elevationArme`("La calamité d'Eshu", "Décadence délirante du seigneur sacré", "Bourgeon réfractif", "Sifflet en bois de sentinelle");
+call `elevationArme`("Epée Céleste", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Insigne de nouvelle recrue");
+call `elevationArme`("Epée en fer noir", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Masque endommagé");
+call `elevationArme`("Messager de l'Aube", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
+call `elevationArme`();
 call `elevationArme`();
 call `elevationArme`();
 call `elevationArme`();
@@ -1169,5 +1201,5 @@ call `elevationArme`();
 
 
 select * 
-from materiaux_armes
-where arme = "Uraku Misugiri";
+from armes
+where nom = "Epée de la descente";
