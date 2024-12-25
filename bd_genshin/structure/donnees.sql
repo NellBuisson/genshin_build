@@ -343,7 +343,7 @@ VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un 
 ("Lueur de la lune éternelle",5, "Catalyseur", "Stats : 46 base ATQ, PV% \r Augmente le bonus de soins de 10 %, et les DGT des attaques normales d'une valeur équivalant à 1 % des PV max du personnage équipé de l'arme. Pendant 12 s après l'utilisation d'un déchaînement élémentaire, les attaques normales qui touchent un ennemi restaurent 0,6 pts d'énergie élémentaire. L'énergie élémentaire peut être restaurée une fois toutes les 0,1 s de cette manière.","Voeux temporaires"),
 ("Vérité de Kagura",5, "Catalyseur", "Stats : 46 base ATQ, DGT CRIT \r Libérer une compétence élémentaire confère l'effet de Danse Kagura, permettant d'augmenter les DGT infligés par les compétences élémentaires du personnage équipé de l'arme de 12% pendant 16 s. Cet effet peut être cumulé 3 fois maximum. Avec 3 cumuls, le personnage obtient un bonus de DGT élémentaires de 12%.","Voeux temporaires"),
 ("Mille rêves flottants",5, "Catalyseur", "Stats : 44 base ATQ, Maîtrise élémentaire \r Les autres personnages de l'équipe fournissent au personnage équipé de l'arme des bonus selon leur type élémentaire. En cas de type élémentaire identique à celui du personnage équipé de l'arme, la maîtrise élémentaire de ce dernier augmente de 32 pts. En cas de type élémentaire différent, le bonus de DGT élémentaires du type élémentaire du personnage équipé de l'arme augmente de 10 %. Chacun des effets mentionnés ci-dessus peut être cumulé 3 fois maximum. De plus, la maîtrise élémentaire de tous les personnages de l'équipe autres que celui équipé de l'arme augmente de 40 pts. Plusieurs armes du même nom peuvent permettre à ce bonus de se cumuler.","Voeux temporaires"),
-("Mémoire de Tulaytullah",5, "Catalyseur", "Stats : 48 base ATQ, DGT CRIT \r Augmente la VIT d'attaque normale de 10 %. Après avoir utilisé une compétence élémentaire, les DGT infligés par les attaques normales augmentent de 4,8 % toutes les secondes pendant 14 s. Après avoir touché un ennemi avec une attaque normale pendant cette durée, les DGT infligés par les attaques normales augmentent de 9,6 %, cet effet pouvant être déclenché une fois toutes les 0,3 s. Pendant cette durée, les DGT des attaques normales peuvent être augmentés d'un maximum de 48 % de ces manières. L'effet est annulé lorsque le personnage équipé de l'arme quitte le champ de bataille, et utiliser à nouveau la compétence élémentaire réinitialise tous les bonus de DGT.","Voeux temporaires"),
+("Mémoire de Tulaytulah",5, "Catalyseur", "Stats : 48 base ATQ, DGT CRIT \r Augmente la VIT d'attaque normale de 10 %. Après avoir utilisé une compétence élémentaire, les DGT infligés par les attaques normales augmentent de 4,8 % toutes les secondes pendant 14 s. Après avoir touché un ennemi avec une attaque normale pendant cette durée, les DGT infligés par les attaques normales augmentent de 9,6 %, cet effet pouvant être déclenché une fois toutes les 0,3 s. Pendant cette durée, les DGT des attaques normales peuvent être augmentés d'un maximum de 48 % de ces manières. L'effet est annulé lorsque le personnage équipé de l'arme quitte le champ de bataille, et utiliser à nouveau la compétence élémentaire réinitialise tous les bonus de DGT.","Voeux temporaires"),
 ("Splendeur de l'azur",5, "Catalyseur", "Stats : 46 base ATQ, PV% \r Pendant 3 s après avoir utilisé un déchaînement élémentaire ou créé un bouclier, l'effet Tablette de jade primordial est accordé : restaure 4,5 pts d'énergie élémentaire toutes les 2,5 s et augmente le bonus de DGT de l'élément correspondant de 0,3 % pour chaque tranche de 1 000 PV max que le personnage équipé de l'arme possède, cette augmentation pouvant atteindre jusqu'à 12 %. L'effet Tablette de jade primordial peut être déclenché même lorsque le personnage fait partie de l'équipe mais n'est pas déployé.","Voeux temporaires"),
 ("Tome du flux éternel",5, "Catalyseur", "Stats : 44 base ATQ, DGT CRIT \r Les PV augmentent de 16 %. Lorsque les PV actuels augmentent ou diminuent, les DGT infligés par les attaques chargées augmentent de 14 % pendant 4 s, cet effet pouvant être cumulé 3 fois maximum et déclenché une fois toutes les 0,3 s. Avec 3 cumuls ou en actualisant la durée du 3e cumul, l'énergie élémentaire est restaurée de 8 pts, cet effet pouvant être déclenché une fois toutes les 12 s.","Voeux temporaires"),
 ("Supervision de trésorerie",5, "Catalyseur", "Stats : 48 base ATQ, Taux CRIT \r L'ATQ augmente de 16 %. Lorsque les PV actuels augmentent ou diminuent, les DGT infligés par les attaques normales augmentent de 16 % et ceux infligés par les attaques chargées augmentent de 14 %, pendant 4 s. Cet effet peut être cumulé 3 fois maximum et déclenché une fois toutes les 0,3 s. Avec 3 cumuls, la VIT d'attaque augmente de 8 %.","Voeux temporaires"),
@@ -896,7 +896,11 @@ VALUES("Essence de Blob", NULL),
 ("Branchie mousseplume", NULL),
 ("Chrysanthème brillant", NULL),
 ("Baie de quenettier", NULL),
-("Patte saurienne", NULL);
+("Patte saurienne", NULL),
+("Coeur illusoire de feuille", NULL),
+("Feuillage déroutant","Coeur illusoire de feuille"),
+("Bourgeon réfractif", "Feuillage déroutant");
+
 
 INSERT INTO `drop_donjons`
 VALUES("Pépinière de cécilias","Tuile cassée de Décabarian", "lundi", "jeudi"),
@@ -1239,6 +1243,50 @@ call `elevationArme`("Ailes de la Voûte d'Azur","Dent de lait du Loup boréal",
 call `elevationArme`("Ultime soupir", "Dent de lait du Loup boréal", "Corne lourde", "Insigne de nouvelle recrue");
 call `elevationArme`("Pulsation du tonnerre", "Sagesse de Narukami", "Prisme sombre", "Pointe de flèche robuste");
 call `elevationArme`("Étoile polaire", "Masque du lieutenant pernicieux", "Griffe dissimulée", "Coquille spectrale");
+call `elevationArme`("Simulacre d'eau", "Sable lumineux de Guyun", "Statuette sinistre", "Coquille spectrale");
+call `elevationArme`("La voie du chasseur", "Dernier écho du pouvoir brûlant", "Noyau fongique inactivé", "Satin rouge délavé");
+call `elevationArme`("La première grande magie", "Fragment d'un accord ancien", "Goutte d'eau croupie", "Perle transocéanique");
+call `elevationArme`("Corde de pluie blanche", "Résidu de rosée sacrée pure", "Aileron plumeux", "Perle transocéanique");
+call `elevationArme`("Plumage cramoisi du vautour astral", "Considération mystique du vent nocturne", "Bourgeon réfractif", "Sifflet en bois de sentinelle");
+call `elevationArme`("Arc de chasse de Favonius", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Nectar de Fleur mensongère");
+call `elevationArme`("Lune paisible", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne du Pilleur");
+call `elevationArme`("Arc à poulies", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Insigne de nouvelle recrue");
+call `elevationArme`("Arc rituel", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
+call `elevationArme`("Arc rouillé","Sable lumineux de Guyun", "Dague de chasse rituelle", "Masque endommagé");
+call `elevationArme`("Arc de guerre de rochenoire", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Nectar de Fleur mensongère");
+call `elevationArme`("Arc royal", "Entraves du Chevalier du Croc de Lion","Dispositif du chaos", "Parchemin divinatoire" );
+call `elevationArme`("Arc de chasse verdoyant", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Dernière corde", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Ode aux alizées", "Entraves du Chevalier du Croc de Lion", "Branche morte des lignes énergétiques", "Nectar de Fleur mensongère");
+call `elevationArme`("Traqueur des impasses", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
+call `elevationArme`("Arc d'exorcisme", "Sagesse de Narukami", "Prisme sombre", "Pointe de flèche robuste");
+call `elevationArme`("Valse nocturne", "Tuile cassée de Décabarian", "Corne lourde", "Insigne du Pilleur");
+call `elevationArme`("Lune de Mouun", "Sagesse de Narukami", "Prisme sombre", "Coquille spectrale");
+call `elevationArme`("Predator", "Sagesse de Narukami", "Prisme sombre","Pointe de flèche robuste");
+call `elevationArme`("Crépuscule couchant", "Grain d'aérosidérite noire", "Dague de chasse rituelle", "Parchemin divinatoire");
+call `elevationArme`("Le valet du roi", "Dernier écho du pouvoir brûlant", "Noyau fongique inactivé", "Pointe de flèche robuste");
+call `elevationArme`("Chalutier", "Dernier écho du pouvoir brûlant", "Noyau fongique inactivé", "Spores de Fongus");
+call `elevationArme`("Perceur d'ibis", "Talisman en cuivre de la rosée", "Fleur non épanouie d'origine inconnue", "Satin rouge délavé");
+call `elevationArme`("Chant de quiétude", "Fragment d'un accord ancien", "Goutte d'eau croupie", "Pointe de flèche robuste");
+call `elevationArme`("Descendant du soleil flamboyant", "Dernier écho du pouvoir brûlant", "Fleur non épanouie d'origine inconnue","Spores de Fongus");
+call `elevationArme`("Jauge de portée", "Fragment d'un accord ancien", "Goutte d'eau croupie","Perle transocéanique");
+call `elevationArme`("Nimbus-forgé", "Grain d'aérosidérite noire", "Pommeau abîmé", "Insigne de nouvelle recrue");
+call `elevationArme`("Brise-chaîne", "Considération mystique du vent nocturne", "Aileron plumeux", "Croc juvénile");
+call `elevationArme`("Plumard de fleurs", "Considération mystique du vent nocturne", "Pierre enflammée", "Sifflet en bois de sentinelle");
+call `elevationArme`("Messager", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne du Pilleur");
+call `elevationArme`("Lance-pierres", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Masque endommagé");
+call `elevationArme`("Arc courbé", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
+call `elevationArme`("Serment de l'archer","Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
+call `elevationArme`("Arc du corbeau", "Tuile cassée de Décabarian", "Corne lourde","Pointe de flèche robuste");
+call `elevationArme`("Arc de chasse aguerri", "Dent de lait du Loup boréal","Branche morte des lignes énergétiques", "Insigne du Pilleur");
+call `elevationArme`("Arc de chasse", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Insigne du Pilleur");
+call `elevationArme`("L'origine des Quatre Vents", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
+call `elevationArme`("Atlas de la Voûte d'Azur", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche robuste");
+call `elevationArme`("Chaînes mortelles", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Masque endommagé");
+call `elevationArme`("Lueur de la lune éternelle", "Branche marine de corail", "Prisme sombre", "Coquille spectrale");
+call `elevationArme`("Vérité de Kagura", "Masque du lieutenant pernicieux", "Griffe dissimulée", "Coquille spectrale");
+call `elevationArme`("Mille rêves flottants", "Souvenir du jardin d'oasis", "Prisme endommagé", "Spores de Fongus");
+call `elevationArme`("Mémoire de Tulaytulah", "Dernier écho du pouvoir brûlant", "Noyau fongique inactivé", "Spores de Fongus");
 call `elevationArme`();
 call `elevationArme`();
 call `elevationArme`();
@@ -1274,24 +1322,18 @@ call `elevationArme`();
 call `elevationArme`();
 call `elevationArme`();
 call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-
 
 select *
 from materiaux_armes
-where arme = "Lame du mercenaire"
+where arme = "Arc de chasse aguerri"
 order by niveau;
 
 select count(*)
 from armes
-where type_arme = "Arc";
+where type_arme = "Catalyseur";
 
 delete from armes 
-where nom = "Algue-marine de Makhaira";
+where nom = "Simulacre d'eau";
 
 insert into armes
 VALUES("Algue-marine de Makhaira", 4, "Claymore", "Stats : 42 base ATQ, Maîtrise élémentaire \r L'effet suivant se déclenche toutes les 10 s : l'ATQ du personnage équipé de l'arme augmente d'une valeur équivalant à 24 % de sa maîtrise élémentaire pendant 12 s, alors que les autres personnages de l'équipe à proximité obtiennent 30 % de ce bonus. Plusieurs armes du même nom peuvent permettre à ce bonus de se cumuler. L'effet peut être déclenché même lorsque le personnage fait partie de l'équipe mais n'est pas déployé.","Voeux temporaire");

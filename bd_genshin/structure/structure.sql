@@ -365,8 +365,9 @@ ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
 -----------------------------------------------
 ----------------- Triggers --------------------
 -----------------------------------------------
-
+-- Trigger pour materiaux_arme
 DELIMITER #
+
 CREATE OR REPLACE TRIGGER before_insert_materiaux_armes
 BEFORE INSERT
 ON materiaux_armes
@@ -383,6 +384,7 @@ BEGIN
 END #
 DELIMITER ;
 
+DELIMITER #
 
 
 -----------------------------------------------
