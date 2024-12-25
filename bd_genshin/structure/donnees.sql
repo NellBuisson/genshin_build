@@ -213,7 +213,6 @@ VALUES ("Voyageur", NULL, NULL, "all", 5, "Maîtrise", "Recharge", NULL, "Epée"
 ("Chasca", NULL, NULL, "anemo", 5, "Taux Crit", "DGT Crit", "Natlan", "Arc", FALSE, 0),
 ("Ororon", NULL, NULL, "electro", 4, "Recharge", "Taux Crit", "Natlan", "Arc", FALSE, 0);
 
-
 INSERT INTO `armes`
 VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un ennemi avec une attaque normale ou plongeante accorde une ode aux fleurs : augmente la DÉF de 8 % et accorde un bonus de DGT élémentaires de 10 %, le tout pendant 6 s, cet effet pouvant être cumulé 2 fois maximum et déclenché une fois toutes les 0,1 s. Lorsque cet effet obtient 2 cumuls ou que la durée du 2e cumul est actualisée, chaque tranche de 1 000 pts de DÉF du personnage équipé de l'arme augmente le bonus de DGT élémentaires de tous les personnages de l'équipe à proximité de 8 % (jusqu'à 25,6 % maximum) pendant 15 s.", "Voeux permanents"),
 ("Lame de la voûte d'Azur", 5, "Epée", "Stats : 46 base ATQ, Recharge d'énergie \r Augmente le taux CRIT de 4%; le dechainement élémentaire confère l'effet Croc du Perceur de ciel, qui augmente la VIT de déplacement de 10%, la VIT d'ATQ de 10% et les DGT des attaques normales et chargées de 20% pendant 12s.", "Voeux permanents"),
@@ -260,7 +259,7 @@ VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un 
 ("Couteau à filets", 3, "Epée","Stats : 39 base ATQ, ATQ% \r Les attaques normales et chargées ont 50% de chance d'infliger 240% de DGT d'ATQ supplémentaire à une cible. Cet effet peut être déclenché une fois toutes les 15s.", "Voeux drop"),
 ("Epée en fer noir", 3,"Epée", "Stats : 39 base ATQ, Maîtrise élémentaire \r Augmente l'ATQ de 20% pendant 12s après avoir déclenché Surcharge, Supraconduction, Electrocution ou Dispersion Electro", "Don PNJ"),
 ("Epée en argent", 2,"Epée", "Stats : 33 base ATQ", "Craft Drop"),
-("Epée émousséeé", 1, "Epée","Stats : 23 base ATQ", "Craft Drop"),
+("Epée émoussée", 1, "Epée","Stats : 23 base ATQ", "Craft Drop"),
 ("Fierté de la Voûte d'Azur", 5, "Claymore", "Stats : 48 base, ATQ, Recharge d'énergie \r Augmente tous les DGT de 8%. Après avoir utilisé un déchaînement élémentaire, les attaques créent une lame de vide qui inflige 80% de DGT physique aux ennemis sur sa route. Dure 20s ou 8 lames de vide.", "Voeux permanents"),
 ("Mort-du-loup", 5, "Claymore", "Stats : 46 base, ATQ, ATQ% \r Augmente l'ATQ de 20%. Les attaques touchant les ennemis ayant moins de 30% de PV augmentent l'ATQ de tous les membres de l'équipe de 40% pendant 12s. Cet effet peut être déclenché une fois toutes les 30s.", "Voeux permanents"),
 ("Lame brute", 5, "Claymore", "Stats : 46 base ATQ, ATQ% \r Augmente la force du bouclier de 20%. Toucher un ennemi augmente l'ATQ de 4% pendant 8 s. Cet effet peut être cumulé 5 fois au maximum et peut être déclenché une fois toutes les 0,3 s. Lorsque vous êtes protégé par un bouclier, l'ATQ de cet effet augmente de 100%.", "Voeux temporaires"),
@@ -269,7 +268,7 @@ VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un 
 ("Balise de la mer de roseaux", 5, "Claymore", "Stats : 46 base ATQ, Taux CRIT \r Lorsqu'une compétence élémentaire a touché un ennemi, l'ATQ augmente de 20 % pendant 8 s. Après avoir subi des DGT, l'ATQ augmente de 20 % pendant 8 s. Les 2 effets susmentionnés peuvent être déclenchés même lorsque le personnage fait partie de l'équipe mais n'est pas déployé. De plus, lorsqu'il n'est pas protégé par un bouclier, les PV max du personnage augmentent de 32 %.", "Voeux temporaires"),
 ("Condamneur", 5, "Claymore", "Stats : 48 base ATQ, Taux CRIT \r Augmente l'ATQ de 20 %. Lorsqu'un personnage de l'équipe obtient un fragment généré par une réaction de Cristallisation, le personnage équipé de l'arme gagne 1 sceau pendant 15 s, ce qui augmente les DGT de ses compétences élémentaires de 18 %. Un maximum de 2 sceaux peut être obtenu en même temps, tous les sceaux disparaissant 0,2 s après que le personnage équipé de l'arme inflige des DGT avec une compétence élémentaire.", "Voeux temporaires"),
 ("Croc du roi de la montagne", 5, "Claymore", "Stats : 49 base ATQ Taux CRIT \r Toucher un ennemi avec une compétence élémentaire accorde un cumul de faveur canopéenne, cet effet pouvant être déclenché une fois toutes les 0,5 s ; de plus, le personnage équipé de l'arme obtient 3 cumuls de faveur canopéenne lorsqu'un membre de l'équipe à proximité a déclenché une réaction de Brûlure ou de Bourgeonnement, cet effet pouvant être déclenché une fois toutes les 2 s, même lorsque le personnage fait partie de l'équipe mais n'est pas déployé. Faveur canopéenne : augmente les DGT des compétences et déchaînements élémentaires de 10 % pendant 6 s ; cet effet peut être cumulé 6 fois maximum, la durée de chaque cumul étant calculée de façon indépendante.", "Voeux temporaires"),
-("Espadon prototype", 4, "Claymore", "Stats : 44 base ATQ, ATQ% \r Les attaques ont 50% de chance d'infliger des DGT équivalant à 240% de l'ATQ aux ennemis dans une petite zone. Cet effet peut être déclenché une fois toutes les 15s.", "Craft"),
+("Espadon", 4, "Claymore", "Stats : 44 base ATQ, ATQ% \r Les attaques ont 50% de chance d'infliger des DGT équivalant à 240% de l'ATQ aux ennemis dans une petite zone. Cet effet peut être déclenché une fois toutes les 15s.", "Craft"),
 ("Espadon de Favonius", 4, "Claymore", "Stats : 41 base ATQ, Recharge d'énergie \r Les coups CRIT des attaques ont 60% de chance de générer une faible quantité de particules élémentaire qui restaurent 6pts d'énergie. Cet effet peut être déclenché une fois toutes les 12s.", "Voeux permanents"),
 ("Ossature du dragon", 4, "Claymore", "Stats : 42 base ATQ, Taux CRIT \r Les DGT infligés augmentent de 6% et les DGT reçus de 3% toutes les 4s tant que le personnage est en combat ; cet effet peut être cumulé 5 fois maximum. Il ne se réinitialise pas si le personnage quitte le combat, mais s'arrête si le personnage subit des DGT.","Battle Pass"),
 ("Fluorescence", 4, "Claymore", "Stats : 42 base ATQ, Maîtrise élémentaire \r Augmente les DGT infligés aux ennemis affectés par Hydro ou Électro de 20%.", "Voeux permaents"),
@@ -281,10 +280,10 @@ VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un 
 ("Tombe-neige en argétoile", 4,"Claymore",  "Stats : 44 base ATQ, DEF, DGT physique \r Les attaques normales et chargées ont 60% de chance lorsqu'elles touchent de générer une stalactite de glace qui inflige des DGT de zone équivalent à 80% de l'ATQ. Si l'ennemi est affecté par l'effet cryo, la stalactite inflige alors 200% de l'ATQ. Cet effet se déclenche une fois toutes les 10 secondes.","Craft"),
 ("Epée antique des Millelithes", 4, "Claymore", "Stats : 42 base ATQ, ATQ% \r Pour chaque personnage du groupe qui est originaire de Liyue, le personnage qui équipe cette arme gagne 7% d'ATQ et 3% de taux CRIT. Peut se cumuler 4 fois.","Voeux temporaire"),
 ("Espadon de Nagamasa", 4, "Claymore", "Stats : 42 base ATQ, Recharge temporaire \r Augmente les DGT infligés par les compétences élémentaires de 6%. Lorsqu'une compétence élémentaire touche un ennemi, le personnage perd 3 pts d'énergie élémentaire, mais récupère 3 pts d'énergie toutes les 2s pendant 6s. Cet effet peut être déclenché une fois toutes les 10s, même si le personnage fait partie de l'équipe mais n'est pas déployé.","Craft"),
-("Akuomaru", 4, "Claymore", "Stats : 42 base ATQ, ATQ% \r Pour chaque point de l'énergie élémentaire combinée de l'ensemble de l'équipe, les DGT du déchaînement élémentaire du personnage équipé de cette arme augmentent de 0,12 %. Les DGT du déchaînement élémentaire peuvent être augmentés jusqu'à 40 % de cette manière.","Voeux temporaires"),
+("Akuoumaru", 4, "Claymore", "Stats : 42 base ATQ, ATQ% \r Pour chaque point de l'énergie élémentaire combinée de l'ensemble de l'équipe, les DGT du déchaînement élémentaire du personnage équipé de cette arme augmentent de 0,12 %. Les DGT du déchaînement élémentaire peuvent être augmentés jusqu'à 40 % de cette manière.","Voeux temporaires"),
 ("Illustre seigneur des mers", 4, "Claymore", "Stats : 41 base, ATQ, ATQ% \r Augmente les DGT des déchaînements élémentaires de 12%. Lorsqu'un déchaînement élémentaire touche un ennemi, il y a 100% de chances d'invoquer un thon géant qui charge et inflige des DGT de zone équivalant à 100% de l'ATQ. Cet effet peut être déclenché une fois toutes les 15s.","Event"),
 ("Apparat de la forêt", 4, "Claymore", "Stats : 44 base ATQ, Recharge d'énergie \r Après avoir déclenché une réaction de Brûlure, de Stimulation, de Suractivation, de Propagation, de Fleurissement, d'Exubérance ou de Bourgeonnement, une feuille de conscience est générée autour du personnage pendant un maximum de 10 s. Une fois collectée, la feuille augmente la maîtrise élémentaire du personnage de 60 pts pendant 12 s. Une feuille de conscience peut être créée de cette manière une fois toutes les 20 s. L'effet peut être déclenché même lorsque le personnage fait partie de l'équipe mais n'est pas déployé. L'effet de la feuille de conscience ne se cumule pas.","Craft"),
-("Algue-marine de Makhaira", 4, "Claymore", "Stats : 42 base ATQ, Maîtrise élémentaire \r L'effet suivant se déclenche toutes les 10 s : l'ATQ du personnage équipé de l'arme augmente d'une valeur équivalant à 24 % de sa maîtrise élémentaire pendant 12 s, alors que les autres personnages de l'équipe à proximité obtiennent 30 % de ce bonus. Plusieurs armes du même nom peuvent permettre à ce bonus de se cumuler. L'effet peut être déclenché même lorsque le personnage fait partie de l'équipe mais n'est pas déployé.","Voeux temporaire"),
+("Aigue-marine de Makhaira", 4, "Claymore", "Stats : 42 base ATQ, Maîtrise élémentaire \r L'effet suivant se déclenche toutes les 10 s : l'ATQ du personnage équipé de l'arme augmente d'une valeur équivalant à 24 % de sa maîtrise élémentaire pendant 12 s, alors que les autres personnages de l'équipe à proximité obtiennent 30 % de ce bonus. Plusieurs armes du même nom peuvent permettre à ce bonus de se cumuler. L'effet peut être déclenché même lorsque le personnage fait partie de l'équipe mais n'est pas déployé.","Voeux temporaire"),
 ("Fleur de mailles", 4, "Claymore", "Stats : 44 base ATQ, Maîtrise élémentaire \r Toucher un ennemi avec une compétence élémentaire ou déclencher une réaction élémentaire augmente pendant 8 s l'ATQ de 12 % et la maîtrise élémentaire de 48 pts.","Event"),
 ("Ombre tidale", 4, "Claymore", "Stats : 42 base ATQ, ATQ% \r Lorsque le personnage a reçu des soins, son ATQ augmente de 24 % pendant 8 s. L'effet peut être déclenché même lorsque le personnage fait partie de l'équipe mais n'est pas déployé.","Craft"),
 ("Bâton bavard", 4, "Claymore", "Stats : 44 base ATQ, Taux CRIT \r L'ATQ augmente de 16 % pendant 15 s après avoir été affecté par l'élément Pyro, cet effet pouvant être déclenché une fois toutes les 12 s. Le bonus de DGT élémentaires augmente de 12 % pendant 15 s après avoir été affecté par l'élément Hydro, Cryo, Électro ou Dendro, cet effet pouvant être déclenché une fois toutes les 12 s.","Battle Pass"),
@@ -898,6 +897,7 @@ VALUES("Essence de Blob", NULL),
 ("Chrysanthème brillant", NULL),
 ("Baie de quenettier", NULL),
 ("Patte saurienne", NULL);
+
 INSERT INTO `drop_donjons`
 VALUES("Pépinière de cécilias","Tuile cassée de Décabarian", "lundi", "jeudi"),
 ("Pépinière de cécilias","Mur abattu de Décabarian", "lundi", "jeudi"),
@@ -1192,6 +1192,87 @@ call `elevationArme`("La calamité d'Eshu", "Décadence délirante du seigneur s
 call `elevationArme`("Epée Céleste", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Insigne de nouvelle recrue");
 call `elevationArme`("Epée en fer noir", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Masque endommagé");
 call `elevationArme`("Messager de l'Aube", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
+call `elevationArme`("Lame froide", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Epée du voyageur", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
+call `elevationArme`("Couteau à filets", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne du Pilleur");
+call `elevationArme`("Epée en argent", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Epée émoussée", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Fierté de la Voûte d'Azur", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
+call `elevationArme`("Mort-du-loup", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
+call `elevationArme`("Lame brute", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne du Pilleur");
+call `elevationArme`("Ode au chant du vent", "Tuile cassée de Décabarian", "Corne lourde", "Masque endommagé");
+call `elevationArme`("Brise-pierre de corne rouge", "Sagesse de Narukami", "Griffe dissimulée", "Garde-main ancien");
+call `elevationArme`("Balise de la mer de roseaux", "Dernier écho du pouvoir brûlant", "Coque desséchée", "Satin rouge délavé");
+call `elevationArme`("Condamneur", "Fragment d'un accord ancien", "Noyau de faille", "Engrenage de maillage");
+call `elevationArme`("Croc du roi de la montagne", "Décadence délirante du seigneur sacré", "Pierre enflammée", "Sifflet en bois de sentinelle");
+call `elevationArme`("Espadon", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Masque endommagé");
+call `elevationArme`("Espadon de Favonius", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Insigne de nouvelle recrue");
+call `elevationArme`("Ossature du dragon", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Nectar de Fleur mensongère");
+call `elevationArme`("Fluorescence", "Plomb karstique", "Pollen d'herbe brumeuse", "Parchemin divinatoire");
+call `elevationArme`("Trancheuse de Rochenoire", "Plomb karstique", "Pollen d'herbe brumeuse","Insigne de nouvelle recrue");
+call `elevationArme`("Épée-horloge", "Tuile cassée de Décabarian", "Corne lourde", "Nectar de Fleur mensongère");
+call `elevationArme`("Espadon royal", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
+call `elevationArme`("Ombre immaculée", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Insigne du Pilleur");
+call `elevationArme`("Espadon rituel", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche robuste");
+call `elevationArme`("Tombe-neige en argétoile", "Tuile cassée de Décabarian", "Corne lourde", "Bave de Blob");
+call `elevationArme`("Épée antique des Millelithes", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Pointe de flèche robuste");
+call `elevationArme`("Espadon de Nagamasa", "Sagesse de Narukami","Engrenage du chaos", "Garde-main ancien");
+call `elevationArme`("Akuoumaru", "Branche marine de corail", "Griffe dissimulée", "Garde-main ancien");
+call `elevationArme`("Illustre seigneur des mers", "Grain d'aérosidérite noire","Fragment d'os fragile", "Bave de Blob");
+call `elevationArme`("Apparat de la forêt", "Talisman en cuivre de la rosée", "Conteneur du chaos", "Satin rouge délavé");
+call `elevationArme`("Aigue-marine de Makhaira", "Dernier écho du pouvoir brûlant", "Conteneur du chaos", "Insigne du Pilleur");
+call `elevationArme`("Fleur de mailles", "Entraves du Chevalier du Croc de Lion", "Coque desséchée", "Coquille spectrale");
+call `elevationArme`("Ombre tidale", "Gobelet brisé de la mer immaculée", "Noyau de faille", "Engrenage de maillage");
+call `elevationArme`("Bâton bavard", "Souvenir du jardin d'oasis", "Coque desséchée", "Bave de Blob");
+call `elevationArme`("Scie électrique portative", "Gobelet brisé de la mer immaculée", "Noyau de faille", "Engrenage de maillage");
+call `elevationArme`("« Méga épée magique du suzerain ultime »", "Gobelet brisé de la mer immaculée", "Vieille montre à gousset d'opérateur", "Engrenage de maillage");
+call `elevationArme`("Trembleur de terre", "Terreur du cœur sacrificiel flamboyant", "Pierre enflammée", "Sifflet en bois de sentinelle");
+call `elevationArme`("Grande épée en fer blanc", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
+call `elevationArme`("Épée de la raison", "Plomb karstique", "Pollen d'herbe brumeuse", "Masque endommagé");
+call `elevationArme`("Épée sanglante", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche robuste");
+call `elevationArme`("Grande épée céleste", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Insigne du Pilleur");
+call `elevationArme`("Ombre ferreuse", "Tuile cassée de Décabarian", "Corne lourde", "Nectar de Fleur mensongère");
+call `elevationArme`("Lame du mercenaire", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
+call `elevationArme`("Épée d'entrainement", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
+call `elevationArme`("Arc d'Amos", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
+call `elevationArme`("Ailes de la Voûte d'Azur","Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche robuste");
+call `elevationArme`("Ultime soupir", "Dent de lait du Loup boréal", "Corne lourde", "Insigne de nouvelle recrue");
+call `elevationArme`("Pulsation du tonnerre", "Sagesse de Narukami", "Prisme sombre", "Pointe de flèche robuste");
+call `elevationArme`("Étoile polaire", "Masque du lieutenant pernicieux", "Griffe dissimulée", "Coquille spectrale");
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
+call `elevationArme`();
 call `elevationArme`();
 call `elevationArme`();
 call `elevationArme`();
@@ -1200,6 +1281,17 @@ call `elevationArme`();
 call `elevationArme`();
 
 
-select * 
+select *
+from materiaux_armes
+where arme = "Lame du mercenaire"
+order by niveau;
+
+select count(*)
 from armes
-where nom = "Epée de la descente";
+where type_arme = "Arc";
+
+delete from armes 
+where nom = "Algue-marine de Makhaira";
+
+insert into armes
+VALUES("Algue-marine de Makhaira", 4, "Claymore", "Stats : 42 base ATQ, Maîtrise élémentaire \r L'effet suivant se déclenche toutes les 10 s : l'ATQ du personnage équipé de l'arme augmente d'une valeur équivalant à 24 % de sa maîtrise élémentaire pendant 12 s, alors que les autres personnages de l'équipe à proximité obtiennent 30 % de ce bonus. Plusieurs armes du même nom peuvent permettre à ce bonus de se cumuler. L'effet peut être déclenché même lorsque le personnage fait partie de l'équipe mais n'est pas déployé.","Voeux temporaire");
