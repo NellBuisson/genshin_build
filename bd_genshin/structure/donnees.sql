@@ -1357,18 +1357,3 @@ call `elevationArme`("Pampille blanche", "Sable lumineux de Guyun", "Dague de ch
 call `elevationArme`("Pointe de fer", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 call `elevationArme`("Lance du débutant", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 
-
-select *
-from materiaux_armes
-where arme = "Grimoire de poche"
-order by niveau;
-
-select count(*)
-from armes
-where type_arme = "Lance";
-
-delete from armes 
-where nom = "Mémoire de Tulaytullah";
-
-insert into armes
-VALUES("Tourbillon sur les vagues",4, "Catalyseur", "Stats : 41 base ATQ, Recharge d'énergie \r La consommation d'endurance lors de la nage diminue de 15 %. De plus, utiliser une compétence élémentaire augmente les PV max de 20 % pendant 10 s, chaque personnage Hydro dans l'équipe augmentant les PV max de 12 % supplémentaires jusqu'à un maximum de 24 %. Cet effet peut être déclenché une fois toutes les 15 s.","Voeux temporaires");
