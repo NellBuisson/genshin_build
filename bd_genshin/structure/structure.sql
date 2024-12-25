@@ -201,6 +201,7 @@ CREATE OR REPLACE TABLE `Meilleures_Armes`(
     `rang` INT,
     `arme` VARCHAR(50),
     `raffinage` INT,
+    `commentaire` VARCHAR(50),
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`arme`) REFERENCES armes(`nom`),
     PRIMARY KEY(`personnage`, `type_build`, `rang`)
@@ -242,11 +243,11 @@ CREATE OR REPLACE TABLE `Sets_Recommandes`(
     `type_build` VARCHAR(20),
     `rang` INT,
     `set` VARCHAR(60),
+    `commentaire` VARCHAR(50),
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`set`) REFERENCES sets(`nom`),
     PRIMARY KEY(`personnage`, `type_build`, `rang`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -----------------------------------------------
 -- Structure table Drop Monstres
@@ -281,11 +282,11 @@ CREATE OR REPLACE TABLE `Meilleurs_Artefacts`(
     `option` INT,
     `artefact` VARCHAR(20),
     `stat` VARCHAR(20) NOT NULL,
+    `commentaire` VARCHAR(50),
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`artefact`) REFERENCES artefacts(`type`),
     PRIMARY KEY(`personnage`, `type_build`, `option`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 -----------------------------------------------
 -- Structure table Donjons Monstres
@@ -395,7 +396,49 @@ DELIMITER ;
 
 DELIMITER #
 
+-- trigger pour meilleures_armes
 
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_insert_meilleures_armes
+BEFORE INSERT
+ON meilleures_armes
+FOR EACH ROW
+BEGIN
+    SET @typePerso = NULL;
+    SET @typeArme = NULL;
+    -- vérification de l'égalité des type arme entre la recommandation d'arme et celui du personnage
+    select type_arme into @typePerso from personnages 
+        where prenom = NEW.personnage;
+    select type_arme into @typeArme from armes 
+        where nom = NEW.arme;
+    IF (@typeArme != @typePerso) THEN
+    SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Insertion refusée. Le type d'arme du personnage et de l'arme ne correspondent pas.";
+    END IF;
+    END #
+DELIMITER ;
+
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_update_meilleures_armes
+BEFORE UPDATE
+ON meilleures_armes
+FOR EACH ROW
+BEGIN
+    SET @typePerso = NULL;
+    SET @typeArme = NULL;
+    -- vérification de l'égalité des type arme entre la recommandation d'arme et celui du personnage
+    select type_arme into @typePerso from personnages 
+        where prenom = NEW.personnage;
+    select type_arme into @typeArme from armes 
+        where nom = NEW.arme;
+    IF (@typeArme != @typePerso) THEN
+    SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Modification refusée. Le type d'arme du personnage et de la nouvelle arme ne correspondent pas.";
+    END IF;
+    END #
+DELIMITER ;
 -----------------------------------------------
 ----------------- Fonction --------------------
 -----------------------------------------------

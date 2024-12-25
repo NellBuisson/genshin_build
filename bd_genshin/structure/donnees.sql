@@ -1358,4 +1358,30 @@ call `elevationArme`("Pointe de fer", "Entraves du Chevalier du Croc de Lion", "
 call `elevationArme`("Lance du débutant", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 
 INSERT INTO `meilleures_armes`
-VALUES("Albedo", "Batterie / Sub-DPS", 1, ""),
+VALUES("Albedo", "Batterie / Sub-DPS", 1, "Uraku Misugiri", 1, NULL),
+("Albedo", "Batterie / Sub-DPS", 2, "Fuseau de Cinabre", 5, NULL),
+("Albedo", "Batterie / Sub-DPS", 3, "Coupeur de jade primordial", 1, NULL),
+("Albedo", "Batterie / Sub-DPS", 4, "Messager de l'Aube", 5, NULL),
+("Albedo", "Batterie / Sub-DPS", 5, "Flûte d'ezpitzal", 5, NULL),
+("Alhaitham", "MDPS Dendro", 1, "Lumière d'incision foliaire", 1, NULL);
+
+INSERT INTO `meilleures_armes`
+VALUES
+("Alhaitham", "MDPS Dendro", 2, "Coupeur de jade primordial", 1, NULL),
+("Alhaitham", "MDPS Dendro", 3, "Lune ondulante de Futsu", 1, NULL),
+("Alhaitham", "MDPS Dendro", 4, "Croc de loup", 1, NULL),
+("Alhaitham", "MDPS Dendro", 5,"Pluie florale", 5, NULL),
+("Alhaitham", "MDPS Dendro", 6, "Épée noire", 1, NULL),
+("Aloy", "MDPS Cryo", 1, "Pulsation du tonnerre", 1, NULL),
+("Aloy", "MDPS Cryo", 2, "Étoile polaire", 1, NULL),
+("Aloy", "MDPS Cryo", 3, "Ailes de la Voûte d'Azur", 1, NULL),
+("Aloy", "MDPS Cryo", 4, "Arc rouillé", 1, NULL),
+("Aloy", "MDPS Cryo", 5, "Arc d'exorcisme", 1, NULL),
+("Aloy", "MDPS Cryo", 6, "Predator", 1, "Son passif ne fonctionne que sur PS4 et PS5"),
+("Aloy", "Support / Burst-dps", 1, "Ailes de la Voûte d'Azur", 1, NULL),
+("Aloy", "Support / Burst-dps", 2, "Ode aux alizées", 5, NULL),
+("Aloy", "Support / Burst-dps", 3, "Dernière corde", 1, "Si R5 meilleure que 2"),
+("Aloy", "Support / Burst-dps", 4, "Ultime soupir", 1, NULL),
+("Aloy", "Support / Burst-dps", 5, "Arc rituel",1 , NULL),
+("Aloy", "Support / Burst-dps", 6, "Arc de chasse de Favonius", 1, NULL);
+
