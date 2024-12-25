@@ -1363,10 +1363,7 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Uraku Misugiri", 1, NULL),
 ("Albedo", "Batterie / Sub-DPS", 3, "Coupeur de jade primordial", 1, NULL),
 ("Albedo", "Batterie / Sub-DPS", 4, "Messager de l'Aube", 5, NULL),
 ("Albedo", "Batterie / Sub-DPS", 5, "Flûte d'ezpitzal", 5, NULL),
-("Alhaitham", "MDPS Dendro", 1, "Lumière d'incision foliaire", 1, NULL);
-
-INSERT INTO `meilleures_armes`
-VALUES
+("Alhaitham", "MDPS Dendro", 1, "Lumière d'incision foliaire", 1, NULL),
 ("Alhaitham", "MDPS Dendro", 2, "Coupeur de jade primordial", 1, NULL),
 ("Alhaitham", "MDPS Dendro", 3, "Lune ondulante de Futsu", 1, NULL),
 ("Alhaitham", "MDPS Dendro", 4, "Croc de loup", 1, NULL),
@@ -1383,5 +1380,31 @@ VALUES
 ("Aloy", "Support / Burst-dps", 3, "Dernière corde", 1, "Si R5 meilleure que 2"),
 ("Aloy", "Support / Burst-dps", 4, "Ultime soupir", 1, NULL),
 ("Aloy", "Support / Burst-dps", 5, "Arc rituel",1 , NULL),
-("Aloy", "Support / Burst-dps", 6, "Arc de chasse de Favonius", 1, NULL);
+("Aloy", "Support / Burst-dps", 6, "Arc de chasse de Favonius", 1, NULL),
+("Amber", "MDPS PYRO", 1, "La voie du chasseur", 1, NULL),
+("Amber", "MDPS PYRO", 2, "Étoile polaire", 1, NULL),
+("Amber", "MDPS PYRO", 3, "Ailes de la Voûte d'Azur", 1, NULL),
+("Amber", "MDPS PYRO", 4, "Descendant du soleil flamboyant", 1, NULL),
+("Amber", "MDPS PYRO", 5, "Arc d'exorcisme", 5, NULL),
+("Amber", "MDPS PYRO", 6, "Lune paisible", 1, NULL),
+("Amber", "Support / Burst-dps", 1, "Ultime soupir", 1, NULL),
+("Amber", "Support / Burst-dps", 2, "Ailes de la Voûte d'Azur", 1, NULL),
+("Amber", "Support / Burst-dps", 3, "Traqueur des impasses", 1, NULL),
+("Amber", "Support / Burst-dps", 4, "Dernière Corde", 1, NULL),
+("Amber", "Support / Burst-dps", 5, "Crépuscule couchant", 5, NULL),
+("Amber", "Support / Burst-dps", 6, "Arc de chasse de Favonius", 1, NULL),
+("Itto", "MDPS Géo", 1, "Brise-pierre de corne rouge", 1, NULL),
+("Itto", "MDPS Géo", 2, "Ossature du dragon", 1, NULL),
+("Itto", "MDPS Géo", 3, "Balise de la mer de roseaux", 1, NULL),
+("Itto", "MDPS Géo", 4, "Ombre immaculée", 5, NULL),
+("Itto", "MDPS Géo", 5, "Fierté de la Voûte d'Azur", 1, NULL),
+("Itto", "MDPS Géo", 6, "Trancheuse de Rochenoire", 1, NULL),
+("Arlecchino", "MDPS Pyro", 1, "Semblance de la lune écarlate", 1, NULL),
+("Arlecchino", "MDPS Pyro", 2, "Lance de jade ailée", 1, NULL),
+("Arlecchino", "MDPS Pyro", 3, "Bâton des sables écarlates", 1, "Si évaporation, meilleure que 2"),
+("Arlecchino", "MDPS Pyro", 4, "Scion de la victoire", 1, NULL),
+("Arlecchino", "MDPS Pyro", 5, "Pampille blanche", 5, NULL),
+("Arlecchino", "MDPS Pyro", 6, "Ballade des fjords", 1, "Si évaporation et R5, meilleur option 4 étoiles");
 
+INSERT INTO `meilleures_armes`
+VALUES();
