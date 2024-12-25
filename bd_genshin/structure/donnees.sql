@@ -413,7 +413,8 @@ VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un 
 ("Lance du débutant", 1, "Lance", "Stats : 23 base ATQ ", "Craft drop"),
 ("Plumage cramoisi du vautour astral", 5, "Arc", "Stats : 46 base ATQ, DGT Crit \r Après avoir déclenché une réaction de Dispersion, l'ATQ augmente de 24 % pendant 12 s. De plus, lorsque l'équipe contient 1/2+ personnages d'un type élémentaire différent de celui du personnage équipé de l'arme, les DGT infligés par les attaques chargées de ce dernier augmentent de 20 %/48 % et les ceux infligés par ses déchaînements élémentaires de 10 %/24 %.", "Voeux temporaires"),
 ("Plumard de fleurs", 4, "Arc", "Stats : 42 base ATQ, ATQ% \r La consommation d'endurance lors du planage diminue de 15 %. Lors d'un tir visé, les DGT infligés par les attaques chargées augmentent de 6 % toutes les 0,5 s. Cet effet peut être cumulé 6 fois maximum et prend fin 10 s après avoir quitté le mode visée.", "Voeux temporaires"),
-("La calamité d'Eshu", 4, "Epée", "44 base ATQ, ATQ% \r Lorsque le personnage est sous la protection d'un bouclier, les DGT infligés par les attaques normales et chargées augmentent de 20 % et leur taux CRIT de 8 %.", "Event");
+("La calamité d'Eshu", 4, "Epée", "44 base ATQ, ATQ% \r Lorsque le personnage est sous la protection d'un bouclier, les DGT infligés par les attaques normales et chargées augmentent de 20 % et leur taux CRIT de 8 %.", "Event"),
+("Tourbillon sur les vagues",4, "Catalyseur", "Stats : 41 base ATQ, Recharge d'énergie \r La consommation d'endurance lors de la nage diminue de 15 %. De plus, utiliser une compétence élémentaire augmente les PV max de 20 % pendant 10 s, chaque personnage Hydro dans l'équipe augmentant les PV max de 12 % supplémentaires jusqu'à un maximum de 24 %. Cet effet peut être déclenché une fois toutes les 15 s.","Voeux temporaires");
 INSERT INTO `monstres`
 VALUES("Arlecchino","boss"),
 ("Narval stellavore", "boss"),
@@ -1287,53 +1288,87 @@ call `elevationArme`("Lueur de la lune éternelle", "Branche marine de corail", 
 call `elevationArme`("Vérité de Kagura", "Masque du lieutenant pernicieux", "Griffe dissimulée", "Coquille spectrale");
 call `elevationArme`("Mille rêves flottants", "Souvenir du jardin d'oasis", "Prisme endommagé", "Spores de Fongus");
 call `elevationArme`("Mémoire de Tulaytulah", "Dernier écho du pouvoir brûlant", "Noyau fongique inactivé", "Spores de Fongus");
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
-call `elevationArme`();
+call `elevationArme`("Splendeur de l'azur", "Sable lumineux de Guyun", "Fleur non épanouie d'origine inconnue", "Spores de Fongus");
+call `elevationArme`("Tome du flux éternel", "Résidu de rosée sacrée pure", "Noyau de faille", "Engrenage de maillage");
+call `elevationArme`("Supervision de trésorerie", "Gobelet brisé de la mer immaculée", "Vieille montre à gousset d'opérateur", "Perle transocéanique");
+call `elevationArme`("Écho de la grue", "Plomb karstique", "Aileron plumeux", "Parchemin divinatoire");
+call `elevationArme`("Instant surfant", "Terreur du cœur sacrificiel flamboyant", "Fragment de volonté brisée", "Croc juvénile");
+call `elevationArme`("Amulette de Rochenoire", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Parchemin divinatoire");
+call `elevationArme`("Atlas des terres et des mers", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Bave de Blob");
+call `elevationArme`("Mémoires de rituels", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Insigne du Pilleur");
+call `elevationArme`("Grimoire royal", "Tuile cassée de Décabarian", "Corne lourde", "Insigne de nouvelle recrue");
+call `elevationArme`("Malice", "Plomb karstique", "Pollen d'herbe brumeuse", "Pointe de flèche robuste");
+call `elevationArme`("Code de Favonius", "Tuile cassée de Décabarian", "Corne lourde", "Parchemin divinatoire");
+call `elevationArme`("Perle solaire", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Nectar de Fleur mensongère");
+call `elevationArme`("Mouvement vagabond", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Masque endommagé");
+call `elevationArme`("Oeil de la perception", "Plomb karstique", "Pollen d'herbe brumeuse", "Masque endommagé");
+call `elevationArme`("Fruit du permafrost", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Nectar de Fleur mensongère");
+call `elevationArme`("Vins et chants", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Insigne du Pilleur");
+call `elevationArme`("Anneau des Hakushin", "Branche marine de corail", "Prisme sombre", "Parchemin divinatoire");
+call `elevationArme`("Contes de Dodoco", "Dent de lait du Loup boréal","Branche morte des lignes énergétiques", "Masque endommagé");
+call `elevationArme`("Oeil d'assermentation", "Branche marine de corail", "Griffe dissimulée", "Coquille spectrale");
+call `elevationArme`("Le fruit de l'accomplissement", "Souvenir du jardin d'oasis", "Statuette sinistre", "Spores de Fongus");
+call `elevationArme`("Étoile du soir errante", "Souvenir du jardin d'oasis", "Noyau fongique inactivé", "Spores de Fongus");
+call `elevationArme`("Pureté fluide", "Résidu de rosée sacrée pure", "Noyau de faille", "Perle transocéanique");
+call `elevationArme`("Jade sacrificiel", "Sable lumineux de Guyun", "Pollen d'herbe brumeuse", "Parchemin divinatoire");
+call `elevationArme`("Ballade d'un azur infini", "Dent de lait du Loup boréal","Fragment d'os fragile", "Insigne du Pilleur");
+call `elevationArme`("Anneau de Yaxche", "Décadence délirante du seigneur sacré", "Fragment de volonté brisée", "Masque endommagé");
+call `elevationArme`("Corne à boire cendrée","Considération mystique du vent nocturne", "Axe de la source secrète","Croc juvénile" );
+call `elevationArme`("Tourbillon sur les vagues", "Terreur du cœur sacrificiel flamboyant", "Fragment de volonté brisée", "Croc juvénile");
+call `elevationArme`("Néphrite jumelle", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne de nouvelle recrue");
+call `elevationArme`("Orbe Jadien", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Insigne du Pilleur");
+call `elevationArme`("Conte d'un autre monde", "Entraves du Chevalier du Croc de Lion","Dispositif du chaos", "Masque endommagé");
+call `elevationArme`("Histoire des chasseurs de dragon", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Parchemin divinatoire");
+call `elevationArme`("Guide de magie", "Tuile cassée de Décabarian", "Corne lourde", "Bave de Blob");
+call `elevationArme`("Grimoire de poche", "Tuile cassée de Décabarian", "Corne lourde", "Masque endommagé");
+call `elevationArme`("Notes de l'apprenti", "Tuile cassée de Décabarian", "Corne lourde", "Masque endommagé");
+call `elevationArme`("Perceur Prismatique", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Insigne du Pilleur");
+call `elevationArme`("Lance de jade ailée", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Insigne de nouvelle recrue");
+call `elevationArme`("Berge de la Voûte d'Azur", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
+call `elevationArme`("Bâton de Homa", "Grain d'aérosidérite noire", "Branche morte des lignes énergétiques", "Bave de Blob");
+call `elevationArme`("Lumière du faucheur", "Masque du lieutenant pernicieux", "Engrenage du chaos", "Garde-main ancien");
+call `elevationArme`("Étouffeur de calamités", "Plomb karstique","Pollen d'herbe brumeuse", "Nectar de Fleur mensongère");
+call `elevationArme`("Bâton des sables écarlates","Souvenir du jardin d'oasis","Conteneur du chaos", "Spores de Fongus");
+call `elevationArme`("Semblance de la lune écarlate", "Gobelet brisé de la mer immaculée","Pommeau abîmé", "Engrenage de maillage");
+call `elevationArme`("Élégie de Lumidouce", "Gobelet brisé de la mer immaculée", "Pommeau abîmé", "Nectar de Fleur mensongère");
+call `elevationArme`("Fléau du dragon", "Plomb karstique", "Pollen d'herbe brumeuse","Parchemin divinatoire");
+call `elevationArme`("Lance de Rochenoire", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne de nouvelle recrue");
+call `elevationArme`("Pique du croissant de lune", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Insigne du Pilleur");
+call `elevationArme`("Scion de la victoire", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques","Nectar de Fleur mensongère");
+call `elevationArme`("Guisarme stellaire", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Masque endommagé");
+call `elevationArme`("Lance des millelithes", "Grain d'aérosidérite noire", "Pollen d'herbe brumeuse", "Pointe de flèche robuste");
+call `elevationArme`("Lance de Favonius", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
+call `elevationArme`("Aileron de brise-vagues", "Masque du lieutenant pernicieux", "Griffe dissimulée", "Garde-main ancien");
+call `elevationArme`("Lance Dosdragon", "Dent de lait du Loup boréal", "Pollen d'herbe brumeuse", "Insigne de nouvelle recrue");
+call `elevationArme`("Lance de chasse royale", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne de nouvelle recrue");
+call `elevationArme`("Lance en croix de Kitain", "Masque du lieutenant pernicieux", "Engrenage du chaos", "Insigne du Pilleur");
+call `elevationArme`("La prise", "Masque du lieutenant pernicieux", "Engrenage du chaos", "Coquille spectrale");
+call `elevationArme`("Perce-lune", "Souvenir du jardin d'oasis", "Conteneur du chaos", "Insigne de nouvelle recrue");
+call `elevationArme`("Lance du vent saisonnier", "Dent de lait du Loup boréal", "Statuette sinistre","Bave de Blob");
+call `elevationArme`("Récompense légitime", "Gobelet brisé de la mer immaculée", "Noyau de faille", "Engrenage de maillage");
+call `elevationArme`("Ballade des fjords", "Gobelet brisé de la mer immaculée", "Fleur non épanouie d'origine inconnue", "Nectar de Fleur mensongère");
+call `elevationArme`("Foret de prospecteur", "Fragment d'un accord ancien", "Vieille montre à gousset d'opérateur", "Engrenage de maillage");
+call `elevationArme`("Dialogues des sages du désert", "Talisman en cuivre de la rosée", "Aileron plumeux", "Coquille spectrale");
+call `elevationArme`("Trace d'arc-en-ciel", "Décadence délirante du seigneur sacré", "Axe de la source secrète", "Sifflet en bois de sentinelle");
+call `elevationArme`("Clou soutenant les montagnes", "Décadence délirante du seigneur sacré", "Pierre enflammée", "Nectar de Fleur mensongère");
+call `elevationArme`("Pampille noire", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Pointe de flèche robuste");
+call `elevationArme`("Hallebarde", "Plomb karstique", "Pollen d'herbe brumeuse", "Nectar de Fleur mensongère");
+call `elevationArme`("Pampille blanche", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Insigne de nouvelle recrue");
+call `elevationArme`("Pointe de fer", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
+call `elevationArme`("Lance du débutant", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
+
 
 select *
 from materiaux_armes
-where arme = "Arc de chasse aguerri"
+where arme = "Grimoire de poche"
 order by niveau;
 
 select count(*)
 from armes
-where type_arme = "Catalyseur";
+where type_arme = "Lance";
 
 delete from armes 
-where nom = "Simulacre d'eau";
+where nom = "Mémoire de Tulaytullah";
 
 insert into armes
-VALUES("Algue-marine de Makhaira", 4, "Claymore", "Stats : 42 base ATQ, Maîtrise élémentaire \r L'effet suivant se déclenche toutes les 10 s : l'ATQ du personnage équipé de l'arme augmente d'une valeur équivalant à 24 % de sa maîtrise élémentaire pendant 12 s, alors que les autres personnages de l'équipe à proximité obtiennent 30 % de ce bonus. Plusieurs armes du même nom peuvent permettre à ce bonus de se cumuler. L'effet peut être déclenché même lorsque le personnage fait partie de l'équipe mais n'est pas déployé.","Voeux temporaire");
+VALUES("Tourbillon sur les vagues",4, "Catalyseur", "Stats : 41 base ATQ, Recharge d'énergie \r La consommation d'endurance lors de la nage diminue de 15 %. De plus, utiliser une compétence élémentaire augmente les PV max de 20 % pendant 10 s, chaque personnage Hydro dans l'équipe augmentant les PV max de 12 % supplémentaires jusqu'à un maximum de 24 %. Cet effet peut être déclenché une fois toutes les 15 s.","Voeux temporaires");
