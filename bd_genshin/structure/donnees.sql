@@ -1357,3 +1357,5 @@ call `elevationArme`("Pampille blanche", "Sable lumineux de Guyun", "Dague de ch
 call `elevationArme`("Pointe de fer", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 call `elevationArme`("Lance du débutant", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 
+INSERT INTO `meilleures_armes`
+VALUES("Albedo", "Batterie / Sub-DPS", 1, ""),

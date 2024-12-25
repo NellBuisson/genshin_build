@@ -82,9 +82,6 @@ CREATE OR REPLACE TABLE `Personnages`(
     PRIMARY KEY(`prenom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-alter table personnages
-add `niveau` INT;
-
 -----------------------------------------------
 -- Structure table Regions
 
@@ -200,11 +197,13 @@ CREATE OR REPLACE TABLE `Pull_Armes`(
 
 CREATE OR REPLACE TABLE `Meilleures_Armes`(
     `personnage` VARCHAR(20),
-    `arme` VARCHAR(50),
+    `type_build` VARCHAR(20),
     `rang` INT,
+    `arme` VARCHAR(50),
+    `raffinage` INT,
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`arme`) REFERENCES armes(`nom`),
-    PRIMARY KEY(`personnage`, `arme`)
+    PRIMARY KEY(`personnage`, `type_build`, `rang`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
@@ -239,14 +238,15 @@ CREATE OR REPLACE TABLE `Materiaux_Personnages`(
 -- Structure table Sets Recommandés
 
 CREATE OR REPLACE TABLE `Sets_Recommandes`(
-    `set` VARCHAR(60),
     `personnage` VARCHAR(20),
-    `option` VARCHAR(10),
-    `nbr` INT,
+    `type_build` VARCHAR(20),
+    `rang` INT,
+    `set` VARCHAR(60),
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`set`) REFERENCES sets(`nom`),
-    PRIMARY KEY(`personnage`, `set`, `option`)
+    PRIMARY KEY(`personnage`, `type_build`, `rang`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -----------------------------------------------
 -- Structure table Drop Monstres
@@ -277,15 +277,18 @@ CREATE OR REPLACE TABLE `Drop_Donjons`(
 
 CREATE OR REPLACE TABLE `Meilleurs_Artefacts`(
     `personnage` VARCHAR(20),
+    `type_build` VARCHAR(20),
+    `option` INT,
     `artefact` VARCHAR(20),
     `stat` VARCHAR(20) NOT NULL,
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`artefact`) REFERENCES artefacts(`type`),
-    PRIMARY KEY(`personnage`, `artefact`)
+    PRIMARY KEY(`personnage`, `type_build`, `option`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
 -----------------------------------------------
--- Structure table Donjons_Monstres
+-- Structure table Donjons Monstres
 
 CREATE OR REPLACE TABLE `Donjons_Monstres`(
     `donjon` VARCHAR(50),
@@ -359,8 +362,14 @@ ADD CONSTRAINT armes_raffinage CHECK(raffinage BETWEEN 0 AND 5);
 ALTER TABLE personnages 
 ADD CONSTRAINT perso_etoile CHECK(nbretoile BETWEEN 4 AND 5);
 
+ALTER TABLE personnages 
+ADD CONSTRAINT perso_constellation CHECK(constellation BETWEEN 0 AND 6);
+
 ALTER TABLE pull_personnages
 ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
+
+ALTER TABLE meilleures_armes
+ADD CONSTRAINT meilleures_armes_raffinage CHECK(raffinage BETWEEN 0 AND 5);
 
 -----------------------------------------------
 ----------------- Triggers --------------------
@@ -609,6 +618,3 @@ BEGIN
     END IF ;
 END #
 DELIMITER ;
-
-
-
