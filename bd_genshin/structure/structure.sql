@@ -197,7 +197,7 @@ CREATE OR REPLACE TABLE `Pull_Armes`(
 
 CREATE OR REPLACE TABLE `Meilleures_Armes`(
     `personnage` VARCHAR(20),
-    `type_build` VARCHAR(20),
+    `type_build` VARCHAR(30),
     `rang` INT,
     `arme` VARCHAR(50),
     `raffinage` INT,
@@ -357,9 +357,6 @@ ALTER TABLE `personnages`
 ALTER TABLE armes 
 ADD CONSTRAINT armes_etoile CHECK(nbretoile BETWEEN 1 AND 5);
 
-ALTER TABLE armes_associees
-ADD CONSTRAINT armes_raffinage CHECK(raffinage BETWEEN 0 AND 5);
-
 ALTER TABLE personnages 
 ADD CONSTRAINT perso_etoile CHECK(nbretoile BETWEEN 4 AND 5);
 
@@ -370,7 +367,7 @@ ALTER TABLE pull_personnages
 ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
 
 ALTER TABLE meilleures_armes
-ADD CONSTRAINT meilleures_armes_raffinage CHECK(raffinage BETWEEN 0 AND 5);
+ADD CONSTRAINT meilleures_armes_raffinage CHECK(raffinage BETWEEN 1 AND 5);
 
 -----------------------------------------------
 ----------------- Triggers --------------------
