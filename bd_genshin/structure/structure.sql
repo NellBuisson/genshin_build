@@ -200,7 +200,7 @@ CREATE OR REPLACE TABLE `Meilleures_Armes`(
     `type_build` VARCHAR(30),
     `rang` INT,
     `arme` VARCHAR(50),
-    `raffinage` INT,
+    `raffinage` INT DEFAULT 1,
     `commentaire` VARCHAR(50),
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`arme`) REFERENCES armes(`nom`),
