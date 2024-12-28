@@ -658,3 +658,4 @@ BEGIN
     END IF ;
 END #
 DELIMITER ;
+set foreign_key_checks = 1;
