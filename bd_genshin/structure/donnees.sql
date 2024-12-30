@@ -84,7 +84,7 @@ VALUES ("Antre de Stormterror", "boss", false, "Mondstadt"),
 ("Ruines flamboyantes", "matériaux d'élévation d'aptitude", false, "Natlan");
 
 INSERT INTO `sets`
-VALUES ("Colère du tonnerre", "2 pièces : Confère un bonus de DGT Électro de 15 %. \r 4 pièces : Augmente les DGT infligés par Surcharge, Électrocution, Supraconduction et Exubérance de 40 % et le bonus de DGT accordée[sic] par Suractivation de 20 %. Au déclenchement de ces réactions élémentaires ou d'une réaction de Stimulation, le TdR de la compétence élémentaire diminue de 1 s. Cet effet peut être déclenché une fois toutes les 0,8 s.", "Jardin Estival"),
+VALUES("Colère du tonnerre", "2 pièces : Confère un bonus de DGT Électro de 15 %. \r 4 pièces : Augmente les DGT infligés par Surcharge, Électrocution, Supraconduction et Exubérance de 40 % et le bonus de DGT accordée[sic] par Suractivation de 20 %. Au déclenchement de ces réactions élémentaires ou d'une réaction de Stimulation, le TdR de la compétence élémentaire diminue de 1 s. Cet effet peut être déclenché une fois toutes les 0,8 s.", "Jardin Estival"),
 ("Dompteur de foudre", "2 pièces : Augmente la RÉS Électro de 40 %. \r 4 pièces : Augmente les DGT infligés aux ennemis affectés par l'élément Électro de 35 %.", "Jardin estival"),
 ("Ombre de la Verte Chasseuse", "2 pièces : Confère un bonus de DGT Anémo de 15 %. \r 4 pièces : Augmente les DGT infligés par Dispersion de 60 % ; la RÉS élémentaire des ennemis diminue de 40 % pendant 10 s selon le type élémentaire de Dispersion.", "Vallée de la réminiscence"),
 ("Amour chéri", "2 pièces : Augmente les soins effectués par le personnage de 15 %. \r 4 pièces : Augmente les soins reçus par tous les personnages de l'équipe de 20 % pendant 10 s après l'utilisation d'une compétence élémentaire ou d'un déchaînement élémentaire.", "Vallée de la réminiscence"),
@@ -117,8 +117,9 @@ VALUES ("Colère du tonnerre", "2 pièces : Confère un bonus de DGT Électro de
 ("Fragment d'harmonie divergente","2 pièces : Augmente l'ATQ de 18 %. \r 4 pièces : Lorsque la valeur d'un engagement vital augmente ou diminue, les DGT infligés par le personnage augmentent de 18 % pendant 6 s. Cet effet peut être cumulé 3 fois maximum.","Théâtre fané"),
 ("Rêverie incomplète","2 pièces : Augmente l'ATQ de 18 %. \r 4 pièces : Après avoir été hors combat pendant 3 s, les DGT infligés augmentent de 50 %. En combat, si aucun ennemi brûlé n'est à proximité pendant plus de 6 s, cette augmentation de DGT diminue de 10 % toutes les secondes, jusqu'à atteindre 0 % ; si un ennemi brûlé est à proximité, elle augmente de 10 % toutes les secondes, jusqu'à atteindre 50 %. Cet effet peut être déclenché même lorsque le personnage équipé de ce set d'artéfacts fait partie de l'équipe mais n'est pas déployé.","Théâtre fané"),
 ("Parchemin du héros de la Cité de braise","2 pièces : Lorsqu'un membre de l'équipe à proximité déclenche une éruption noctâme, le personnage équipé de l'artéfact récupère 6 pts d'énergie élémentaire. \r 4 pièces : Lorsque le personnage équipé de l'artéfact a déclenché une réaction liée à son type élémentaire, le bonus de DGT élémentaires des éléments concernés par cette réaction augmente de 12 % pendant 15 s pour tous les personnages de l'équipe à proximité. Si le personnage équipé de l'artéfact bénéficie d'une bénédiction noctâme lors du déclenchement de cet effet, le bonus de DGT élémentaires des éléments concernés par cette réaction augmente de 28 % supplémentaires pendant 20 s pour tous les personnages de l'équipe à proximité. L'effet ci-dessus peut être déclenché même si le personnage n'est pas déployé, et les effets d'augmentation des DGT accordés par les sets d'artéfacts du même nom ne se cumulent pas.","Sanctuaire des esprits arc-en-ciel"),
-("Codex d'obsidienne","2 pièces : Lorsque le personnage équipé de l'artéfact bénéficie d'une bénédiction noctâme et est sur le terrain, les DGT qu'il inflige augmentent de 15 %. \r 4 pièces : Lorsque le personnage équipé de l'artéfact a consommé 1 pt de noctâme sur le terrain, le taux CRIT augmente de 40 % pendant 6 s. Cet effet peut être déclenché une fois toutes les secondes.","Sanctuaire des esprits arc-en-ciel");
-
+("Codex d'obsidienne","2 pièces : Lorsque le personnage équipé de l'artéfact bénéficie d'une bénédiction noctâme et est sur le terrain, les DGT qu'il inflige augmentent de 15 %. \r 4 pièces : Lorsque le personnage équipé de l'artéfact a consommé 1 pt de noctâme sur le terrain, le taux CRIT augmente de 40 % pendant 6 s. Cet effet peut être déclenché une fois toutes les secondes.","Sanctuaire des esprits arc-en-ciel"),
+("Rideau du Gladiateur", "2 pièces : Augmente l'ATQ de 18 %. \r 4 pièces : Augmente les DGT infligés par les attaques normales de 35 % lorsque ce set d'artéfacts est équipé par les personnages armés d'une épée à une main, à deux mains ou d'une arme d'hast.", NULL),
+("Bande vagabonde", "2 pièces : Augmente la maîtrise élémentaire de 80 pts. \r 4 pièces : Augmente les DGT infligés par les attaques chargées de 35 % lorsque ce set d'artéfacts est équipé par les personnages armés d'un arc ou d'un catalyseur.", NULL);
 
 INSERT INTO `personnages` (prenom, nom, image, element, nbretoile, ssstat1, ssstat2, region, type_arme, possedee, constellation)
 VALUES ("Voyageur", NULL, NULL, "all", 5, "Maîtrise", "Recharge", NULL, "Epée", FALSE, 0),
@@ -1059,7 +1060,7 @@ VALUES("Pépinière de cécilias","Tuile cassée de Décabarian", "lundi", "jeud
 ("Ruines éparses","Verdict négatif",NULL,NULL);
 
 
-call `elevationArme`("Épée du faucon", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Épée du faucon", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche usée");
 call `elevationArme`("Tranche-sommets", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Masque endommagé");
 call `elevationArme`("Coupeur de jade primordial", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne du Pilleur");
 call `elevationArme`("Lame de la Voûte d'Azur", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
@@ -1075,9 +1076,9 @@ call `elevationArme`("Chanson de patrouille de sommet","Considération mystique 
 call `elevationArme`("Piqûre de fer","Grain d'aérosidérite noire", "Fragment d'os fragile", "Nectar de Fleur mensongère");
 call `elevationArme`("Rugissement du Lion","Sable lumineux de Guyun", "Dague de chasse rituelle","Insigne du Pilleur");
 call `elevationArme`("Épée rituelle", "Entraves du Chevalier du Croc de Lion","Dispositif du chaos","Parchemin divinatoire");
-call `elevationArme`("Épée longue royale", "Tuile cassée de Décabarian", "Corne lourde");
+call `elevationArme`("Épée longue royale", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche usée");
 call `elevationArme`("Épée longue de Rochenoire", "Sable lumineux de Guyun","Dague de chasse rituelle", "Insigne du Pilleur");
-call `elevationArme`("Épée de Favonius", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Épée de Favonius", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche usée");
 call `elevationArme`("Épée noire", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
 call `elevationArme`("Flûte", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
 call `elevationArme`("Epée de la descente", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Insigne du Pilleur");
@@ -1101,11 +1102,11 @@ call `elevationArme`("La calamité d'Eshu", "Décadence délirante du seigneur s
 call `elevationArme`("Epée Céleste", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Insigne de nouvelle recrue");
 call `elevationArme`("Epée en fer noir", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Masque endommagé");
 call `elevationArme`("Messager de l'Aube", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
-call `elevationArme`("Lame froide", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Lame froide", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche usée");
 call `elevationArme`("Epée du voyageur", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 call `elevationArme`("Couteau à filets", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne du Pilleur");
-call `elevationArme`("Epée en argent", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
-call `elevationArme`("Epée émoussée", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Epée en argent", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche usée");
+call `elevationArme`("Epée émoussée", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche usée");
 call `elevationArme`("Fierté de la Voûte d'Azur", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
 call `elevationArme`("Mort-du-loup", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 call `elevationArme`("Lame brute", "Plomb karstique", "Pollen d'herbe brumeuse", "Insigne du Pilleur");
@@ -1122,9 +1123,9 @@ call `elevationArme`("Trancheuse de Rochenoire", "Plomb karstique", "Pollen d'he
 call `elevationArme`("Épée-horloge", "Tuile cassée de Décabarian", "Corne lourde", "Nectar de Fleur mensongère");
 call `elevationArme`("Espadon royal", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
 call `elevationArme`("Ombre immaculée", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Insigne du Pilleur");
-call `elevationArme`("Espadon rituel", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche robuste");
+call `elevationArme`("Espadon rituel", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche usée");
 call `elevationArme`("Tombe-neige en argétoile", "Tuile cassée de Décabarian", "Corne lourde", "Bave de Blob");
-call `elevationArme`("Épée antique des Millelithes", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Pointe de flèche robuste");
+call `elevationArme`("Épée antique des Millelithes", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Pointe de flèche usée");
 call `elevationArme`("Espadon de Nagamasa", "Sagesse de Narukami","Engrenage du chaos", "Garde-main ancien");
 call `elevationArme`("Akuoumaru", "Branche marine de corail", "Griffe dissimulée", "Garde-main ancien");
 call `elevationArme`("Illustre seigneur des mers", "Grain d'aérosidérite noire","Fragment d'os fragile", "Bave de Blob");
@@ -1138,15 +1139,15 @@ call `elevationArme`("« Méga épée magique du suzerain ultime »", "Gobelet b
 call `elevationArme`("Trembleur de terre", "Terreur du cœur sacrificiel flamboyant", "Pierre enflammée", "Sifflet en bois de sentinelle");
 call `elevationArme`("Grande épée en fer blanc", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
 call `elevationArme`("Épée de la raison", "Plomb karstique", "Pollen d'herbe brumeuse", "Masque endommagé");
-call `elevationArme`("Épée sanglante", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche robuste");
+call `elevationArme`("Épée sanglante", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche usée");
 call `elevationArme`("Grande épée céleste", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Insigne du Pilleur");
 call `elevationArme`("Ombre ferreuse", "Tuile cassée de Décabarian", "Corne lourde", "Nectar de Fleur mensongère");
 call `elevationArme`("Lame du mercenaire", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
 call `elevationArme`("Épée d'entrainement", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
 call `elevationArme`("Arc d'Amos", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
-call `elevationArme`("Ailes de la Voûte d'Azur","Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche robuste");
+call `elevationArme`("Ailes de la Voûte d'Azur","Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche usée");
 call `elevationArme`("Ultime soupir", "Dent de lait du Loup boréal", "Corne lourde", "Insigne de nouvelle recrue");
-call `elevationArme`("Pulsation du tonnerre", "Sagesse de Narukami", "Prisme sombre", "Pointe de flèche robuste");
+call `elevationArme`("Pulsation du tonnerre", "Sagesse de Narukami", "Prisme sombre", "Pointe de flèche usée");
 call `elevationArme`("Étoile polaire", "Masque du lieutenant pernicieux", "Griffe dissimulée", "Coquille spectrale");
 call `elevationArme`("Simulacre d'eau", "Sable lumineux de Guyun", "Statuette sinistre", "Coquille spectrale");
 call `elevationArme`("La voie du chasseur", "Dernier écho du pouvoir brûlant", "Noyau fongique inactivé", "Satin rouge délavé");
@@ -1160,19 +1161,19 @@ call `elevationArme`("Arc rituel", "Dent de lait du Loup boréal", "Branche mort
 call `elevationArme`("Arc rouillé","Sable lumineux de Guyun", "Dague de chasse rituelle", "Masque endommagé");
 call `elevationArme`("Arc de guerre de rochenoire", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Nectar de Fleur mensongère");
 call `elevationArme`("Arc royal", "Entraves du Chevalier du Croc de Lion","Dispositif du chaos", "Parchemin divinatoire" );
-call `elevationArme`("Arc de chasse verdoyant", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
-call `elevationArme`("Dernière corde", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche robuste");
+call `elevationArme`("Arc de chasse verdoyant", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche usée");
+call `elevationArme`("Dernière corde", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche usée");
 call `elevationArme`("Ode aux alizées", "Entraves du Chevalier du Croc de Lion", "Branche morte des lignes énergétiques", "Nectar de Fleur mensongère");
 call `elevationArme`("Traqueur des impasses", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
-call `elevationArme`("Arc d'exorcisme", "Sagesse de Narukami", "Prisme sombre", "Pointe de flèche robuste");
+call `elevationArme`("Arc d'exorcisme", "Sagesse de Narukami", "Prisme sombre", "Pointe de flèche usée");
 call `elevationArme`("Valse nocturne", "Tuile cassée de Décabarian", "Corne lourde", "Insigne du Pilleur");
 call `elevationArme`("Lune de Mouun", "Sagesse de Narukami", "Prisme sombre", "Coquille spectrale");
-call `elevationArme`("Predator", "Sagesse de Narukami", "Prisme sombre","Pointe de flèche robuste");
+call `elevationArme`("Predator", "Sagesse de Narukami", "Prisme sombre","Pointe de flèche usée");
 call `elevationArme`("Crépuscule couchant", "Grain d'aérosidérite noire", "Dague de chasse rituelle", "Parchemin divinatoire");
-call `elevationArme`("Le valet du roi", "Dernier écho du pouvoir brûlant", "Noyau fongique inactivé", "Pointe de flèche robuste");
+call `elevationArme`("Le valet du roi", "Dernier écho du pouvoir brûlant", "Noyau fongique inactivé", "Pointe de flèche usée");
 call `elevationArme`("Chalutier", "Dernier écho du pouvoir brûlant", "Noyau fongique inactivé", "Spores de Fongus");
 call `elevationArme`("Perceur d'ibis", "Talisman en cuivre de la rosée", "Fleur non épanouie d'origine inconnue", "Satin rouge délavé");
-call `elevationArme`("Chant de quiétude", "Fragment d'un accord ancien", "Goutte d'eau croupie", "Pointe de flèche robuste");
+call `elevationArme`("Chant de quiétude", "Fragment d'un accord ancien", "Goutte d'eau croupie", "Pointe de flèche usée");
 call `elevationArme`("Descendant du soleil flamboyant", "Dernier écho du pouvoir brûlant", "Fleur non épanouie d'origine inconnue","Spores de Fongus");
 call `elevationArme`("Jauge de portée", "Fragment d'un accord ancien", "Goutte d'eau croupie","Perle transocéanique");
 call `elevationArme`("Nimbus-forgé", "Grain d'aérosidérite noire", "Pommeau abîmé", "Insigne de nouvelle recrue");
@@ -1182,11 +1183,11 @@ call `elevationArme`("Messager", "Plomb karstique", "Pollen d'herbe brumeuse", "
 call `elevationArme`("Lance-pierres", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Masque endommagé");
 call `elevationArme`("Arc courbé", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 call `elevationArme`("Serment de l'archer","Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Bave de Blob");
-call `elevationArme`("Arc du corbeau", "Tuile cassée de Décabarian", "Corne lourde","Pointe de flèche robuste");
+call `elevationArme`("Arc du corbeau", "Tuile cassée de Décabarian", "Corne lourde","Pointe de flèche usée");
 call `elevationArme`("Arc de chasse aguerri", "Dent de lait du Loup boréal","Branche morte des lignes énergétiques", "Insigne du Pilleur");
 call `elevationArme`("Arc de chasse", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Insigne du Pilleur");
 call `elevationArme`("L'origine des Quatre Vents", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
-call `elevationArme`("Atlas de la Voûte d'Azur", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche robuste");
+call `elevationArme`("Atlas de la Voûte d'Azur", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Pointe de flèche usée");
 call `elevationArme`("Chaînes mortelles", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Masque endommagé");
 call `elevationArme`("Lueur de la lune éternelle", "Branche marine de corail", "Prisme sombre", "Coquille spectrale");
 call `elevationArme`("Vérité de Kagura", "Masque du lieutenant pernicieux", "Griffe dissimulée", "Coquille spectrale");
@@ -1201,7 +1202,7 @@ call `elevationArme`("Amulette de Rochenoire", "Sable lumineux de Guyun", "Dague
 call `elevationArme`("Atlas des terres et des mers", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Bave de Blob");
 call `elevationArme`("Mémoires de rituels", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Insigne du Pilleur");
 call `elevationArme`("Grimoire royal", "Tuile cassée de Décabarian", "Corne lourde", "Insigne de nouvelle recrue");
-call `elevationArme`("Malice", "Plomb karstique", "Pollen d'herbe brumeuse", "Pointe de flèche robuste");
+call `elevationArme`("Malice", "Plomb karstique", "Pollen d'herbe brumeuse", "Pointe de flèche usée");
 call `elevationArme`("Code de Favonius", "Tuile cassée de Décabarian", "Corne lourde", "Parchemin divinatoire");
 call `elevationArme`("Perle solaire", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Nectar de Fleur mensongère");
 call `elevationArme`("Mouvement vagabond", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques", "Masque endommagé");
@@ -1240,7 +1241,7 @@ call `elevationArme`("Lance de Rochenoire", "Plomb karstique", "Pollen d'herbe b
 call `elevationArme`("Pique du croissant de lune", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Insigne du Pilleur");
 call `elevationArme`("Scion de la victoire", "Dent de lait du Loup boréal", "Branche morte des lignes énergétiques","Nectar de Fleur mensongère");
 call `elevationArme`("Guisarme stellaire", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Masque endommagé");
-call `elevationArme`("Lance des millelithes", "Grain d'aérosidérite noire", "Pollen d'herbe brumeuse", "Pointe de flèche robuste");
+call `elevationArme`("Lance des millelithes", "Grain d'aérosidérite noire", "Pollen d'herbe brumeuse", "Pointe de flèche usée");
 call `elevationArme`("Lance de Favonius", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Bave de Blob");
 call `elevationArme`("Aileron de brise-vagues", "Masque du lieutenant pernicieux", "Griffe dissimulée", "Garde-main ancien");
 call `elevationArme`("Lance Dosdragon", "Dent de lait du Loup boréal", "Pollen d'herbe brumeuse", "Insigne de nouvelle recrue");
@@ -1255,11 +1256,12 @@ call `elevationArme`("Foret de prospecteur", "Fragment d'un accord ancien", "Vie
 call `elevationArme`("Dialogues des sages du désert", "Talisman en cuivre de la rosée", "Aileron plumeux", "Coquille spectrale");
 call `elevationArme`("Trace d'arc-en-ciel", "Décadence délirante du seigneur sacré", "Axe de la source secrète", "Sifflet en bois de sentinelle");
 call `elevationArme`("Clou soutenant les montagnes", "Décadence délirante du seigneur sacré", "Pierre enflammée", "Nectar de Fleur mensongère");
-call `elevationArme`("Pampille noire", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Pointe de flèche robuste");
+call `elevationArme`("Pampille noire", "Grain d'aérosidérite noire", "Fragment d'os fragile", "Pointe de flèche usée");
 call `elevationArme`("Hallebarde", "Plomb karstique", "Pollen d'herbe brumeuse", "Nectar de Fleur mensongère");
 call `elevationArme`("Pampille blanche", "Sable lumineux de Guyun", "Dague de chasse rituelle", "Insigne de nouvelle recrue");
 call `elevationArme`("Pointe de fer", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 call `elevationArme`("Lance du débutant", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
+
 
 INSERT INTO `meilleures_armes`
 VALUES("Albedo", "Batterie / Sub-DPS", 1, "Uraku Misugiri", 1, NULL),
@@ -1676,7 +1678,7 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Uraku Misugiri", 1, NULL),
 ("Ororon", "Sub-DPS", 2, "Simulacre d'eau", 1, NULL),
 ("Ororon", "Sub-DPS", 3, "Ultime soupir", 1, "Si compo Quickbloom"),
 ("Ororon", "Sub-DPS", 4, "Traqueur des impasses", 1, NULL),
-("Ororon", "Sub-DPS", 5, "Arc de chasse verdoyante", 1, NULL),
+("Ororon", "Sub-DPS", 5, "Arc de chasse verdoyant", 1, NULL),
 ("Ororon", "Sub-DPS", 6, "Arc de chasse de Favonius", 1, NULL),
 ("Qiqi", "Support Healer", 1, "Épée de Favonius", 1, NULL),
 ("Qiqi", "Support Healer", 2, "Épée du faucon", 1, NULL),
@@ -1924,3 +1926,99 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Uraku Misugiri", 1, NULL),
 ("Zhongli", "Buffer / Shielder", 1, "Pampille noire", 5, NULL),
 ("Zhongli", "Buffer / Shielder", 2, "Dialogues des sages du désert", 5, NULL),
 ("Zhongli", "Buffer / Shielder", 3, "Lance de Favonius", 1, NULL);
+
+insert into meilleurs_artefacts
+VALUES("Albedo", "Batterie / Sub-DPS", 1, "Sablier", "DEF%", NULL),
+("Albedo", "Batterie / Sub-DPS", 1, "Coupe", "DGT Géo", NULL),
+("Albedo", "Batterie / Sub-DPS", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Alhaitham", "MDPS Dendro", 1, "Sablier", "ME", NULL),
+("Alhaitham", "MDPS Dendro", 1, "Coupe", "DGT Dendro", NULL),
+("Alhaitham", "MDPS Dendro", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Aloy", "MDPS Cryo", 1, "Sablier", "ATQ%", NULL),
+("Aloy", "MDPS Cryo", 2, "Sablier", "ME", "Si Fonte inversée"),
+("Aloy", "MDPS Cryo", 1, "Coupe", "DGT Cryo", NULL),
+("Aloy", "MDPS Cryo", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Aloy", "Support / Burst-dps", 1, "Sablier", "ATQ%", NULL),
+("Aloy", "Support / Burst-dps", 2, "Sablier", "ME", "Si Fonte inversée"),
+("Aloy", "Support / Burst-dps", 1, "Coupe", "DGT Cryo", NULL),
+("Aloy", "Support / Burst-dps", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Amber", "MDPS Pyro", 1, "Sablier", "ME", NULL),
+("Amber", "MDPS Pyro", 2, "Sablier", "ATQ%", NULL),
+("Amber", "MDPS Pyro", 1, "Coupe", "DGT Pyro", NULL),
+("Amber", "MDPS Pyro", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Amber", "Support / burst-DPS", 1, "Sablier", "ME", "Si Fonte inversée"),
+("Amber", "Support / burst-DPS", 2, "Sablier", "ATQ%", NULL),
+("Amber", "Support / burst-DPS", 1, "Coupe", "DGT Pyro", NULL),
+("Amber", "Support / burst-DPS", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Itto", "MDPS Géo", 1, "Sablier", "DEF%", NULL),
+("Itto", "MDPS Géo", 1, "Coupe", "DGT Géo", NULL),
+("Itto", "MDPS Géo", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Arlecchino", "MDPS Pyro", 1, "Sablier", "ATQ%", NULL),
+("Arlecchino", "MDPS Pyro", 2, "Sablier", "ME", "Si évaporation"),
+("Arlecchino", "MDPS Pyro", 1, "Coupe", "ATQ%", NULL),
+("Arlecchino", "MDPS Pyro", 2, "Coupe", "DGT Pyro", NULL),
+("Arlecchino", "MDPS Pyro", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Baizhu", "Support Healer / Shielder", 1, "Sablier", "RE", NULL),
+("Baizhu", "Support Healer / Shielder", 2, "Sablier", "PV%", "Si RE > 150%"),
+("Baizhu", "Support Healer / Shielder", 1, "Coupe", "PV%", NULL),
+("Baizhu", "Support Healer / Shielder", 1, "Couronne", "PV%", NULL),
+("Baizhu", "Support Healer / Shielder", 2, "Couronne", "Taux Crit", "Si Code de Favonius"),
+("Barbara", "Support healer", 1, "Sablier", "PV%", NULL),
+("Barbara", "Support healer", 1, "Coupe", "PV%", NULL),
+("Barbara", "Support healer", 1, "Couronne", "Bonus de soins", NULL);
+
+insert into meilleurs_sets
+VALUES("Albedo", "Batterie / Sub-DPS", 1, "Troupe dorée", 4, NULL),
+("Albedo", "Batterie / Sub-DPS", 2, "Coquille des rêves opulents", 4, NULL),
+("Albedo", "Batterie / Sub-DPS", 3, "Coquille des rêves opulents", 2, NULL),
+("Albedo", "Batterie / Sub-DPS", 3, "Roche ancienne", 2, NULL),
+("Albedo", "Batterie / Sub-DPS", 4, "Ténacité du Millelithe", 4, NULL),
+("Alhaitham", "MDPS Dendro", 1, "Rêve doré", 4, NULL),
+("Alhaitham", "MDPS Dendro", 2, "Souvenir de forêt", 2, NULL),
+("Alhaitham", "MDPS Dendro", 2, "Bande vagabonde", 2, NULL),
+("Alhaitham", "MDPS Dendro", 3, "Souvenir de forêt", 2, NULL),
+("Alhaitham", "MDPS Dendro", 3, "Emblème du destin brisé", 2, NULL),
+("Alhaitham", "MDPS Dendro", 4, "Rêve doré", 2, NULL),
+("Alhaitham", "MDPS Dendro", 4, "Bande vagabonde", 2, NULL),
+("Aloy", "MDPS Cryo", 1, "Briseur de glace", 4, "Si compo Gel"),
+("Aloy", "MDPS Cryo", 2, "Réminiscence nostalgique", 4, NULL),
+("Aloy", "MDPS Cryo", 3, "Briseur de glace", 2, NULL),
+("Aloy", "MDPS Cryo", 3, "Rideau du Gladiateur", 2, NULL),
+("Aloy", "MDPS Cryo", 4, "Briseur de glace", 2, NULL),
+("Aloy", "MDPS Cryo", 4, "Bande vagabonde", 2, NULL),
+("Aloy", "Support / Burst-dps", 1, "Briseur de glace", 4, "Si compo Gel"),
+("Aloy", "Support / Burst-dps", 2, "Emblème du destin brisé", 4, NULL),
+("Aloy", "Support / Burst-dps", 3, "Ancien rituel royal", 2, NULL),
+("Aloy", "Support / Burst-dps", 3, "Bande vagabonde", 2, NULL),
+("Aloy", "Support / Burst-dps", 4, "Ancien rituel royal", 4, NULL),
+("Amber", "MDPS Pyro", 1, "Réminiscence nostalgique", 4, NULL),
+("Amber", "MDPS Pyro", 2, "Bande vagabonde", 4, NULL),
+("Amber", "MDPS Pyro", 3, "Bande vagabonde", 2, NULL),
+("Amber", "MDPS Pyro", 3, "Sorcière des flammes ardentes", 2, NULL),
+("Amber", "MDPS Pyro", 4, "Bande vagabonde", 2, NULL),
+("Amber", "MDPS Pyro", 4, "Rideau du Gladiateur", 2, NULL),
+("Amber", "Support / burst-DPS", 1, "Ancien rituel royal", 4, NULL),
+("Amber", "Support / burst-DPS", 2, "Sorcière des flammes ardentes", 2, NULL),
+("Amber", "Support / burst-DPS", 2, "Bande vagabonde", 2, NULL),
+("Amber", "Support / burst-DPS", 3, "Bande vagabonde", 2, NULL),
+("Amber", "Support / burst-DPS", 3, "Rideau du Gladiateur", 2, NULL),
+("Amber", "Support / burst-DPS", 4, "Ancien rituel royal", 2, NULL),
+("Amber", "Support / burst-DPS", 4, "Emblème du destin brisé", 2, NULL),
+("Itto", "MDPS Géo", 1, "Coquille des rêves opulents", 4, NULL),
+("Itto", "MDPS Géo", 2, "Coquille des rêves opulents", 2, NULL),
+("Itto", "MDPS Géo", 2, "Roche ancienne", 2, NULL),
+("Itto", "MDPS Géo", 3, "Météore inversé", 4, NULL),
+("Arlecchino", "MDPS Pyro", 1, "Fragment d'harmonie divergente", 4, NULL),
+("Arlecchino", "MDPS Pyro", 2, "Rideau du Gladiateur", 4, NULL),
+("Arlecchino", "MDPS Pyro", 3, "Sorcière des flammes ardentes", 2, NULL),
+("Arlecchino", "MDPS Pyro", 3, "Rideau du Gladiateur", 2, NULL),
+("Baizhu", "Support Healer / Shielder", 1, "Souvenir de forêt", 4, "Si seul porteur dans l'équipe en team dendro"),
+("Baizhu", "Support Healer / Shielder", 2, "Chanson des jours d'antan", 4, NULL),
+("Baizhu", "Support Healer / Shielder", 3, "Parchemin du héros de la Cité de braise", 4, NULL),
+("Baizhu", "Support Healer / Shielder", 4, "Roche ancienne", 2, NULL),
+("Baizhu", "Support Healer / Shielder", 4, "Lueur du vourukasha", 2, NULL),
+("Barbara", "Support healer", 1, "Palourde aux teintes océaniques", 4, NULL), 
+("Barbara", "Support healer", 2, "Chanson des jours d'antan", 4, NULL), 
+("Barbara", "Support healer", 3, "Parchemin du héros de la Cité de braise", 4, NULL), 
+("Barbara", "Support healer", 4, "Roche ancienne", 2, NULL), 
+("Barbara", "Support healer", 4, "Amour chéri", 2, NULL);

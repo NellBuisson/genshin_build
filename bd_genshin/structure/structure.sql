@@ -78,7 +78,10 @@ CREATE OR REPLACE TABLE `Personnages`(
     `id_arme` INT,
     `possedee` BOOL,
     `constellation` INT,
-    `niveau` INT,
+    `niveau` INT DEFAULT 1,
+    `niveau_atq_bas` INT DEFAULT 1,
+    `niveau_atq_elm` INT DEFAULT 1,
+    `niveau_atq_ult` INT DEFAULT 1,
     PRIMARY KEY(`prenom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -144,9 +147,10 @@ CREATE OR REPLACE TABLE `Artefacts_Possedes` (
 CREATE OR REPLACE TABLE `Sets`(
     `nom` VARCHAR(60),
     `effet` VARCHAR(1100) NOT NULL,
-    `donjon` VARCHAR(50) NOT NULL,
+    `donjon` VARCHAR(50),
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -----------------------------------------------
 -------------Tables de liaison-----------------
@@ -226,28 +230,30 @@ CREATE OR REPLACE TABLE `Materiaux_Armes`(
 CREATE OR REPLACE TABLE `Materiaux_Personnages`(
     `personnage` VARCHAR(20),
     `type` VARCHAR(20),
+    `niveau` INT,
     `materiel` VARCHAR(60),
     `quantite` INT,
-    `niveau` INT,
-    `fini` BOOL,
     FOREIGN KEY (`materiel`) REFERENCES materiaux(`nom`),
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     PRIMARY KEY(`materiel`, `personnage`, `niveau`, `type`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
--- Structure table Sets Recommandés
+-- Structure table Meilleurs Sets
 
-CREATE OR REPLACE TABLE `Sets_Recommandes`(
+CREATE OR REPLACE TABLE `Meilleurs_Sets`(
     `personnage` VARCHAR(20),
-    `type_build` VARCHAR(20),
+    `type_build` VARCHAR(30),
     `rang` INT,
     `set` VARCHAR(60),
+    `nbr_art` INT,
     `commentaire` VARCHAR(50),
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`set`) REFERENCES sets(`nom`),
-    PRIMARY KEY(`personnage`, `type_build`, `rang`)
+    PRIMARY KEY(`personnage`, `type_build`, `rang`, `set`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+drop table sets_recommandes;
 
 -----------------------------------------------
 -- Structure table Drop Monstres
@@ -278,14 +284,14 @@ CREATE OR REPLACE TABLE `Drop_Donjons`(
 
 CREATE OR REPLACE TABLE `Meilleurs_Artefacts`(
     `personnage` VARCHAR(20),
-    `type_build` VARCHAR(20),
+    `type_build` VARCHAR(30),
     `option` INT,
     `artefact` VARCHAR(20),
     `stat` VARCHAR(20) NOT NULL,
     `commentaire` VARCHAR(50),
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`artefact`) REFERENCES artefacts(`type`),
-    PRIMARY KEY(`personnage`, `type_build`, `option`)
+    PRIMARY KEY(`personnage`, `type_build`, `option`, `artefact`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
@@ -369,6 +375,9 @@ ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
 ALTER TABLE meilleures_armes
 ADD CONSTRAINT meilleures_armes_raffinage CHECK(raffinage BETWEEN 1 AND 5);
 
+ALTER TABLE meilleurs_sets
+ADD CONSTRAINT meilleurs_sets_nbr_art CHECK(nbr_art = 2 OR nbr_art = 4);
+
 -----------------------------------------------
 ----------------- Triggers --------------------
 -----------------------------------------------
@@ -436,6 +445,43 @@ BEGIN
     END IF;
     END #
 DELIMITER ;
+
+-- trigger pour meilleur sets
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_insert_meilleurs_sets
+BEFORE INSERT
+ON meilleurs_sets
+FOR EACH ROW
+BEGIN
+    SET @Artefact = NULL;
+    select sum(nbr_art) into @Artefact from meilleurs_sets
+    where personnage = NEW.personnage AND type_build = NEW.type_build AND rang = NEW.rang;
+    IF (@Artefact > 4) THEN
+    SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Insertion refusée. Trop d'artefact inclu dans l'option (rang)";
+    END IF;
+
+END #
+DELIMITER ;
+
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_update_meilleurs_sets
+BEFORE UPDATE
+ON meilleurs_sets
+FOR EACH ROW
+BEGIN
+    SET @Artefact = NULL;
+    select sum(nbr_art) into @Artefact from meilleurs_sets
+    where personnage = NEW.personnage AND type_build = NEW.type_build AND rang = NEW.rang;
+    IF (@Artefact > 4) THEN
+    SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Modification refusée. Trop d'artefact inclu dans l'option (rang)";
+    END IF;
+
+END #
+DELIMITER ;
 -----------------------------------------------
 ----------------- Fonction --------------------
 -----------------------------------------------
@@ -480,8 +526,8 @@ BEGIN
         (p_nom,60,@newMat3, 14),
         (p_nom,60,"Moras", 45000);
 
-        select evolution into @newMat2 from materiaux where nom = p_mat2;
-        select evolution into @newMat3 from materiaux where nom = p_mat3;
+        select evolution into @newMat2 from materiaux where nom = @newMat2;
+        select evolution into @newMat3 from materiaux where nom = @newMat3;
         insert into materiaux_armes
         values(p_nom,70, @newMat1, 9),
         (p_nom,70,@newMat2, 14),
@@ -528,8 +574,8 @@ BEGIN
         (p_nom,60,@newMat3, 9),
         (p_nom,60,"Moras", 30000);
 
-        select evolution into @newMat2 from materiaux where nom = p_mat2;
-        select evolution into @newMat3 from materiaux where nom = p_mat3;
+        select evolution into @newMat2 from materiaux where nom = @newMat2;
+        select evolution into @newMat3 from materiaux where nom = @newMat3;
         insert into materiaux_armes
         values(p_nom,70, @newMat1, 6),
         (p_nom,70,@newMat2, 9),
@@ -576,8 +622,8 @@ BEGIN
         (p_nom,60,@newMat3, 6),
         (p_nom,60,"Moras", 20000);
 
-        select evolution into @newMat2 from materiaux where nom = p_mat2;
-        select evolution into @newMat3 from materiaux where nom = p_mat3;
+        select evolution into @newMat2 from materiaux where nom = @newMat2;
+        select evolution into @newMat3 from materiaux where nom = @newMat3;
         insert into materiaux_armes
         values(p_nom,70, @newMat1, 4),
         (p_nom,70,@newMat2, 6),
@@ -626,7 +672,7 @@ BEGIN
 
     END IF ;
 
-    IF (@nbrEtoile = 2) THEN
+    IF (@nbrEtoile = 1) THEN
         insert into materiaux_armes
         values(p_nom,20,p_mat1, 1),
         (p_nom,20,p_mat2, 1),
