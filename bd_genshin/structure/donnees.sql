@@ -119,7 +119,8 @@ VALUES("Colère du tonnerre", "2 pièces : Confère un bonus de DGT Électro de 
 ("Parchemin du héros de la Cité de braise","2 pièces : Lorsqu'un membre de l'équipe à proximité déclenche une éruption noctâme, le personnage équipé de l'artéfact récupère 6 pts d'énergie élémentaire. \r 4 pièces : Lorsque le personnage équipé de l'artéfact a déclenché une réaction liée à son type élémentaire, le bonus de DGT élémentaires des éléments concernés par cette réaction augmente de 12 % pendant 15 s pour tous les personnages de l'équipe à proximité. Si le personnage équipé de l'artéfact bénéficie d'une bénédiction noctâme lors du déclenchement de cet effet, le bonus de DGT élémentaires des éléments concernés par cette réaction augmente de 28 % supplémentaires pendant 20 s pour tous les personnages de l'équipe à proximité. L'effet ci-dessus peut être déclenché même si le personnage n'est pas déployé, et les effets d'augmentation des DGT accordés par les sets d'artéfacts du même nom ne se cumulent pas.","Sanctuaire des esprits arc-en-ciel"),
 ("Codex d'obsidienne","2 pièces : Lorsque le personnage équipé de l'artéfact bénéficie d'une bénédiction noctâme et est sur le terrain, les DGT qu'il inflige augmentent de 15 %. \r 4 pièces : Lorsque le personnage équipé de l'artéfact a consommé 1 pt de noctâme sur le terrain, le taux CRIT augmente de 40 % pendant 6 s. Cet effet peut être déclenché une fois toutes les secondes.","Sanctuaire des esprits arc-en-ciel"),
 ("Rideau du Gladiateur", "2 pièces : Augmente l'ATQ de 18 %. \r 4 pièces : Augmente les DGT infligés par les attaques normales de 35 % lorsque ce set d'artéfacts est équipé par les personnages armés d'une épée à une main, à deux mains ou d'une arme d'hast.", NULL),
-("Bande vagabonde", "2 pièces : Augmente la maîtrise élémentaire de 80 pts. \r 4 pièces : Augmente les DGT infligés par les attaques chargées de 35 % lorsque ce set d'artéfacts est équipé par les personnages armés d'un arc ou d'un catalyseur.", NULL);
+("Bande vagabonde", "2 pièces : Augmente la maîtrise élémentaire de 80 pts. \r 4 pièces : Augmente les DGT infligés par les attaques chargées de 35 % lorsque ce set d'artéfacts est équipé par les personnages armés d'un arc ou d'un catalyseur.", NULL),
+("Exilé", "2 pièces : Augmente la recharge d'énergie de 20 %. \r 4 pièces : Le déchaînement élémentaire restaure 2 pts d'énergie élémentaire à tous les personnages de l'équipe (à l'exception du porteur) toutes les 2 s pendant 6 s. Cet effet est non cumulable.", NULL);
 
 INSERT INTO `personnages` (prenom, nom, image, element, nbretoile, ssstat1, ssstat2, region, type_arme, possedee, constellation)
 VALUES ("Voyageur", NULL, NULL, "all", 5, "Maîtrise", "Recharge", NULL, "Epée", FALSE, 0),
@@ -416,6 +417,7 @@ VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un 
 ("Plumard de fleurs", 4, "Arc", "Stats : 42 base ATQ, ATQ% \r La consommation d'endurance lors du planage diminue de 15 %. Lors d'un tir visé, les DGT infligés par les attaques chargées augmentent de 6 % toutes les 0,5 s. Cet effet peut être cumulé 6 fois maximum et prend fin 10 s après avoir quitté le mode visée.", "Voeux temporaires"),
 ("La calamité d'Eshu", 4, "Epée", "44 base ATQ, ATQ% \r Lorsque le personnage est sous la protection d'un bouclier, les DGT infligés par les attaques normales et chargées augmentent de 20 % et leur taux CRIT de 8 %.", "Event"),
 ("Tourbillon sur les vagues",4, "Catalyseur", "Stats : 41 base ATQ, Recharge d'énergie \r La consommation d'endurance lors de la nage diminue de 15 %. De plus, utiliser une compétence élémentaire augmente les PV max de 20 % pendant 10 s, chaque personnage Hydro dans l'équipe augmentant les PV max de 12 % supplémentaires jusqu'à un maximum de 24 %. Cet effet peut être déclenché une fois toutes les 15 s.","Voeux temporaires");
+
 INSERT INTO `monstres`
 VALUES("Arlecchino","boss"),
 ("Narval stellavore", "boss"),
@@ -2054,7 +2056,40 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Sablier", "DEF%", NULL),
 ("Dori", "Support Healer", 2, "Couronne", "Taux Crit", "Si arme de Favonius"),
 ("Émilie", "Sub-DPS", 1, "Sablier", "ATQ%", NULL),
 ("Émilie", "Sub-DPS", 2, "Coupe", "DGT Dendro", NULL),
-("Émilie", "Sub-DPS", 3, "Couronne", "Taux Crit / DGT Crit", NULL);
+("Émilie", "Sub-DPS", 3, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Eula", "MDPS Physique", 1, "Sablier", "ATQ%", NULL),
+("Eula", "MDPS Physique", 1, "Coupe", "DGT physique", NULL),
+("Eula", "MDPS Physique", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Faruzan", "Buffer / Sub-DPS", 1, "Sablier", "RE", NULL),
+("Faruzan", "Buffer / Sub-DPS", 1, "Coupe", "DGT Anémo", NULL),
+("Faruzan", "Buffer / Sub-DPS", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Fischl", "Batterie / Sub-DPS", 1, "Sablier", "ATQ%", NULL), 
+("Fischl", "Batterie / Sub-DPS", 2, "Sablier", "ME", "si compo suractivation"), 
+("Fischl", "Batterie / Sub-DPS", 1, "Coupe", "DGT électro", NULL), 
+("Fischl", "Batterie / Sub-DPS", 1, "Couronne", "Taux Crit / DGT Crit", NULL), 
+("Fréminet", "MDPS physique", 1, "Sablier", "ATQ%", NULL),
+("Fréminet", "MDPS physique", 1, "Coupe", "DGT Physique", NULL),
+("Fréminet", "MDPS physique", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Furina", "Sub-DPS / Buffer", 1, "Sablier", "PV%", NULL),
+("Furina", "Sub-DPS / Buffer", 2, "Sablier", "RE", NULL),
+("Furina", "Sub-DPS / Buffer", 1, "Coupe", "PV%", NULL),
+("Furina", "Sub-DPS / Buffer", 2, "Coupe", "DGT Hydro", NULL),
+("Furina", "Sub-DPS / Buffer", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Gaming", "MDPS Pyro", 1, "Sablier", "ME", NULL),
+("Gaming", "MDPS Pyro", 2, "Sablier", "ATQ%", NULL),
+("Gaming", "MDPS Pyro", 1, "Coupe", "DGT Pyro", NULL),
+("Gaming", "MDPS Pyro", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Ganyu", "MDPS Cryo (fonte)", 1, "Sablier", "ME", NULL),
+("Ganyu", "MDPS Cryo (fonte)", 2, "Sablier", "ATQ%", "Si ME > 150"),
+("Ganyu", "MDPS Cryo (fonte)", 1, "Coupe", "DGT Cryo", NULL),
+("Ganyu", "MDPS Cryo (fonte)", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Ganyu", "MDPS Cryo (gel)", 1, "Sablier", "ATQ%", NULL),
+("Ganyu", "MDPS Cryo (gel)", 1, "Coupe", "DGT Cryo", NULL),
+("Ganyu", "MDPS Cryo (gel)", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Gorou", "Batterie / Buffer Géo", 1, "Sablier", "RE", NULL),
+("Gorou", "Batterie / Buffer Géo", 1, "Coupe", "DEF%", NULL),
+("Gorou", "Batterie / Buffer Géo", 1, "Couronne", "DEF%", NULL),
+("Gorou", "Batterie / Buffer Géo", 2, "Couronne", "Taux Crit", "si arme de Favonius")
 
 insert into meilleurs_sets
 VALUES("Albedo", "Batterie / Sub-DPS", 1, "Troupe dorée", 4, NULL),
@@ -2206,15 +2241,62 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Troupe dorée", 4, NULL),
 ("Émilie", "Sub-DPS", 1, "Rêverie incomplète", 4, NULL),
 ("Émilie", "Sub-DPS", 2, "Souvenir de forêt", 4, NULL),
 ("Émilie", "Sub-DPS", 3, "Souvenir de forêt", 2, NULL),
-("Émilie", "Sub-DPS", 3, "Rideau du Gladiateur", 2, NULL);
+("Émilie", "Sub-DPS", 3, "Rideau du Gladiateur", 2, NULL),
+("Eula", "MDPS Physique", 1, "Flamme blême", 4, NULL),
+("Eula", "MDPS Physique", 2, "Flamme blême", 2, NULL),
+("Eula", "MDPS Physique", 2, "Chevalerie ensanglantée", 2, NULL),
+("Eula", "MDPS Physique", 3, "Chevalerie ensanglantée", 2, NULL),
+("Eula", "MDPS Physique", 3, "Rideau du Gladiateur", 2, NULL),
+("Eula", "MDPS Physique", 4, "Chevalerie ensanglantée", 2, NULL),
+("Eula", "MDPS Physique", 4, "Emblème du destin brisé", 2, NULL),
+("Faruzan", "Buffer / Sub-DPS", 1, "Ombre de la Verte Chasseuse", 4, "Si compo élémentaire"), 
+("Faruzan", "Buffer / Sub-DPS", 2, "Ancien rituel royal", 4, NULL), 
+("Faruzan", "Buffer / Sub-DPS", 3, "Troupe dorée", 4, "Uniquement si C6 et team mono Anémo"), 
+("Faruzan", "Buffer / Sub-DPS", 4, "Ténacité du Millelithe", 4, "Uniquement si C6"),
+("Fischl", "Batterie / Sub-DPS", 1, "Troupe dorée", 4, NULL),
+("Fischl", "Batterie / Sub-DPS", 2, "Colère du tonnerre", 2, NULL),
+("Fischl", "Batterie / Sub-DPS", 2, "Rideau du Gladiateur", 2, NULL),
+("Fischl", "Batterie / Sub-DPS", 3, "Rêve doré", 4, NULL),
+("Fischl", "Batterie / Sub-DPS", 4, "Dompteur de foudre", 4, "Passif activé 80% du temps"),
+("Fréminet", "MDPS physique", 1, "Flamme blême", 4, NULL),
+("Fréminet", "MDPS physique", 2, "Flamme blême", 2, NULL),
+("Fréminet", "MDPS physique", 2, "Chevalerie ensanglantée", 2, NULL),
+("Fréminet", "MDPS physique", 3, "Chevalerie ensanglantée", 2, NULL),
+("Fréminet", "MDPS physique", 3, "Rideau du Gladiateur", 2, NULL),
+("Fréminet", "MDPS physique", 4, "Chevalerie ensanglantée", 2, NULL),
+("Fréminet", "MDPS physique", 4, "Troupe dorée", 2, NULL),
+("Furina", "Sub-DPS / Buffer", 1, "Troupe dorée", 4, NULL),
+("Furina", "Sub-DPS / Buffer", 2, "Ténacité du Millelithe", 2, NULL),
+("Furina", "Sub-DPS / Buffer", 2, "Lueur du vourukasha", 2, NULL),
+("Furina", "Sub-DPS / Buffer", 3, "Ténacité du Millelithe", 2, NULL),
+("Furina", "Sub-DPS / Buffer", 3, "Emblème du destin brisé", 2, NULL),
+("Furina", "Sub-DPS / Buffer", 4, "Ténacité du Millelithe", 2, NULL),
+("Furina", "Sub-DPS / Buffer", 4, "Âme des profondeurs", 2, NULL),
+("Gaming", "MDPS Pyro", 1, "Chasseur de la Maréchaussée", 4, NULL),
+("Gaming", "MDPS Pyro", 2, "Sorcière des flammes ardentes", 4, NULL),
+("Gaming", "MDPS Pyro", 3, "Rêve doré", 4, NULL),
+("Gaming", "MDPS Pyro", 4, "Sorcière des flammes ardentes", 2, NULL),
+("Gaming", "MDPS Pyro", 4, "Rideau du Gladiateur", 2, NULL),
+("Ganyu", "MDPS Cryo (fonte)", 1, "Bande vagabonde", 4, NULL),
+("Ganyu", "MDPS Cryo (fonte)", 2, "Réminiscence nostalgique", 4, NULL),
+("Ganyu", "MDPS Cryo (fonte)", 3, "Rêverie incomplète", 4, "Si compo Bennett"),
+("Ganyu", "MDPS Cryo (fonte)", 4, "Rêve doré", 4, NULL),
+("Ganyu", "MDPS Cryo (gel)", 1, "Briseur de glace", 4, NULL),
+("Ganyu", "MDPS Cryo (gel)", 2, "Chasseur de la Maréchaussée", 4, "Si joué avec Furina"),
+("Ganyu", "MDPS Cryo (gel)", 3, "Rideau du Gladiateur", 2, NULL),
+("Ganyu", "MDPS Cryo (gel)", 4, "Briseur de glace", 2, NULL),
+("Gorou", "Batterie / Buffer Géo", 1, "Ancien rituel royal", 4, NULL),
+("Gorou", "Batterie / Buffer Géo", 2, "Exilé", 4, NULL),
+("Gorou", "Batterie / Buffer Géo", 3, "Parchemin du héros de la Cité de braise", 4, NULL),
+("Gorou", "Batterie / Buffer Géo", 4, "Coquille des rêves opulents", 2, NULL),
+("Gorou", "Batterie / Buffer Géo", 4, "Emblème du destin brisé", 2, NULL);
+
 
 insert into meilleurs_artefacts
-VALUES
-
+VALUES;
 
 insert into meilleurs_sets
 VALUES
-
 
 
 
