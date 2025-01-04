@@ -459,7 +459,7 @@ BEGIN
     where personnage = NEW.personnage AND type_build = NEW.type_build AND rang = NEW.rang;
     IF (@Artefact > 4) THEN
     SIGNAL SQLSTATE "45000"
-        SET MESSAGE_TEXT = "Insertion refusée. Trop d'artefact inclu dans l'option (rang)";
+        SET MESSAGE_TEXT = "Insertion refusée. Trop d'artefact inclu dans l'option rang";
     END IF;
 
 END #
@@ -477,11 +477,41 @@ BEGIN
     where personnage = NEW.personnage AND type_build = NEW.type_build AND rang = NEW.rang;
     IF (@Artefact > 4) THEN
     SIGNAL SQLSTATE "45000"
-        SET MESSAGE_TEXT = "Modification refusée. Trop d'artefact inclu dans l'option (rang)";
+        SET MESSAGE_TEXT = "Modification refusée. Trop d'artefact inclu dans l'option rang";
     END IF;
 
 END #
 DELIMITER ;
+
+-- trigger pour meilleur artefacts
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_insert_meilleurs_artefacts
+BEFORE INSERT
+ON meilleurs_artefacts
+FOR EACH ROW
+BEGIN
+    IF (new.artefact != "Sablier" AND new.artefact != "Couronne" AND new.artefact != "Coupe") THEN 
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Insertion refusée. Nom d'artefact inexact";
+    END IF;
+END #
+DELIMITER ;
+
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_update_meilleurs_artefacts
+BEFORE UPDATE
+ON meilleurs_artefacts
+FOR EACH ROW
+BEGIN
+    IF (new.artefact != "Sablier" AND new.artefact != "Couronne" AND new.artefact != "Coupe") THEN 
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Modification refusée. Nom d'artefact inexact";
+    END IF;
+END #
+DELIMITER ;
+
 -----------------------------------------------
 ----------------- Fonction --------------------
 -----------------------------------------------
