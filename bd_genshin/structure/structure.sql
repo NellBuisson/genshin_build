@@ -297,17 +297,6 @@ CREATE OR REPLACE TABLE `Meilleurs_Artefacts`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
--- Structure table Donjons Monstres
-
-CREATE OR REPLACE TABLE `Donjons_Monstres`(
-    `donjon` VARCHAR(50),
-    `monstre` VARCHAR(50),
-    FOREIGN KEY (`monstre`) REFERENCES monstres(`nom`),
-    FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`),
-    PRIMARY KEY(`monstre`, `donjon`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
------------------------------------------------
 -- Structure table Artéfacts Associés
 
 CREATE OR REPLACE TABLE `Artefacts_Associes` (
