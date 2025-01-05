@@ -110,7 +110,9 @@ CREATE OR REPLACE TABLE `Donjons`(
 CREATE OR REPLACE TABLE `Monstres`(
     `nom` VARCHAR(50),
     `type` VARCHAR(20),
-    PRIMARY KEY(`nom`)
+    `donjon` VARCHAR(50),
+    PRIMARY KEY(`nom`),
+    FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
@@ -366,6 +368,9 @@ ADD CONSTRAINT armes_etoile CHECK(nbretoile BETWEEN 1 AND 5);
 ALTER TABLE personnages 
 ADD CONSTRAINT perso_etoile CHECK(nbretoile BETWEEN 4 AND 5);
 
+ALTER TABLE monstres 
+ADD CONSTRAINT monstres_type CHECK(`type` = "boss" OR `type` = "élite" OR `type` = "normal");
+
 ALTER TABLE personnages 
 ADD CONSTRAINT perso_constellation CHECK(constellation BETWEEN 0 AND 6);
 
@@ -378,10 +383,14 @@ ADD CONSTRAINT meilleures_armes_raffinage CHECK(raffinage BETWEEN 1 AND 5);
 ALTER TABLE meilleurs_sets
 ADD CONSTRAINT meilleurs_sets_nbr_art CHECK(nbr_art = 2 OR nbr_art = 4);
 
+ALTER TABLE meilleurs_artefacts
+ADD CONSTRAINT meilleurs_artefacts_nom CHECK(artefact = "Sablier" OR artefact = "Couronne" OR artefact = "Coupe");
+
 -----------------------------------------------
 ----------------- Triggers --------------------
 -----------------------------------------------
--- Trigger pour materiaux_arme
+
+-- Trigger pour materiaux_armes
 DELIMITER #
 
 CREATE OR REPLACE TRIGGER before_insert_materiaux_armes
@@ -483,34 +492,6 @@ BEGIN
 END #
 DELIMITER ;
 
--- trigger pour meilleur artefacts
-DELIMITER #
-
-CREATE OR REPLACE TRIGGER before_insert_meilleurs_artefacts
-BEFORE INSERT
-ON meilleurs_artefacts
-FOR EACH ROW
-BEGIN
-    IF (new.artefact != "Sablier" AND new.artefact != "Couronne" AND new.artefact != "Coupe") THEN 
-        SIGNAL SQLSTATE "45000"
-        SET MESSAGE_TEXT = "Insertion refusée. Nom d'artefact inexact";
-    END IF;
-END #
-DELIMITER ;
-
-DELIMITER #
-
-CREATE OR REPLACE TRIGGER before_update_meilleurs_artefacts
-BEFORE UPDATE
-ON meilleurs_artefacts
-FOR EACH ROW
-BEGIN
-    IF (new.artefact != "Sablier" AND new.artefact != "Couronne" AND new.artefact != "Coupe") THEN 
-        SIGNAL SQLSTATE "45000"
-        SET MESSAGE_TEXT = "Modification refusée. Nom d'artefact inexact";
-    END IF;
-END #
-DELIMITER ;
 
 -----------------------------------------------
 ----------------- Fonction --------------------
@@ -734,4 +715,4 @@ BEGIN
     END IF ;
 END #
 DELIMITER ;
-set foreign_key_checks = 1;
+set foreign_key_checks = 0;
