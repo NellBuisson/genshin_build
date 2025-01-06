@@ -715,11 +715,11 @@ BEGIN
     VALUES(p_monstre, p_matbase);
 
     -- on vérifie si il a une évolution
-    SET @evol = NULL ;
+    SET @evol = "" ;
     SELECT evolution INTO @evol FROM materiaux WHERE lower(nom) = lower(p_matbase);
     
     -- si il a une évolution, on insert aussi l'évolution. Sachant qu'un matériel, si il a une évolution, il en a au moins 2 (et max 3).
-    IF (@evol != NULL) THEN 
+    IF (@evol != "") THEN 
         -- insertion première évolution
         INSERT INTO drop_monstres
         VALUES(p_monstre, @evol);
@@ -732,7 +732,7 @@ BEGIN
         -- vérification existence 3ème évolution et insertion si existe
         SELECT evolution INTO @evol FROM materiaux WHERE lower(nom) = lower(@evol);
 
-        IF (@evol != NULL) THEN 
+        IF (@evol != "") THEN 
             INSERT INTO drop_monstres
             VALUES(p_monstre, @evol);
         END IF ;
@@ -747,4 +747,4 @@ DELIMITER ;
 
 
 
-set foreign_key_checks = 1;
+set foreign_key_checks = 0;

@@ -498,15 +498,14 @@ VALUES
 ("élémentosaure abyssal","élite"),
 ("Arbre congelé","boss"),
 ("Géausore antique","boss"),
-("Océanique", "boss"),
+("Océanide", "boss"),
 ("Harde d'élémentosaures abyssaux", "boss"), 
-("Hyppocampe perlé millénaire", "boss"), 
-("Papille obombré", "boss"),
+("Hippocampe perlé millénaire", "boss"), 
+("Papille obombrée", "boss"),
 ("Spiritoratrice excentrique isolée", "boss"),
 ("Mage luciole des Fatui", "élite"),
 ("Usurier des Fatui", "élite"), 
 ("Géosaure", "élite"),
-("Chef Brutorocheux", "élite"), 
 ("Suivante des Fatui de Snezhnaya", "élite"),
 ("Sentinelle des ruines", "élite"),
 ("Loup de faille", "élite"),
@@ -518,8 +517,11 @@ VALUES
 ("Méka horlogoïde", "normal"),
 ("Aberrant fontemarin", "normal"),
 ("Saurien natlanois", "normal"),
-("Guerrier tribaux sauroformes", "normal");
-
+("Guerrier tribal sauroforme", "normal"),
+("Fongus activé", "normal"),
+("Bête sacralisée", "normal"),
+("Chef Brutoviandu", "élite"),
+("Géosaure antique", "boss");
 
 
 INSERT INTO `materiaux`
@@ -651,7 +653,7 @@ VALUES("Essence de Blob", NULL),
 ("Rosée du rejet", NULL),
 ("Liane d'oblitération", NULL),
 ("Jade juvénile", NULL),
-("Fausse nageoire de l’héritier du dragon", NULL),
+("Fausse nageoire de l'héritier du dragon", NULL),
 ("Régalia de faille", NULL),
 ("Bec crochu majestueux", NULL),
 ("Pseudo-étamines", NULL),
@@ -904,9 +906,10 @@ VALUES("Essence de Blob", NULL),
 ("Patte saurienne", NULL),
 ("Coeur illusoire de feuille", NULL),
 ("Feuillage déroutant","Coeur illusoire de feuille"),
-("Bourgeon réfractif", "Feuillage déroutant");
-
-
+("Bourgeon réfractif", "Feuillage déroutant"),
+("Prisme d'éclair", NULL),
+("Regard enchevêtrant", NULL),
+("Regard d'enchevêtrant", NULL);
 INSERT INTO `drop_donjons`
 VALUES("Pépinière de cécilias","Tuile cassée de Décabarian", "lundi", "jeudi"),
 ("Pépinière de cécilias","Mur abattu de Décabarian", "lundi", "jeudi"),
@@ -3001,4 +3004,162 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Troupe dorée", 4, NULL),
 ("Zhongli", "Buffer / Shielder", 3, "Roche ancienne", 4, "si joué en team mono élément"),
 ("Zhongli", "Buffer / Shielder", 4, "Souvenir de forêt", 4, "en compo dendro et si aucun autre porteur");
 
+CALL `dropMonstre`("Blob", "Bave de Blob");
+CALL `dropMonstre`("Fleur mensongère", "Nectar de Fleur mensongère");
+CALL `dropMonstre`("Spectre", "Coquille spectrale");
+CALL `dropMonstre`("Fongus", "Spores de Fongus");
+CALL `dropMonstre`("Fongus activé", "Noyau fongique inactivé");
+CALL `dropMonstre`("Géosaure", "Fragment d'os fragile");
+CALL `dropMonstre`("Bête sacralisée", "Coque desséchée");
+CALL `dropMonstre`("Fantasme Hydro croupi", "Goutte d'eau croupie");
+CALL `dropMonstre`("Primus briseur", "Noyau de faille");
+CALL `dropMonstre`("Aberrant fontemarin", "Perle transocéanique");
+CALL `dropMonstre`("Bête de Xuanwen", "Aileron plumeux");
+CALL `dropMonstre`("Saurien natlanois", "Croc juvénile");
+CALL `dropMonstre`("Manifestation de Wayob", "Fragment de volonté brisée");
+CALL `dropMonstre`("Avatar de lave", "Pierre enflammée");
+CALL `dropMonstre`("Brutocollinus", "Masque endommagé");
+CALL `dropMonstre`("Brutoshaman", "Parchemin divinatoire");
+CALL `dropMonstre`("Tireur Brutocollinus", "Pointe de flèche usée");
+CALL `dropMonstre`("Brutovéreux", "Fleur non épanouie d'origine inconnue");
+CALL `dropMonstre`("Chef Brutoviandu", "Corne lourde");
+CALL `dropMonstre`("Chef Brutoviandu", "Masque endommagé");
+CALL `dropMonstre`("Tireur Brutocollinus", "Masque endommagé");
+CALL `dropMonstre`("Brutoshaman", "Masque endommagé");
+CALL `dropMonstre`("Gardien des ruines", "Dispositif du chaos");
+CALL `dropMonstre`("Sentinelle des ruines", "Engrenage du chaos");
+CALL `dropMonstre`("Dragon des ruines", "Conteneur du chaos");
+CALL `dropMonstre`("Chasseur des ruines", "Dispositif du chaos");
+CALL `dropMonstre`("Structure primale", "Prisme endommagé");
+CALL `dropMonstre`("Méka horlogoïde", "Engrenage de maillage");
+CALL `dropMonstre`("Prétorien golem", "Pommeau abîmé");
+CALL `dropMonstre`("Automate de source secrète : Chasseur-chercheur", "Axe de la source secrète");
+CALL `dropMonstre`("Tirailleur Fatui", "Insigne de nouvelle recrue");
+CALL `dropMonstre`("Mage luciole des Fatui", "Pollen d'herbe brumeuse");
+CALL `dropMonstre`("Mage luciole des Fatui", "Insigne de nouvelle recrue");
+CALL `dropMonstre`("Usurier des Fatui", "Dague de chasse rituelle");
+CALL `dropMonstre`("Usurier des Fatui", "Insigne de nouvelle recrue");
+CALL `dropMonstre`("Suivante des Fatui de Snezhnaya", "Prisme sombre");
+CALL `dropMonstre`("Opérateur Fatui", "Vieille montre à gousset d'opérateur");
+CALL `dropMonstre`("Pilleur de trésor", "Insigne du Pilleur");
+CALL `dropMonstre`("Nobushi", "Garde-main ancien");
+CALL `dropMonstre`("Érémite", "Satin rouge délavé");
+CALL `dropMonstre`("Guerrier tribal sauroforme", "Sifflet en bois de sentinelle");
+CALL `dropMonstre`("Mage de l'Abîme", "Branche morte des lignes énergétiques");
+CALL `dropMonstre`("Serpent noir", "Statuette sinistre");
+CALL `dropMonstre`("Loup de faille", "Griffe dissimulée");
+CALL `dropMonstre`("Miméflore obombrée", "Bourgeon réfractif");
+CALL `dropMonstre`("Arbre congelé", "Duramen de glace");
+CALL `dropMonstre`("Arbre enflammé", "Graine de feu");
+CALL `dropMonstre`("Arbre foudroyé", "Fruit du tonnerre");
+CALL `dropMonstre`("Océanide", "Coeur d'eau pure");
+CALL `dropMonstre`("Manifestation du tonnerre", "Perles tempestives");
+CALL `dropMonstre`("Hypostase Anémo", "Graine d'ouragan");
+CALL `dropMonstre`("Hypostase Électro", "Prisme d'éclair");
+CALL `dropMonstre`("Hypostase Géo", "Pilier de basalte");
+CALL `dropMonstre`("Hypostase Cryo", "Fleur cristalline");
+CALL `dropMonstre`("Hypostase Pyro", "Perle brûlante");
+CALL `dropMonstre`("Hypostase Hydro", "Rosée du rejet");
+CALL `dropMonstre`("Hypostase Dendro", "Liane d'oblitération");
+CALL `dropMonstre`("Géosaure antique", "Jade juvénile");
+CALL `dropMonstre`("Harde d'élémentosaures abyssaux", "Fausse nageoire de l'héritier du dragon");
+CALL `dropMonstre`("Loup Alpha doré", "Régalia de faille");
+CALL `dropMonstre`("Champieffroi panaché", "Bec crochu majestueux");
+CALL `dropMonstre`("Wenut de Setekh", "Pseudo-étamines");
+CALL `dropMonstre`("Empereur du feu ferreux", "Résolution de l'empereur");
+CALL `dropMonstre`("Hippocampe perlé millénaire", "Corne fontemarine");
+CALL `dropMonstre`("Tulpa Hydro", "Eau n'ayant pas transcendé");
+CALL `dropMonstre`("Suanni solitaire", "Écaille nuageuse");
+CALL `dropMonstre`("Roi yumkasaure glouton de la montagne", "Flamboigrenade surmûre");
+CALL `dropMonstre`("Tyran qucusaure de flamme dorée", "Marque de bénédiction liante");
+CALL `dropMonstre`("Lustrateur inique", "Anneau de sombreur éternelle");
+CALL `dropMonstre`("Papille obombrée", "Regard d'enchevêtrant");
+CALL `dropMonstre`("Matrice mécanique perpétuelle", "Coeur perpétuel");
+CALL `dropMonstre`("Lame oni", "Mécanisme oni");
+CALL `dropMonstre`("Serpent des ruines", "Croc runique");
+CALL `dropMonstre`("Dragon cataclysmique", "Calibre perpétuel");
+CALL `dropMonstre`("Algorithme de semi-intransition", "Tétraèdre de lumière");
+CALL `dropMonstre`("Automate de source secrète : Configurateur", "Noyau source aux motifs dorés secrets");
+CALL `dropMonstre`("Suite cryolienne", "Engrenage artificié de rechange : Coppelius");
+CALL `dropMonstre`("Suite cryolienne", "Engrenage artificié de rechange : Coppelia");
+CALL `dropMonstre`("Générateur de champ expérimental", "Appareil Tourbillon");
+CALL `dropMonstre`("Légat golem", "Fragment d'une mélodie dorée");
+CALL `dropMonstre`("Hypostase Pyro", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Arbre enflammé", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Géosaure antique", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Algorithme de semi-intransition", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Lustrateur inique", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Empereur du feu ferreux", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Légat golem", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Tyran qucusaure de flamme dorée", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Loup du Nord", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Azhdaha", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Signora", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Arlecchino", "Éclat d'agate agnidus");
+CALL `dropMonstre`("Hypostase Hydro", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Hypostase Hydro", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Océanide", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Géosaure antique", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Dragon cataclysmique", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Lustrateur inique", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Tulpa Hydro", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Suanni solitaire", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Stormterror", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Tartaglia", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Azhdaha", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Shouki no Kami", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Narval stellavore", "Éclat de lazurite varunada");
+CALL `dropMonstre`("Hypostase Electro", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Manifestation du tonnerre", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Géosaure antique", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Harde d'élémentosaures abyssaux", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Arbre foudroyé", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Lustrateur inique", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Hippocampe perlé millénaire", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Stormterror", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Tartaglia", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Azhdaha", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Shouki no Kami", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Sentinelle de l'éternité", "Éclat d'améthyste vajrada");
+CALL `dropMonstre`("Hypostase Cryo", "Éclat de jade shivada");
+CALL `dropMonstre`("Matrice mécanique perpétuelle", "Éclat de jade shivada");
+CALL `dropMonstre`("Lame oni", "Éclat de jade shivada");
+CALL `dropMonstre`("Arbre congelé", "Éclat de jade shivada");
+CALL `dropMonstre`("Géosaure antique", "Éclat de jade shivada");
+CALL `dropMonstre`("Harde d'élémentosaures abyssaux", "Éclat de jade shivada");
+CALL `dropMonstre`("Dragon cataclysmique", "Éclat de jade shivada");
+CALL `dropMonstre`("Lustrateur inique", "Éclat de jade shivada");
+CALL `dropMonstre`("Suite cryolienne", "Éclat de jade shivada");
+CALL `dropMonstre`("Loup du Nord", "Éclat de jade shivada");
+CALL `dropMonstre`("Tartaglia", "Éclat de jade shivada");
+CALL `dropMonstre`("Azhdaha", "Éclat de jade shivada");
+CALL `dropMonstre`("Signora", "Éclat de jade shivada");
+CALL `dropMonstre`("Hypostase Anémo", "Éclat de turquoise vayuda");
+CALL `dropMonstre`("Lame oni", "Éclat de turquoise vayuda");
+CALL `dropMonstre`("Algorithme de semi-intransition", "Éclat de turquoise vayuda");
+CALL `dropMonstre`("Wenut de Setekh", "Éclat de turquoise vayuda");
+CALL `dropMonstre`("Suite cryolienne", "Éclat de turquoise vayuda");
+CALL `dropMonstre`("Suanni solitaire", "Éclat de turquoise vayuda");
+CALL `dropMonstre`("Stormterror", "Éclat de turquoise vayuda");
+CALL `dropMonstre`("Shouki no Kami", "Éclat de turquoise vayuda");
+CALL `dropMonstre`("Hypostase Géo", "Éclat de topaze prithiva");
+CALL `dropMonstre`("Matrice mécanique perpétuelle", "Éclat de topaze prithiva");
+CALL `dropMonstre`("Serpent des ruines", "Éclat de topaze prithiva");
+CALL `dropMonstre`("Géosaure antique", "Éclat de topaze prithiva");
+CALL `dropMonstre`("Loup alpha doré", "Éclat de topaze prithiva");
+CALL `dropMonstre`("Générateur de champ expérimental", "Éclat de topaze prithiva");
+CALL `dropMonstre`("Légat golem", "Éclat de topaze prithiva");
+CALL `dropMonstre`("Loup du Nord", "Éclat de topaze prithiva");
+CALL `dropMonstre`("Azhdaha", "Éclat de topaze prithiva");
+CALL `dropMonstre`("Champieffroi panaché", "Éclat d'émeraude nagadus");
+CALL `dropMonstre`("Hypostase Dendro", "Éclat d'émeraude nagadus");
+CALL `dropMonstre`("Roi yumkasaure glouton de la montagne", "Éclat d'émeraude nagadus");
+CALL `dropMonstre`("Garde de l'oasis d'Apep", "Éclat d'émeraude nagadus");
 
+
+
+
+select * from drop_monstres
+where monstre = "Hypostase Pyro";
+
+delete from drop_monstres;
