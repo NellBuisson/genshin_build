@@ -483,9 +483,9 @@ DELIMITER ;
 
 
 -----------------------------------------------
------------------ Fonction --------------------
+----------------- Procedure -------------------
 -----------------------------------------------
--- Création de la fonction pour automatiser l'entrée des matériaux d'amélioration d'arme
+-- Création de la procedure pour automatiser l'entrée des matériaux d'amélioration d'arme
 DELIMITER #
 
 CREATE OR REPLACE PROCEDURE elevationArme (p_nom VARCHAR(50), p_mat1 VARCHAR(60), p_mat2 VARCHAR(60), p_mat3 VARCHAR(60))
@@ -704,4 +704,47 @@ BEGIN
     END IF ;
 END #
 DELIMITER ;
-set foreign_key_checks = 0;
+
+-- création de la procedure pour automatiser l'entrée des matériels et de leurs évolution en tant que drop monstre
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE dropMonstre(p_monstre VARCHAR(50), p_matbase VARCHAR(60))
+BEGIN
+    -- on insert le matériel de base dans la table
+    INSERT INTO drop_monstres
+    VALUES(p_monstre, p_matbase);
+
+    -- on vérifie si il a une évolution
+    SET @evol = NULL ;
+    SELECT evolution INTO @evol FROM materiaux WHERE lower(nom) = lower(p_matbase);
+    
+    -- si il a une évolution, on insert aussi l'évolution. Sachant qu'un matériel, si il a une évolution, il en a au moins 2 (et max 3).
+    IF (@evol != NULL) THEN 
+        -- insertion première évolution
+        INSERT INTO drop_monstres
+        VALUES(p_monstre, @evol);
+
+        -- insertion deuxième
+        SELECT evolution INTO @evol FROM materiaux WHERE lower(nom) = lower(@evol);
+        INSERT INTO drop_monstres
+        VALUES(p_monstre, @evol);
+
+        -- vérification existence 3ème évolution et insertion si existe
+        SELECT evolution INTO @evol FROM materiaux WHERE lower(nom) = lower(@evol);
+
+        IF (@evol != NULL) THEN 
+            INSERT INTO drop_monstres
+            VALUES(p_monstre, @evol);
+        END IF ;
+        
+    END IF ;
+END #
+
+DELIMITER ;
+
+
+
+
+
+
+set foreign_key_checks = 1;
