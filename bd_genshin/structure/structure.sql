@@ -375,6 +375,12 @@ ADD CONSTRAINT meilleurs_sets_nbr_art CHECK(nbr_art = 2 OR nbr_art = 4);
 ALTER TABLE meilleurs_artefacts
 ADD CONSTRAINT meilleurs_artefacts_nom CHECK(artefact = "Sablier" OR artefact = "Couronne" OR artefact = "Coupe");
 
+ALTER TABLE personnages
+ADD CONSTRAINT personnage_niveau CHECK(niveau BETWEEN 0 AND 90);
+
+ALTER TABLE personnages
+ADD CONSTRAINT personnage_lvl_atq_bas CHECK(niveau_atq_bas BETWEEN 1 AND 10);
+
 -----------------------------------------------
 ----------------- Triggers --------------------
 -----------------------------------------------
@@ -477,6 +483,165 @@ BEGIN
     SIGNAL SQLSTATE "45000"
         SET MESSAGE_TEXT = "Modification refusée. Trop d'artefact inclu dans l'option rang";
     END IF;
+
+END #
+DELIMITER ;
+
+-- trigger pour personnages. 
+-- ne pas oublier le +3 des lvl
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_insert_personnages
+BEFORE INSERT
+ON personnages
+FOR EACH ROW
+BEGIN
+    -- niveau atq elm limitation
+    IF (NEW.constellation < 3) THEN 
+        IF (NEW.niveau_atq_elm > 10) THEN 
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Insertion refusée. Niveau d'attaque élémentaire trop élevé.";
+        END IF ;
+    ELSE 
+        IF (NEW.niveau_atq_elm > 13) THEN 
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Insertion refusée. Niveau d'attaque élémentaire trop élevé.";
+        END IF ;
+    END IF ;    
+    -- niveau atq ult limitation
+    IF (NEW.constellation < 3) THEN 
+        IF (NEW.niveau_atq_ult > 10) THEN 
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Insertion refusée. Niveau d'attaque ultime trop élevé.";
+        END IF ;
+    ELSE 
+        IF (NEW.niveau_atq_ult > 13) THEN 
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Insertion refusée. Niveau d'attaque ultime trop élevé.";
+        END IF ;
+    END IF ; 
+
+END #
+
+DELIMITER ;
+
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_update_personnages
+BEFORE UPDATE
+ON personnages
+FOR EACH ROW
+BEGIN
+    -- niveau atq elm limitation
+    IF (NEW.constellation < 3) THEN 
+        IF (NEW.niveau_atq_elm > 10) THEN 
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Modification refusée. Niveau d'attaque élémentaire trop élevé.";
+        END IF ;
+    ELSE 
+        IF (NEW.niveau_atq_elm > 13) THEN 
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Modification refusée. Niveau d'attaque élémentaire trop élevé.";
+        END IF ;
+    END IF ;    
+    -- niveau atq ult limitation
+    IF (NEW.constellation < 3) THEN 
+        IF (NEW.niveau_atq_ult > 10) THEN 
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Modification refusée. Niveau d'attaque ultime trop élevé.";
+        END IF ;
+    ELSE 
+        IF (NEW.niveau_atq_ult > 13) THEN 
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Modification refusée. Niveau d'attaque ultime trop élevé.";
+        END IF ;
+    END IF ; 
+
+    IF (OLD.possedee = 1 AND NEW.possedee = 0) THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "On ne peut pas ne plus posséder un personnage.";
+    END IF ;
+
+    -- vérification niveau constellation
+    IF (OLD.constellation < NEW.constellation) THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "On ne peut pas baisser la constellation d'un personnage";
+    END IF ;
+
+    -- augmentation des matériaux personnages liés au nombre de constellation et des niveaux d'aptitude si non modifié
+    IF(NEW.constellation >= 3 AND OLD.constellation < 3) THEN
+        UPDATE materiaux_personnages
+        SET niveau = niveau + 3
+        WHERE personnage = NEW.prenom AND type = "aptitude element";
+
+        IF(NEW.niveau_atq_elm = OLD.niveau_atq_elm) THEN
+            SET NEW.niveau_atq_elm = NEW.niveau_atq_elm  + 3;
+        END IF ;
+
+    END IF ;
+
+
+    IF(NEW.constellation >= 5 AND OLD.constellation < 5) THEN
+    
+        UPDATE materiaux_personnages
+        SET niveau = niveau + 3
+        WHERE personnage = NEW.prenom AND type = "aptitude ult";
+        
+        IF(NEW.niveau_atq_ult = OLD.niveau_atq_ult) THEN
+            SET NEW.niveau_atq_ult = OLD.niveau_atq_ult +3;
+        END IF ;
+    END IF ;
+
+END #
+
+DELIMITER ;
+
+
+
+-- trigger pour materiaux personnages. 
+--vérification d'un des types
+--vérification des niveaux généraux        
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_insert_materiaux_personnages
+BEFORE INSERT
+ON materiaux_personnages
+FOR EACH ROW
+BEGIN
+    SET @type = NEW.type;
+    IF(@type != "aptitude basique" AND @type != "aptitude element" AND @type != "aptitude ult" AND @type != "général") THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Le type n'existe pas.";
+    END IF ;
+
+
+    IF(@type = "général" AND (NEW.niveau%10 != 0 OR NEW.niveau = 10 OR NEW.niveau = 20)) THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Pas de niveau d'élévation à ce niveau là.";
+    END IF ;
+
+END #
+DELIMITER ;
+
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_update_materiaux_personnages
+BEFORE UPDATE
+ON materiaux_personnages
+FOR EACH ROW
+BEGIN
+
+    SET @type = NEW.type;
+    IF(@type != "aptitude basique" AND @type != "aptitude element" AND @type != "aptitude ult" AND @type != "général") THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Le type n'existe pas.";
+    END IF ;
+
+
+    IF(@type = "général" AND (NEW.niveau%10 != 0 OR NEW.niveau = 10 OR NEW.niveau = 20)) THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Pas de niveau d'élévation à ce niveau là.";
+    END IF ;
 
 END #
 DELIMITER ;
@@ -742,9 +907,10 @@ END #
 
 DELIMITER ;
 
+-- création de la procedure materiaux_personnages
+DELIMITER #
+CREATE OR REPLACE PROCEDURE 
 
 
 
-
-
-set foreign_key_checks = 0;
+set foreign_key_checks = 1;

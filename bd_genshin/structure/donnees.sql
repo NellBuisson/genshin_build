@@ -3158,8 +3158,3 @@ CALL `dropMonstre`("Garde de l'oasis d'Apep", "Éclat d'émeraude nagadus");
 
 
 
-
-select * from drop_monstres
-where monstre = "Hypostase Pyro";
-
-delete from drop_monstres;
