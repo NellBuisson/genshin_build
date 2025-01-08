@@ -612,13 +612,13 @@ ON materiaux_personnages
 FOR EACH ROW
 BEGIN
     SET @type = NEW.type;
-    IF(@type != "aptitude basique" AND @type != "aptitude element" AND @type != "aptitude ult" AND @type != "général") THEN
+    IF(@type != "aptitude basique" AND @type != "aptitude element" AND @type != "aptitude ult" AND @type != "phase" AND @type != "entre phase") THEN
         SIGNAL SQLSTATE "45000"
         SET MESSAGE_TEXT = "Le type n'existe pas.";
     END IF ;
 
 
-    IF(@type = "général" AND (NEW.niveau%10 != 0 OR NEW.niveau = 10 OR NEW.niveau = 20)) THEN
+    IF(@type = "phase" AND (NEW.niveau%10 != 0 OR NEW.niveau = 10 OR NEW.niveau = 30 OR NEW.niveau > 90)) THEN
         SIGNAL SQLSTATE "45000"
         SET MESSAGE_TEXT = "Pas de niveau d'élévation à ce niveau là.";
     END IF ;
@@ -635,13 +635,13 @@ FOR EACH ROW
 BEGIN
 
     SET @type = NEW.type;
-    IF(@type != "aptitude basique" AND @type != "aptitude element" AND @type != "aptitude ult" AND @type != "général") THEN
+    IF(@type != "aptitude basique" AND @type != "aptitude element" AND @type != "aptitude ult" AND @type != "phase" AND @type != "entre phase") THEN
         SIGNAL SQLSTATE "45000"
         SET MESSAGE_TEXT = "Le type n'existe pas.";
     END IF ;
 
 
-    IF(@type = "général" AND (NEW.niveau%10 != 0 OR NEW.niveau = 10 OR NEW.niveau = 20)) THEN
+    IF(@type = "phase" AND (NEW.niveau%10 != 0 OR NEW.niveau = 10 OR NEW.niveau = 30 OR NEW.niveau > 90)) THEN
         SIGNAL SQLSTATE "45000"
         SET MESSAGE_TEXT = "Pas de niveau d'élévation à ce niveau là.";
     END IF ;
@@ -652,6 +652,17 @@ DELIMITER ;
 -----------------------------------------------
 ------------------ Fonction -------------------
 -----------------------------------------------
+-- function pour afficher quelque chose parce que ça m'a souler que le select classique ne marche pas 
+DELIMITER #
+
+CREATE OR REPLACE FUNCTION afficherTexte(p_texte VARCHAR(50)) RETURNS VARCHAR(50)
+BEGIN
+    RETURN p_texte;
+END #
+DELIMITER ;
+
+
+
 -- création de la fonction pour automatiser la récupération du type de monstre qui drop un type de matériel. 
 DELIMITER #
 
@@ -659,9 +670,23 @@ CREATE OR REPLACE FUNCTION recuperationTypeMonstreMat(p_materiel VARCHAR(60)) RE
 BEGIN
     SET @type = "";
     SELECT type INTO @type FROM monstres
-    WHERE nom IN (SELECT monstre FROM drop_monstres
-                WHERE materiel = p_materiel);
+    WHERE nom = (SELECT monstre FROM drop_monstres
+                WHERE materiel = p_materiel GROUP BY materiel);
     RETURN @type;
+END #
+DELIMITER ;
+
+
+-- création de la fonction pour automatiser la récupération du donjon qui drop un type de matériel. 
+DELIMITER #
+
+CREATE OR REPLACE FUNCTION recuperationDonjonMat(p_materiel VARCHAR(60)) RETURNS VARCHAR(50)
+BEGIN
+    SET @donjon = "";
+    SELECT donjon INTO @donjon FROM drop_donjons
+    WHERE materiel = p_materiel
+    GROUP BY materiel;
+    RETURN @donjon;
 END #
 DELIMITER ;
 
@@ -926,37 +951,194 @@ END #
 DELIMITER ;
 
 -- création de la procedure materiaux_personnages
+
+-- création de la sous procedure pour les materiaux d'aptitude
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE AjoutmateriauxPersonnages(p_personnage VARCHAR(20), p_pierre VARCHAR(60), p_matBoss VARCHAR(60), p_matMonstre VARCHAR(60), p_herbe VARCHAR(60), p_matelev VARCHAR(60), p_matUltraBoss VARCHAR(60))
+CREATE OR REPLACE PROCEDURE AjoutMateriauxAptitude (p_personnage VARCHAR(20), p_type VARCHAR(20), p_matMonstre VARCHAR(60), p_matelev VARCHAR(60), p_matUltraBoss VARCHAR(60))
 BEGIN
-    SET @erreur = 0;
-    SET @type = "";
-    -- vérifions que p_pierre est bien un butin de boss commençant par la bonne appelation. 
-    SELECT `recuperationTypeMonstreMat`(p_pierre) INTO @type
+    SET @matMonstre = NULL;
+    SET @matElev = NULL;
 
-    IF((p_pierre not like "Éclat%" AND p_pierre not like "Fragment%" AND p_pierre not like "Morceau%") OR @type != "boss") THEN
-        SET @erreur = 1;
-        SELECT "Le premier matériel n'est pas le bon matériel";
-    END IF ;
+    INSERT INTO materiaux_personnages
+    values(p_personnage, p_type, 2, "Moras", 12500),
+    (p_personnage, p_type, 2, p_matelev, 3),
+    (p_personnage, p_type, 2, p_matMonstre, 6);
 
-    -- vérifions que p_matboss est bien issu d'un matériel de boss.
-    SELECT `recuperationTypeMonstreMat`(p_matBoss) INTO @type
+    select evolution into @matMonstre from materiaux where nom = p_matMonstre;
+    select evolution into @matElev from materiaux where nom = p_matelev;
 
-    IF(p_matBoss @type != "boss") THEN
-        SET @erreur = 1;
-        SELECT "Le deuxième matériel n'est pas le bon matériel";
-    END IF ;
+    INSERT INTO materiaux_personnages
+    values(p_personnage, p_type, 3, "Moras", 17500),
+    (p_personnage, p_type, 3, @matElev, 2),
+    (p_personnage, p_type, 3, @matMonstre, 3),
+    (p_personnage, p_type, 4, "Moras", 25000),
+    (p_personnage, p_type, 4, @matElev, 4),
+    (p_personnage, p_type, 4, @matMonstre, 4),
+    (p_personnage, p_type, 5, "Moras", 30000),
+    (p_personnage, p_type, 5, @matElev, 6),
+    (p_personnage, p_type, 5, @matMonstre, 6),
+    (p_personnage, p_type, 6, "Moras", 37500),
+    (p_personnage, p_type, 6, @matElev, 9),
+    (p_personnage, p_type, 6, @matMonstre, 9);
 
-    -- vérifions que p_matMonstre vient d'un monstre élite ou normal.
-    SELECT type INTO @type FROM monstres
-        WHERE nom IN (SELECT monstre FROM drop_monstres
-                WHERE materiel = p_matMonstre);
+    select evolution into @matMonstre from materiaux where nom = @matMonstre;
+    select evolution into @matElev from materiaux where nom = @matElev;
 
+    INSERT INTO materiaux_personnages
+    values(p_personnage, p_type, 7, "Moras", 120000),
+    (p_personnage, p_type, 7, @matElev, 4),
+    (p_personnage, p_type, 7, @matMonstre, 4),
+    (p_personnage, p_type, 7, p_matUltraBoss, 1),
+    (p_personnage, p_type, 8, "Moras", 260000),
+    (p_personnage, p_type, 8, @matElev, 6),
+    (p_personnage, p_type, 8, @matMonstre, 6),
+    (p_personnage, p_type, 8, p_matUltraBoss, 1),
+    (p_personnage, p_type, 9, "Moras", 450000),
+    (p_personnage, p_type, 9, @matElev, 12),
+    (p_personnage, p_type, 9, @matMonstre, 9),
+    (p_personnage, p_type, 9, p_matUltraBoss, 2),
+    (p_personnage, p_type, 10, "Moras", 700000),
+    (p_personnage, p_type, 10, @matElev, 16),
+    (p_personnage, p_type, 10, @matMonstre, 12),
+    (p_personnage, p_type, 10, p_matUltraBoss, 2),
+    (p_personnage, p_type, 10, "Couronne de la sagesse", 1);
 
-    
 END #
 DELIMITER ;
 
+-- procedure princiale
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE AjoutmateriauxPersonnages(p_personnage VARCHAR(20), p_pierre VARCHAR(60), p_matBoss VARCHAR(60), p_matMonstre VARCHAR(60), p_herbe VARCHAR(60), p_matelev VARCHAR(60), p_matUltraBoss VARCHAR(60)) 
+BEGIN
+    SET @erreur = 0;
+    SET @type = "";
+    SET @donjon = "";
+
+    -- vérifions que p_pierre est bien un butin de boss commençant par la bonne appelation. 
+
+    SELECT `recuperationTypeMonstreMat`(p_pierre) INTO @type;
+
+    IF(@type != "boss") THEN
+        SET @erreur = 1;
+    END IF ;
+
+    -- vérifions que p_matboss est bien issu d'un matériel de boss.
+    SELECT `recuperationTypeMonstreMat`(p_matBoss) INTO @type;
+
+    IF(@type != "boss") THEN
+        SET @erreur = 1;
+    END IF ;
+
+    -- vérifions que p_matMonstre vient d'un monstre élite ou normal.
+    SELECT `recuperationTypeMonstreMat`(p_matMonstre) INTO @type;
+
+    IF(@type != "normal") THEN
+        SET @erreur = 1;
+    END IF ;
+
+    -- vérifions que p_herbe n'est pas drop par un monstre ni dans un donjon
+    SELECT `recuperationTypeMonstreMat`(p_herbe) INTO @type;
+    SELECT `recuperationDonjonMat`(p_herbe) INTO @donjon;
+
+    IF(@type != "" OR @donjon != "") THEN
+        SET @erreur = 1;
+    END IF ;
+
+    -- vérifions que p_matelev est bien issu d'un donjon d'élevation d'aptitude
+    SELECT `recuperationDonjonMat`(p_matelev) INTO @donjon;
+    SELECT type INTO @type FROM donjons WHERE nom = @donjon;
+
+    IF(@type != "matériaux d'élévation d'aptitude") THEN 
+        SET @erreur = 1;
+    END IF ;
+
+    -- vérifions que p_matUltraBoss est bien issu d'un ultraboss
+    SELECT donjon INTO @donjon FROM drop_donjons
+    WHERE materiel = p_matUltraBoss AND jour IS NULL;
+    IF(@donjon IS NULL) THEN 
+
+        SET @erreur = 1;
+    END IF ;
+    
+    IF(@erreur = 0) THEN
+        -- matériaux élevation basique
+        SET @matMonstre = NULL;
+        SET @matPierre = NULL;
+
+        INSERT INTO materiaux_personnages
+
+        values(p_personnage, "phase", 20, "Moras", 20000),
+        (p_personnage, "phase", 20, p_pierre, 1),
+        (p_personnage, "phase", 20, p_herbe, 3),
+        (p_personnage, "phase", 20, p_matMonstre, 3),
+        (p_personnage, "entre phase", 20, "Moras", 24000),
+        (p_personnage, "entre phase", 20, "Leçon du héros", 6),
+        (p_personnage, "entre phase", 40, "Moras", 116000),
+        (p_personnage, "entre phase", 40, "Leçon du héros", 29);
+
+        select evolution into @matPierre from materiaux where nom = p_pierre;
+
+        INSERT INTO materiaux_personnages
+        values(p_personnage, "phase", 40, "Moras", 40000),
+        (p_personnage, "phase", 40, @matPierre, 3),
+        (p_personnage, "phase", 40, p_matBoss, 2),
+        (p_personnage, "phase", 40, p_herbe, 10),
+        (p_personnage, "phase", 40, p_matMonstre, 15),
+        (p_personnage, "entre phase", 50, "Moras", 100000),
+        (p_personnage, "entre phase", 50, "Leçon du héros", 26);
+
+        select evolution into @matMonstre from materiaux where nom = p_matMonstre;
+
+        INSERT INTO materiaux_personnages
+        values(p_personnage, "phase", 50, "Moras", 60000),
+        (p_personnage, "phase", 50, @matPierre, 6),
+        (p_personnage, "phase", 50, p_matBoss, 4),
+        (p_personnage, "phase", 50, p_herbe, 20),
+        (p_personnage, "phase", 50, @matMonstre, 12),
+        (p_personnage, "entre phase", 60, "Moras", 170000),
+        (p_personnage, "entre phase", 60, "Leçon du héros", 43);
+
+        select evolution into @matPierre from materiaux where nom = @matPierre;
+
+        INSERT INTO materiaux_personnages
+        values(p_personnage, "phase", 60, "Moras", 80000),
+        (p_personnage, "phase", 60, @matPierre, 3),
+        (p_personnage, "phase", 60, p_matBoss, 8),
+        (p_personnage, "phase", 60, p_herbe, 30),
+        (p_personnage, "phase", 60, @matMonstre, 18),
+        (p_personnage, "entre phase", 70, "Moras", 240000),
+        (p_personnage, "entre phase", 70, "Leçon du héros", 60);
+
+        select evolution into @matMonstre from materiaux where nom = @matMonstre;
+
+        INSERT INTO materiaux_personnages
+        values(p_personnage, "phase", 70, "Moras", 100000),
+        (p_personnage, "phase", 70, @matPierre, 6),
+        (p_personnage, "phase", 70, p_matBoss, 12),
+        (p_personnage, "phase", 70, p_herbe, 45),
+        (p_personnage, "phase", 70, @matMonstre, 12),
+        (p_personnage, "entre phase", 80, "Moras", 324000),
+        (p_personnage, "entre phase", 80, "Leçon du héros", 81);
+
+        select evolution into @matPierre from materiaux where nom = @matPierre;
+
+        INSERT INTO materiaux_personnages
+        values(p_personnage, "phase", 80, "Moras", 120000),
+        (p_personnage, "phase", 80, @matPierre, 6),
+        (p_personnage, "phase", 80, p_matBoss, 20),
+        (p_personnage, "phase", 80, p_herbe, 60),
+        (p_personnage, "phase", 80, @matMonstre, 24),
+        (p_personnage, "entre phase", 90, "Moras", 688000),
+        (p_personnage, "entre phase", 90, "Leçon du héros", 172);
+
+        -- matériaux élevation 
+        CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude basique", p_matMonstre, p_matelev, p_matUltraBoss);
+        CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude element", p_matMonstre, p_matelev, p_matUltraBoss);
+        CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude ult", p_matMonstre, p_matelev, p_matUltraBoss);
+    END IF ;
+END #
+DELIMITER ;
 
 set foreign_key_checks = 1;

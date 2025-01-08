@@ -909,7 +909,14 @@ VALUES("Essence de Blob", NULL),
 ("Bourgeon réfractif", "Feuillage déroutant"),
 ("Prisme d'éclair", NULL),
 ("Regard enchevêtrant", NULL),
-("Regard d'enchevêtrant", NULL);
+("Regard d'enchevêtrant", NULL),
+("Leçon du héros", NULL),
+("Conseil de l'aventurier", "Leçon du héros"),
+("Astuce du voyageur", "Conseil de l'aventurier"),
+("Couronne de la sagesse",NULL);
+
+
+values
 INSERT INTO `drop_donjons`
 VALUES("Pépinière de cécilias","Tuile cassée de Décabarian", "lundi", "jeudi"),
 ("Pépinière de cécilias","Mur abattu de Décabarian", "lundi", "jeudi"),
@@ -3156,5 +3163,5 @@ CALL `dropMonstre`("Hypostase Dendro", "Éclat d'émeraude nagadus");
 CALL `dropMonstre`("Roi yumkasaure glouton de la montagne", "Éclat d'émeraude nagadus");
 CALL `dropMonstre`("Garde de l'oasis d'Apep", "Éclat d'émeraude nagadus");
 
-
+CALL `AjoutmateriauxPersonnages`("Albedo", "Éclat de topaze prithiva", "Pilier de basalte", "Parchemin divinatoire", "Cécilia", "Enseignement de la Poésie", "Corne de Monoceros Caeli" );
 
