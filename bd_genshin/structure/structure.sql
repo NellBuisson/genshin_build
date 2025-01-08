@@ -358,7 +358,10 @@ ALTER TABLE personnages
 ADD CONSTRAINT perso_etoile CHECK(nbretoile BETWEEN 4 AND 5);
 
 ALTER TABLE monstres 
-ADD CONSTRAINT monstres_type CHECK(`type` = "boss" OR `type` = "élite" OR `type` = "normal");
+ADD CONSTRAINT monstres_type CHECK(`type` = "boss" OR `type` = "normal");
+
+ALTER TABLE monstres 
+DROP CONSTRAINT monstres_type
 
 ALTER TABLE personnages 
 ADD CONSTRAINT perso_constellation CHECK(constellation BETWEEN 0 AND 6);
@@ -646,6 +649,21 @@ BEGIN
 END #
 DELIMITER ;
 
+-----------------------------------------------
+------------------ Fonction -------------------
+-----------------------------------------------
+-- création de la fonction pour automatiser la récupération du type de monstre qui drop un type de matériel. 
+DELIMITER #
+
+CREATE OR REPLACE FUNCTION recuperationTypeMonstreMat(p_materiel VARCHAR(60)) RETURNS VARCHAR(20)
+BEGIN
+    SET @type = "";
+    SELECT type INTO @type FROM monstres
+    WHERE nom IN (SELECT monstre FROM drop_monstres
+                WHERE materiel = p_materiel);
+    RETURN @type;
+END #
+DELIMITER ;
 
 -----------------------------------------------
 ----------------- Procedure -------------------
@@ -909,8 +927,36 @@ DELIMITER ;
 
 -- création de la procedure materiaux_personnages
 DELIMITER #
-CREATE OR REPLACE PROCEDURE 
 
+CREATE OR REPLACE PROCEDURE AjoutmateriauxPersonnages(p_personnage VARCHAR(20), p_pierre VARCHAR(60), p_matBoss VARCHAR(60), p_matMonstre VARCHAR(60), p_herbe VARCHAR(60), p_matelev VARCHAR(60), p_matUltraBoss VARCHAR(60))
+BEGIN
+    SET @erreur = 0;
+    SET @type = "";
+    -- vérifions que p_pierre est bien un butin de boss commençant par la bonne appelation. 
+    SELECT `recuperationTypeMonstreMat`(p_pierre) INTO @type
+
+    IF((p_pierre not like "Éclat%" AND p_pierre not like "Fragment%" AND p_pierre not like "Morceau%") OR @type != "boss") THEN
+        SET @erreur = 1;
+        SELECT "Le premier matériel n'est pas le bon matériel";
+    END IF ;
+
+    -- vérifions que p_matboss est bien issu d'un matériel de boss.
+    SELECT `recuperationTypeMonstreMat`(p_matBoss) INTO @type
+
+    IF(p_matBoss @type != "boss") THEN
+        SET @erreur = 1;
+        SELECT "Le deuxième matériel n'est pas le bon matériel";
+    END IF ;
+
+    -- vérifions que p_matMonstre vient d'un monstre élite ou normal.
+    SELECT type INTO @type FROM monstres
+        WHERE nom IN (SELECT monstre FROM drop_monstres
+                WHERE materiel = p_matMonstre);
+
+
+    
+END #
+DELIMITER ;
 
 
 set foreign_key_checks = 1;
