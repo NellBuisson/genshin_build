@@ -652,16 +652,6 @@ DELIMITER ;
 -----------------------------------------------
 ------------------ Fonction -------------------
 -----------------------------------------------
--- function pour afficher quelque chose parce que ça m'a souler que le select classique ne marche pas 
-DELIMITER #
-
-CREATE OR REPLACE FUNCTION afficherTexte(p_texte VARCHAR(50)) RETURNS VARCHAR(50)
-BEGIN
-    RETURN p_texte;
-END #
-DELIMITER ;
-
-
 
 -- création de la fonction pour automatiser la récupération du type de monstre qui drop un type de matériel. 
 DELIMITER #

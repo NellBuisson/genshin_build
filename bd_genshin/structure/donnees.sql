@@ -774,9 +774,9 @@ VALUES("Essence de Blob", NULL),
 ("Philosophie de la Justice", NULL),
 ("Guide de la Justice", "Philosophie de la Justice"),
 ("Enseignement de la Justice", "Guide de la Justice"),
-("Philosophie de l`Ordre", NULL),
-("Guide de l`Ordre", "Philosophie de l`Ordre"),
-("Enseignement de l`Ordre", "Guide de l`Ordre"),
+("Philosophie de l'Ordre", NULL),
+("Guide de l'Ordre", "Philosophie de l'Ordre"),
+("Enseignement de l'Ordre", "Guide de l'Ordre"),
 ("Philosophie de la compétition", NULL),
 ("Guide de la compétition", "Philosophie de la compétition"),
 ("Enseignement de la compétition", "Guide de la compétition"),
@@ -913,7 +913,8 @@ VALUES("Essence de Blob", NULL),
 ("Leçon du héros", NULL),
 ("Conseil de l'aventurier", "Leçon du héros"),
 ("Astuce du voyageur", "Conseil de l'aventurier"),
-("Couronne de la sagesse",NULL);
+("Couronne de la sagesse",NULL),
+("Pourprinfleur fanée", NULL);
 
 
 values
@@ -1032,9 +1033,9 @@ VALUES("Pépinière de cécilias","Tuile cassée de Décabarian", "lundi", "jeud
 ("Pâle gloire oubliée","Enseignement de la Justice","mardi","vendredi"),
 ("Pâle gloire oubliée","Guide de la Justice","mardi","vendredi"),
 ("Pâle gloire oubliée","Philosophie de la Justice","mardi","vendredi"),
-("Pâle gloire oubliée","Enseignement de l'Or","mercredi","samedi"),
-("Pâle gloire oubliée","Guide de l'Or","mercredi","samedi"),
-("Pâle gloire oubliée","Philosophie de l'Or","mercredi","samedi"),
+("Pâle gloire oubliée","Enseignement de l'Ordre","mercredi","samedi"),
+("Pâle gloire oubliée","Guide de l'Ordre","mercredi","samedi"),
+("Pâle gloire oubliée","Philosophie de l'Ordre","mercredi","samedi"),
 ("Ruines flamboyantes","Enseignement de la Compétition","lundi","jeudi"),
 ("Ruines flamboyantes","Guide de la Compétition","lundi","jeudi"),
 ("Ruines flamboyantes","Philosophie de la Compétition","lundi","jeudi"),
@@ -3080,7 +3081,7 @@ CALL `dropMonstre`("Suanni solitaire", "Écaille nuageuse");
 CALL `dropMonstre`("Roi yumkasaure glouton de la montagne", "Flamboigrenade surmûre");
 CALL `dropMonstre`("Tyran qucusaure de flamme dorée", "Marque de bénédiction liante");
 CALL `dropMonstre`("Lustrateur inique", "Anneau de sombreur éternelle");
-CALL `dropMonstre`("Papille obombrée", "Regard d'enchevêtrant");
+CALL `dropMonstre`("Papille obombrée", "Regard enchevêtrant");
 CALL `dropMonstre`("Matrice mécanique perpétuelle", "Coeur perpétuel");
 CALL `dropMonstre`("Lame oni", "Mécanisme oni");
 CALL `dropMonstre`("Serpent des ruines", "Croc runique");
@@ -3164,4 +3165,38 @@ CALL `dropMonstre`("Roi yumkasaure glouton de la montagne", "Éclat d'émeraude 
 CALL `dropMonstre`("Garde de l'oasis d'Apep", "Éclat d'émeraude nagadus");
 
 CALL `AjoutmateriauxPersonnages`("Albedo", "Éclat de topaze prithiva", "Pilier de basalte", "Parchemin divinatoire", "Cécilia", "Enseignement de la Poésie", "Corne de Monoceros Caeli" );
+CALL `AjoutmateriauxPersonnages`("Alhaitham", "Éclat d'émeraude nagadus", "Pseudo-étamines", "Satin rouge délavé", "Pupe graisseuse des sables", "Enseignement de l'Ingénuité", "Miroir de mushin");
+CALL `AjoutmateriauxPersonnages`("Aloy", "Éclat de jade shivada", "Fleur cristalline", "Coquille spectrale", "Moelle cristalline", "Enseignement de la Liberté", "Moment en fusion");
+CALL `AjoutmateriauxPersonnages`("Amber", "Éclat d'agate agnidus", "Graine de feu", "Pointe de flèche usée", "Herbe à lampe", "Enseignement de la Liberté", "Souffle de Stormterror");
+CALL `AjoutmateriauxPersonnages`("Itto", "Éclat de topaze prithiva", "Régalia de faille", "Bave de Blob", "Scarabuto", "Enseignement de l'Élégance", "Coeur de cendre");
+CALL `AjoutmateriauxPersonnages`("Arlecchino", "Éclat d'agate agnidus", "Fragment d'une mélodie dorée", "Insigne de nouvelle recrue", "Rose arc-en-ciel", "Enseignement de l'Ordre", "Bougie vacillante");
+CALL `AjoutmateriauxPersonnages`("Baizhu", "Éclat d'émeraude nagadus", "Anneau de sombreur éternelle", "Spores de Fongus", "Muguet bleu", "Enseignement de l'Or", "Fougère du monde luxuriant");
+CALL `AjoutmateriauxPersonnages`("Barbara", "Éclat de lazurite varunada", "Coeur d'eau pure", "Parchemin divinatoire", "Champignon anémophile", "Enseignement de la Liberté", "Vertèbre de Borée");
+CALL `AjoutmateriauxPersonnages`("Beidou", "Éclat d'améthyste vajrada", "Prisme d'éclair", "Insigne du Pilleur", "Jade noctiluque", "Enseignement de l'Or", "Souffle de Stormterror");
+CALL `AjoutmateriauxPersonnages`("Bennett", "Éclat d'agate agnidus", "Graine de feu", "Insigne du Pilleur", "Chrysanthème à aubes", "Enseignement de la Résistance", "Plume de Stormterror");
+CALL `AjoutmateriauxPersonnages`("Candace", "Éclat de lazurite varunada", "Tétraèdre de lumière", "Satin rouge délavé", "Quandong", "Enseignement de l'Admonestation", "Larmes de la divinité calamiteuse");
+CALL `AjoutmateriauxPersonnages`("Charlotte", "Éclat de jade shivada", "Appareil tourbillon", "Engrenage de maillage", "Conque de béryl", "Enseignement de la Justice", "Ficelle de soie sans lumière");
+CALL `AjoutmateriauxPersonnages`("Chasca", "Éclat de turquoise vayuda", "Regard enchevêtrant", "Croc juvénile", "Pourprinfleur fanée", "Enseignement du Conflit", "Plume soyeuse");
+CALL `AjoutmateriauxPersonnages`("Chevreuse", "Éclat d'agate agnidus", "Corne fontemarine", "Engrenage de maillage", "Clochette de Lumidouce", "Enseignement de l'Ordre", "Oeil de tourbillon sans lumière");
+CALL `AjoutmateriauxPersonnages`("Chiori", "Éclat de topaze prithiva", "Engrenage artificié de rechange : Coppelia", "Coquille spectrale", "Dendrobium sanglant", "Enseignement de la Lumière", "Ficelle de soie sans lumière");
+CALL `AjoutmateriauxPersonnages`("Chongyun", "Éclat de jade shivada", "Duramen de glace", "Masque endommagé", "Coeur de lapis", "Enseignement de la Diligence", "Souffle de Stormterror");
+CALL `AjoutmateriauxPersonnages`("", "", "", "", "", "", "");
+
+select * from materiaux where nom like "%masque%";
+select * from materiaux where nom in (select materiel from drop_monstres where monstre like "%spectre%");
+
+
+delete from materiaux where nom = "Regard d'enchevêtrant";
+
+
+select * from materiaux_personnages
+where personnage = "arlecchino"
+order by type, niveau, materiel;
+
+delete from materiaux
+where nom like "%pollen%";
+
+
+delete from drop_donjons
+where donjon like "%gloire%" and materiel like "%or%";
 
