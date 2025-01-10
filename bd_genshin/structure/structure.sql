@@ -945,6 +945,7 @@ DELIMITER ;
 -- création de la sous procedure pour les materiaux d'aptitude
 DELIMITER #
 
+
 CREATE OR REPLACE PROCEDURE AjoutMateriauxAptitude (p_personnage VARCHAR(20), p_type VARCHAR(20), p_matMonstre VARCHAR(60), p_matelev VARCHAR(60), p_matUltraBoss VARCHAR(60))
 BEGIN
     SET @matMonstre = NULL;

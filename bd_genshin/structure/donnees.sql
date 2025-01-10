@@ -777,9 +777,9 @@ VALUES("Essence de Blob", NULL),
 ("Philosophie de l'Ordre", NULL),
 ("Guide de l'Ordre", "Philosophie de l'Ordre"),
 ("Enseignement de l'Ordre", "Guide de l'Ordre"),
-("Philosophie de la compétition", NULL),
-("Guide de la compétition", "Philosophie de la compétition"),
-("Enseignement de la compétition", "Guide de la compétition"),
+("Philosophie de la Compétition", NULL),
+("Guide de la Compétition", "Philosophie de la Compétition"),
+("Enseignement de la Compétition", "Guide de la Compétition"),
 ("Philosophie du petit bois", NULL),
 ("Guide du petit bois", "Philosophie du petit bois"),
 ("Enseignement du petit bois", "Guide du petit bois"),
@@ -914,8 +914,12 @@ VALUES("Essence de Blob", NULL),
 ("Conseil de l'aventurier", "Leçon du héros"),
 ("Astuce du voyageur", "Conseil de l'aventurier"),
 ("Couronne de la sagesse",NULL),
-("Pourprinfleur fanée", NULL);
-
+("Pourprinfleur fanée", NULL),
+("Talisman d'une terre mystérieuse", NULL),
+("Corne érodée", NULL),
+("Royon érodé", NULL),
+("Plume érodée", NULL),
+("Champicorne brillant", NULL);
 
 values
 INSERT INTO `drop_donjons`
@@ -1071,7 +1075,10 @@ VALUES("Pépinière de cécilias","Tuile cassée de Décabarian", "lundi", "jeud
 ("Ombre d'un autre monde","Masse sans lumière",NULL,NULL),
 ("Ruines éparses","Bougie vacillante",NULL,NULL),
 ("Ruines éparses","Plume soyeuse",NULL,NULL),
-("Ruines éparses","Verdict négatif",NULL,NULL);
+("Ruines éparses","Verdict négatif",NULL,NULL),
+("Registre de stèle", "Corne érodée", NULL, NULL),
+("Registre de stèle", "Rayon érodé", NULL, NULL),
+("Registre de stèle", "Plume érodée", NULL, NULL);
 
 
 call `elevationArme`("Épée du faucon", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche usée");
@@ -3163,6 +3170,9 @@ CALL `dropMonstre`("Champieffroi panaché", "Éclat d'émeraude nagadus");
 CALL `dropMonstre`("Hypostase Dendro", "Éclat d'émeraude nagadus");
 CALL `dropMonstre`("Roi yumkasaure glouton de la montagne", "Éclat d'émeraude nagadus");
 CALL `dropMonstre`("Garde de l'oasis d'Apep", "Éclat d'émeraude nagadus");
+CALL `dropMonstre`("Spiritoratrice excentrique isolée", "Talisman d'une terre mystérieuse");
+CALL `dropMonstre`("Érodé seigneur du feu primordial", "Éclat d'agate agnidus");
+
 
 CALL `AjoutmateriauxPersonnages`("Albedo", "Éclat de topaze prithiva", "Pilier de basalte", "Parchemin divinatoire", "Cécilia", "Enseignement de la Poésie", "Corne de Monoceros Caeli" );
 CALL `AjoutmateriauxPersonnages`("Alhaitham", "Éclat d'émeraude nagadus", "Pseudo-étamines", "Satin rouge délavé", "Pupe graisseuse des sables", "Enseignement de l'Ingénuité", "Miroir de mushin");
@@ -3180,23 +3190,95 @@ CALL `AjoutmateriauxPersonnages`("Chasca", "Éclat de turquoise vayuda", "Regard
 CALL `AjoutmateriauxPersonnages`("Chevreuse", "Éclat d'agate agnidus", "Corne fontemarine", "Engrenage de maillage", "Clochette de Lumidouce", "Enseignement de l'Ordre", "Oeil de tourbillon sans lumière");
 CALL `AjoutmateriauxPersonnages`("Chiori", "Éclat de topaze prithiva", "Engrenage artificié de rechange : Coppelia", "Coquille spectrale", "Dendrobium sanglant", "Enseignement de la Lumière", "Ficelle de soie sans lumière");
 CALL `AjoutmateriauxPersonnages`("Chongyun", "Éclat de jade shivada", "Duramen de glace", "Masque endommagé", "Coeur de lapis", "Enseignement de la Diligence", "Souffle de Stormterror");
-CALL `AjoutmateriauxPersonnages`("", "", "", "", "", "", "");
+CALL `AjoutmateriauxPersonnages`("Citlali", "Éclat de jade shivada", "Talisman d'une terre mystérieuse", "Croc juvénile", "Baie de quenettier", "Enseignement du Petit bois", "Verdict négatif");
+CALL `AjoutmateriauxPersonnages`("Clorinde", "Éclat d'améthyste vajrada", "Corne fontemarine", "Perle transocéanique", "Sombrétoile", "Enseignement de la Justice", "Constambre");
+CALL `AjoutmateriauxPersonnages`("Collei", "Éclat d'émeraude nagadus", "Bec crochu majestueux", "Pointe de flèche usée", "Champignon sacramental", "Enseignement de l'Usage", "Larmes de la divinité calamiteuse");
+CALL `AjoutmateriauxPersonnages`("Cyno", "Éclat d'améthyste vajrada", "Fruit du tonnerre", "Parchemin divinatoire", "Scarabée", "Enseignement de l'Admonestation", "Mudra du général maléfique");
+CALL `AjoutmateriauxPersonnages`("Dehya", "Éclat d'agate agnidus", "Tétraèdre de lumière", "Satin rouge délavé", "Pupe graisseuse des sables", "Enseignement de l'Usage", "Fils de marionnette");
+CALL `AjoutmateriauxPersonnages`("Diluc", "Éclat d'agate agnidus", "Graine de feu", "Insigne de nouvelle recrue", "Herbe à lampe", "Enseignement de la Résistance", "Plume de Stormterror");
+CALL `AjoutmateriauxPersonnages`("Diona", "Éclat de jade shivada", "Duramen de glace", "Pointe de flèche usée", "Lys calla", "Enseignement de la Liberté", "Fragment du démon");
+CALL `AjoutmateriauxPersonnages`("Dori", "Éclat d'améthyste vajrada", "Fruit du tonnerre", "Satin rouge délavé", "Kalpalotus", "Enseignement de l'Ingénuité", "Branche de jade cramoisi");
+CALL `AjoutmateriauxPersonnages`("Émilie", "Éclat d'émeraude nagadus", "Fragment d'une mélodie dorée", "Engrenage de maillage", "Lys lacmineux", "Enseignement de l'Ordre", "Plume soyeuse");
+CALL `AjoutmateriauxPersonnages`("Eula", "Éclat de jade shivada", "Fleur cristalline", "Masque endommagé", "Graines de pissenlit", "Enseignement de la Résistance","Couronne du roi-dragon");
+CALL `AjoutmateriauxPersonnages`("Faruzan", "Éclat de turquoise vayuda", "Tétraèdre de lumière", "Satin rouge délavé", "Quandong", "Enseignement de l'Admonestation","Fils de marionnette");
+CALL `AjoutmateriauxPersonnages`("Fischl", "Éclat d'améthyste vajrada", "Prisme d'éclair", "Pointe de flèche usée", "Herbe à lampe", "Enseignement de la Poésie","Esprit de Borée");
+CALL `AjoutmateriauxPersonnages`("Fréminet", "Éclat de jade shivada", "Engrenage artificié de rechange : Coppelius", "Perle transocéanique", "Fleur romaritime", "Enseignement de la Justice","Fougère du monde luxuriant");
+CALL `AjoutmateriauxPersonnages`("Furina", "Éclat de lazurite varunada", "Eau n'ayant pas transcendé", "Nectar de Fleur mensongère", "Lys lacmineux", "Enseignement de la Justice","Masse sans lumière");
+CALL `AjoutmateriauxPersonnages`("Gaming", "Éclat d'agate agnidus", "Résolution de l'empereur", "Bave de Blob", "Conque d'étoile", "Enseignement de la Prospérité","Masse sans lumière");
+CALL `AjoutmateriauxPersonnages`("Ganyu", "Éclat de jade shivada", "Duramen de glace", "Nectar de Fleur mensongère", "Fleur de Qingxin", "Enseignement de la Diligence","Ombre du guerrier");
+CALL `AjoutmateriauxPersonnages`("Gorou", "Éclat de topaze prithiva", "Coeur perpétuel", "Coquille spectrale", "Perle de corail", "Enseignement de la Lumière","Moment en fusion");
+CALL `AjoutmateriauxPersonnages`("Tao", "Éclat d'agate agnidus", "Jade juvénile", "Nectar de Fleur mensongère", "Fleur de soie", "Enseignement de la Diligence","Fragment du démon");
+CALL `AjoutmateriauxPersonnages`("Jean", "Éclat de turquoise vayuda", "Graine d'ouragan", "Masque endommagé", "Graines de pissenlit", "Enseignement de la Résistance","Plume de Stormterror");
+CALL `AjoutmateriauxPersonnages`("Kachina", "Éclat de topaze prithiva", "Flamboigrenade surmûre", "Sifflet en bois de sentinelle", "Baie de quenettier", "Enseignement du Conflit","Bougie vacillante");
+CALL `AjoutmateriauxPersonnages`("Kazuha", "Éclat de turquoise vayuda", "Mécanisme oni", "Insigne du Pilleur", "Ganoderma marin", "Enseignement de la Diligence","Écaille dorée");
+CALL `AjoutmateriauxPersonnages`("Kaeya", "Éclat de jade shivada", "Duramen de glace", "Insigne du Pilleur", "Lys calla", "Enseignement de la Poésie","Esprit de Borée");
+CALL `AjoutmateriauxPersonnages`("Ayaka", "Éclat de jade shivada", "Coeur perpétuel", "Garde-main ancien", "Fleur de cerisier", "Enseignement de l'Élégance","Branche de jade cramoisi");
+CALL `AjoutmateriauxPersonnages`("Ayato", "Éclat de lazurite varunada", "Rosée du rejet", "Garde-main ancien", "Fleur de cerisier", "Enseignement de l'Élégance","Mudra du général maléfique");
+CALL `AjoutmateriauxPersonnages`("Kaveh", "Éclat d'émeraude nagadus", "Liane d'oblitération", "Spores de Fongus", "Fleur funéraire", "Enseignement de l'Ingénuité","Floraison première de l'oasis");
+CALL `AjoutmateriauxPersonnages`("Keqing", "Éclat d'améthyste vajrada", "Prisme d'éclair", "Nectar de Fleur mensongère", "Coeur de lapis", "Enseignement de la Prospérité","Vertèbre de Borée");
+CALL `AjoutmateriauxPersonnages`("Kinich", "Éclat d'émeraude nagadus", "Flamboigrenade surmûre", "Croc juvénile", "Patte saurienne", "Enseignement du Petit bois", "Verdict négatif");
+CALL `AjoutmateriauxPersonnages`("Kirara", "Éclat d'émeraude nagadus", "Anneau de sombreur éternelle", "Coquille spectrale", "Fruit d'Amakumo", "Enseignement de l'Éphémère", "Constambre");
+CALL `AjoutmateriauxPersonnages`("Klee", "Éclat d'agate agnidus", "Graine de feu", "Parchemin divinatoire", "Champignon anémophile", "Enseignement de la Liberté", "Vertèbre de Borée");
+CALL `AjoutmateriauxPersonnages`("Sara", "Éclat d'améthyste vajrada", "Perles tempestives", "Masque endommagé", "Dendrobium sanglant", "Enseignement de l'Élégance", "Coeur de cendre");
+CALL `AjoutmateriauxPersonnages`("Shinobu", "Éclat d'améthyste vajrada", "Croc runique", "Coquille spectrale", "Herbe à sanglots", "Enseignement de l'Élégance", "Larmes de la divinité calamiteuse");
+CALL `AjoutmateriauxPersonnages`("Layla", "Éclat de jade shivada", "Calibre perpétuel", "Parchemin divinatoire", "Nilotpalotus", "Enseignement de l'Ingénuité", "Miroir de mushin");
+CALL `AjoutmateriauxPersonnages`("Lisa", "Éclat d'améthyste vajrada", "Prisme d'éclair", "Bave de Blob", "Tombaie", "Enseignement de la Poésie", "Griffe de Stormterror");
+CALL `AjoutmateriauxPersonnages`("Lynette", "Éclat de turquoise vayuda", "Engrenage artificié de rechange : Coppelia", "Engrenage de maillage", "Clochette de Lumidouce", "Enseignement de l'Ordre", "Constambre");
+CALL `AjoutmateriauxPersonnages`("Lyney", "Éclat d'agate agnidus", "Résolution de l'empereur", "Insigne de nouvelle recrue", "Rose arc-en-ciel", "Enseignement de l'Équité", "Floraison première de l'oasis");
+CALL `AjoutmateriauxPersonnages`("Mavuika", "Éclat d'agate agnidus", "Noyau source aux motifs dorés secrets", "Sifflet en bois de sentinelle", "Pourprinfleur fanée", "Enseignement de la Compétition", "Corne érodée");
+CALL `AjoutmateriauxPersonnages`("Mika", "Éclat de jade shivada", "Pseudo-étamines", "Insigne de nouvelle recrue", "Baie à crochet", "Enseignement de la Poésie", "Miroir de mushin");
+CALL `AjoutmateriauxPersonnages`("Mona", "Éclat de lazurite varunada", "Coeur d'eau pure", "Nectar de Fleur mensongère", "Champignon anémophile", "Enseignement de la Résistance", "Vertèbre de Borée");
+CALL `AjoutmateriauxPersonnages`("Mualani", "Éclat de lazurite varunada", "Marque de bénédiction liante", "Sifflet en bois de sentinelle", "Branchie mousseplume", "Enseignement de la Compétition", "Masse sans lumière");
+CALL `AjoutmateriauxPersonnages`("Nahida", "Éclat d'émeraude nagadus", "Liane d'oblitération", "Spores de Fongus", "Kalpalotus", "Enseignement de l'Ingénuité", "Fils de marionnette");
+CALL `AjoutmateriauxPersonnages`("Navia", "Éclat de topaze prithiva", "Engrenage artificié de rechange : Coppelius", "Perle transocéanique", "Source des premières rosées", "Enseignement de l'Équité", "Ficelle de soie sans lumière");
+CALL `AjoutmateriauxPersonnages`("Neuvillette", "Éclat de lazurite varunada", "Corne fontemarine", "Perle transocéanique", "Sombrétoile", "Enseignement de l'Équité", "Constambre");
+CALL `AjoutmateriauxPersonnages`("Nilou", "Éclat de lazurite varunada", "Calibre perpétuel", "Spores de Fongus", "Padisachidée", "Enseignement de l'Usage", "Larmes de la divinité calamiteuse");
+CALL `AjoutmateriauxPersonnages`("Ningguang", "Éclat de topaze prithiva", "Pilier de basalte", "Insigne de nouvelle recrue", "Lys verni", "Enseignement de la Prospérité", "Esprit de Borée");
+CALL `AjoutmateriauxPersonnages`("Noëlle", "Éclat de topaze prithiva", "Pilier de basalte", "Masque endommagé", "Tombaie", "Enseignement de la Résistance", "Griffe de Stormterror");
+CALL `AjoutmateriauxPersonnages`("Nomade", "Éclat de turquoise vayuda", "Calibre perpétuel", "Garde-main ancien", "Champignon sacramental", "Enseignement de l'Usage", "Cloche de daka");
+CALL `AjoutmateriauxPersonnages`("Ororon", "Éclat d'améthyste vajrada", "Marque de bénédiction liante", "Croc juvénile", "Champicorne brillant", "Enseignement du petit bois", "Ficelle de soie sans lumière");
+CALL `AjoutmateriauxPersonnages`("Qiqi", "Éclat de jade shivada", "Duramen de glace", "Parchemin divinatoire", "Muguet bleu", "Enseignement de la Prospérité", "Queue de Borée");
+CALL `AjoutmateriauxPersonnages`("Razor", "Éclat d'améthyste vajrada", "Prisme d'éclair", "Masque endommagé", "Baie à crochet", "Enseignement de la Résistance", "Griffe de Stormterror");
+CALL `AjoutmateriauxPersonnages`("Rosalia", "Éclat de jade shivada", "Duramen de glace", "Insigne de nouvelle recrue", "Tombaie", "Enseignement de la Poésie", "Ombre du guerrier");
+CALL `AjoutmateriauxPersonnages`("Kokomi", "Éclat de lazurite varunada", "Rosée du rejet", "Coquille spectrale", "Perle de corail", "Enseignement de l'Éphémère", "Papillon infernal");
+CALL `AjoutmateriauxPersonnages`("Sayu", "Éclat de turquoise vayuda", "Mécanisme oni", "Nectar de Fleur mensongère", "Moelle cristalline", "Enseignement de la Lumière", "Écaille dorée");
+CALL `AjoutmateriauxPersonnages`("Sethos", "Éclat d'améthyste vajrada", "Ecaille nuageuse", "Satin rouge délavé", "Trishiraite", "Enseignement de l'Usage", "Cloche de daka");
+CALL `AjoutmateriauxPersonnages`("Shenhe", "Éclat de jade shivada", "Fausse nageoire de l'héritier du dragon", "Nectar de Fleur mensongère", "Fleur de Qingxin", "Enseignement de la Prospérité", "Papillon infernal");
+CALL `AjoutmateriauxPersonnages`("Heizou", "Éclat de turquoise vayuda", "Croc runique", "Insigne du Pilleur", "Scarabuto", "Enseignement de l'Éphémère", "Signification d'une éternité");
+CALL `AjoutmateriauxPersonnages`("Raiden", "Éclat d'améthyste vajrada", "Perles tempestives", "Garde-main ancien", "Fruit d'Amakumo", "Enseignement de la Lumière", "Moment en fusion");
+CALL `AjoutmateriauxPersonnages`("Sigewinne", "Éclat de lazurite varunada", "Eau n'ayant pas transcendé", "Perle transocéanique", "Fleur romaritime", "Enseignement de l'Équité", "Oeil de tourbillon sans lumière");
+CALL `AjoutmateriauxPersonnages`("Sucrose", "Éclat de turquoise vayuda", "Graine d'ouragan", "Nectar de Fleur mensongère", "Chrysanthème à aubes", "Enseignement de la Liberté", "Esprit de Borée");
+CALL `AjoutmateriauxPersonnages`("Tartaglia", "Éclat de lazurite varunada", "Coeur d'eau pure", "Insigne de nouvelle recrue", "Conque d'étoile", "Enseignement de la Liberté", "Fragment du démon");
+CALL `AjoutmateriauxPersonnages`("Thomas", "Éclat d'agate agnidus", "Perle brûlante", "Insigne du Pilleur", "Champignon fluorescent", "Enseignement de l'Éphémère", "Papillon infernal");
+CALL `AjoutmateriauxPersonnages`("Tighnari", "Éclat d'émeraude nagadus", "Bec crochu majestueux", "Spores de Fongus", "Nilotpalotus", "Enseignement de l'Admonestation", "Signification d'une éternité");
+CALL `AjoutmateriauxPersonnages`("Venti", "Éclat de turquoise vayuda", "Graine d'ouragan", "Bave de Blob", "Cécilia", "Enseignement de la Poésie", "Queue de Borée");
+CALL `AjoutmateriauxPersonnages`("", "", "", "", "", "Enseignement ", "");
 
-select * from materiaux where nom like "%masque%";
-select * from materiaux where nom in (select materiel from drop_monstres where monstre like "%spectre%");
+
+
+select * from materiaux where nom like "%nuageuse%";
+select * from materiaux where nom in (select materiel from drop_monstres where monstre like "%fontemarin%");
 
 
 delete from materiaux where nom = "Regard d'enchevêtrant";
 
 
 select * from materiaux_personnages
-where personnage = "arlecchino"
-order by type, niveau, materiel;
+where personnage = "ororon"
+order by type, niveau;
 
-delete from materiaux
-where nom like "%pollen%";
+delete from materiaux_personnages
+where personnage = "mavuika";
+
+select * from drop_donjons
+where monstre like "%primordial%";
+
+delete from drop_monstres
+where monstre like "%primordial%";
 
 
 delete from drop_donjons
 where donjon like "%gloire%" and materiel like "%or%";
 
+insert into materiaux
+values;
