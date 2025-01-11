@@ -128,7 +128,7 @@ VALUES("Colère du tonnerre", "2 pièces : Confère un bonus de DGT Électro de 
 
 
 INSERT INTO `personnages` (prenom, nom, image, element, nbretoile, ssstat1, ssstat2, region, type_arme, possedee, constellation)
-VALUES ("Voyageur", NULL, NULL, "all", 5, "Maîtrise", "Recharge", NULL, "Epée", FALSE, 0),
+VALUES ("Voyageur", NULL, NULL, "all", 5, NULL, NULL, NULL, "Epée", FALSE, 0),
 ("Xiao", NULL, NULL, "anemo", 5, "DGT crit", "Taux Crit", "Liyue", "Lance", FALSE, 0),
 ("Venti", NULL, NULL, "anemo", 5, "Recharge", "Maîtrise", "Mondstadt", "Arc", FALSE, 0),
 ("Sucrose", NULL, NULL, "anemo", 4, "Recharge", "Maîtrise", "Mondstadt", "Catalyseur", FALSE, 0),
@@ -220,9 +220,13 @@ VALUES ("Voyageur", NULL, NULL, "all", 5, "Maîtrise", "Recharge", NULL, "Epée"
 ("Chasca", NULL, NULL, "anemo", 5, "Taux Crit", "DGT Crit", "Natlan", "Arc", FALSE, 0),
 ("Ororon", NULL, NULL, "electro", 4, "Recharge", "Taux Crit", "Natlan", "Arc", FALSE, 0),
 ("Citlali", NULL, NULL, "cryo", 5, "Maîtrise", "Recharge", "Natlan", "Catalyseur", FALSE, 0),
-("Mavuika", NULL, NULL, "pyro", 5, "Taux Crit", "DGT Crit", "Natlan", "Claymore", FALSE, 0);
-
-
+("Mavuika", NULL, NULL, "pyro", 5, "Taux Crit", "DGT Crit", "Natlan", "Claymore", FALSE, 0),
+("Voyageur anemo", NULL, NULL, "anemo", 5, "Maîtrise", "Recharge", NULL, "Epée", FALSE, 0),
+("Voyageur géo", NULL, NULL, "géo", 5, "Taux Crit", "DGT Crit", NULL, "Epée", FALSE, 0),
+("Voyageur électro", NULL, NULL, "électro", 5, "Maîtrise", "Taux Crit", NULL, "Epée", FALSE, 0),
+("Voyageur dendro", NULL, NULL, "dendro", 5, "Maîtrise", "Recharge", NULL, "Epée", FALSE, 0),
+("Voyageur hydro", NULL, NULL, "hydro", 5, "PV%", "Maîtrise", NULL, "Epée", FALSE, 0),
+("Voyageur pyro", NULL, NULL, "pyro", 5, "Taux Crit", "DGT Crit", NULL, "Epée", FALSE, 0);
 
 INSERT INTO `armes`
 VALUES("Épée du faucon", 5, "Epée", "Stats : 44 base ATQ, DÉF \r Toucher un ennemi avec une attaque normale ou plongeante accorde une ode aux fleurs : augmente la DÉF de 8 % et accorde un bonus de DGT élémentaires de 10 %, le tout pendant 6 s, cet effet pouvant être cumulé 2 fois maximum et déclenché une fois toutes les 0,1 s. Lorsque cet effet obtient 2 cumuls ou que la durée du 2e cumul est actualisée, chaque tranche de 1 000 pts de DÉF du personnage équipé de l'arme augmente le bonus de DGT élémentaires de tous les personnages de l'équipe à proximité de 8 % (jusqu'à 25,6 % maximum) pendant 15 s.", "Voeux permanents"),
@@ -523,9 +527,9 @@ VALUES
 ("Chef Brutoviandu", "normal"),
 ("Géosaure antique", "boss");
 
-
 INSERT INTO `materiaux`
-VALUES("Essence de Blob", NULL),
+VALUES("Diamant scintillant", NULL),
+("Essence de Blob", NULL),
 ("Mucus de Blob","Essence de Blob"),
 ("Bave de Blob","Mucus de Blob"),
 ("Nectar élémentaire", NULL),
@@ -1284,6 +1288,10 @@ call `elevationArme`("Pointe de fer", "Entraves du Chevalier du Croc de Lion", "
 call `elevationArme`("Lance du débutant", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 call `elevationArme`("Mille soleils brûlants", "Terreur du cœur sacrificiel flamboyant", "Axe de la source secrète", "Croc juvénile");
 call `elevationArme`("Veillée d'appel d'étoiles", "Décadence délirante du seigneur sacré", "Fragment de volonté brisée", "Sifflet en bois de sentinelle");
+
+
+
+
 INSERT INTO `meilleures_armes`
 VALUES("Albedo", "Batterie / Sub-DPS", 1, "Uraku Misugiri", 1, NULL),
 ("Albedo", "Batterie / Sub-DPS", 2, "Fuseau de Cinabre", 5, NULL),
@@ -1814,36 +1822,6 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Uraku Misugiri", 1, NULL),
 ("Venti", "Support / Sub-DPS (build crit)", 4, "Dernière corde", 1, "Si R5 meilleure que option 2"),
 ("Venti", "Support / Sub-DPS (build crit)", 5, "Lune de Mouun", 1, NULL),
 ("Venti", "Support / Sub-DPS (build crit)", 6, "Chant de quiétude", 1, NULL),
-("Voyageur", "Batterie / Buffer Anémo", 1, "Serment de la liberté", 1, NULL),
-("Voyageur", "Batterie / Buffer Anémo", 2, "Clair de lune de Xiphos", 1, NULL),
-("Voyageur", "Batterie / Buffer Anémo", 3, "Épée de Favonius", 1, NULL),
-("Voyageur", "Batterie / Buffer Anémo", 4, "Épée rituelle", 1, NULL),
-("Voyageur", "Batterie / Buffer Anémo", 5, "Piqûre de fer", 1, NULL),
-("Voyageur", "Batterie / Buffer Anémo", 6, "Pluie florale", 5, NULL),
-("Voyageur", "Support / Enabler Dendro", 1, "Serment de la liberté", 1, NULL),
-("Voyageur", "Support / Enabler Dendro", 2, "Clair de lune de Xiphos", 1, NULL),
-("Voyageur", "Support / Enabler Dendro", 4, "Épée de Favonius", 1, NULL),
-("Voyageur", "Support / Enabler Dendro", 3, "Épée rituelle", 1, NULL),
-("Voyageur", "Support / Enabler Dendro", 6, "Piqûre de fer", 1, NULL),
-("Voyageur", "Support / Enabler Dendro", 5, "Lame d'aubier", 1, NULL),
-("Voyageur", "Support / Batterie électro", 1, "Lame de la Voûte d'Azur", 1, NULL), 
-("Voyageur", "Support / Batterie électro", 2, "Clair de lune de Xiphos", 1, NULL), 
-("Voyageur", "Support / Batterie électro", 3, "Épée rituelle", 1, NULL), 
-("Voyageur", "Support / Batterie électro", 4, "Épée de Favonius", 1, NULL), 
-("Voyageur", "Support / Batterie électro", 5, "Passeur du Fleuve cendré", 5, NULL), 
-("Voyageur", "Support / Batterie électro", 6, "Croc suppurant", 5, NULL), 
-("Voyageur", "Support / Burst-DPS Géo", 1, "Reflet de tranche-brume", 1, NULL),
-("Voyageur", "Support / Burst-DPS Géo", 2, "Coupeur de jade primordial", 1, NULL),
-("Voyageur", "Support / Burst-DPS Géo", 3, "Passeur du Fleuve cendré", 5, NULL),
-("Voyageur", "Support / Burst-DPS Géo", 4, "Lame de la Voûte d'Azur", 1, NULL),
-("Voyageur", "Support / Burst-DPS Géo", 5, "Lame kageuchi d'Amenoma", 1, NULL),
-("Voyageur", "Support / Burst-DPS Géo", 6, "Épée de Favonius", 1, NULL),
-("Voyageur", "Support / Enabler Hydro", 1, "Serment de la liberté", 1, NULL),
-("Voyageur", "Support / Enabler Hydro", 2, "Clair de lune de Xiphos", 1, NULL),
-("Voyageur", "Support / Enabler Hydro", 3, "Épée de Favonius", 1, NULL),
-("Voyageur", "Support / Enabler Hydro", 4, "Piqûre de fer", 1, NULL),
-("Voyageur", "Support / Enabler Hydro", 5, "Pluie florale", 5, NULL),
-("Voyageur", "Support / Enabler Hydro", 6, "Lame d'aubier", 1, NULL),
 ("Wriothesley", "MDPS Cryo (Fonte)", 1, "Supervision de trésorerie", 1, NULL),
 ("Wriothesley", "MDPS Cryo (Fonte)", 2, "Mémoire de Tulaytullah", 1, NULL),
 ("Wriothesley", "MDPS Cryo (Fonte)", 3, "L'origine des Quatre Vents", 1, NULL),
@@ -1965,10 +1943,41 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Uraku Misugiri", 1, NULL),
 ("Citlali", "Support Shielder", 4, "Étoile du soir errante", 1, NULL),
 ("Citlali", "Support Shielder", 5, "Mémoires de rituels", 1, NULL),
 ("Citlali", "Support Shielder", 6, "Code de Favonius", 1, NULL),
-("Voyageur", "Support Pyro", 1, "Serment de la liberté", 1, NULL),
-("Voyageur", "Support Pyro", 2, "Chanson de patrouille de sommet", 1, "doit être build full DEF"),
-("Voyageur", "Support Pyro", 3, "Lame d'aubier", 1, NULL),
-("Voyageur", "Support Pyro", 4, "Épée de Favonius", 1, NULL);
+("Voyageur anémo", "Batterie / Buffer", 1, "Serment de la liberté", 1, NULL),
+("Voyageur anémo", "Batterie / Buffer", 2, "Clair de lune de Xiphos", 1, NULL),
+("Voyageur anémo", "Batterie / Buffer", 3, "Épée de Favonius", 1, NULL),
+("Voyageur anémo", "Batterie / Buffer", 4, "Épée rituelle", 1, NULL),
+("Voyageur anémo", "Batterie / Buffer", 5, "Piqûre de fer", 1, NULL),
+("Voyageur anémo", "Batterie / Buffer", 6, "Pluie florale", 5, NULL),
+("Voyageur dendro", "Support / Enabler", 1, "Serment de la liberté", 1, NULL),
+("Voyageur dendro", "Support / Enabler", 2, "Clair de lune de Xiphos", 1, NULL),
+("Voyageur dendro", "Support / Enabler", 4, "Épée de Favonius", 1, NULL),
+("Voyageur dendro", "Support / Enabler", 3, "Épée rituelle", 1, NULL),
+("Voyageur dendro", "Support / Enabler", 6, "Piqûre de fer", 1, NULL),
+("Voyageur dendro", "Support / Enabler", 5, "Lame d'aubier", 1, NULL),
+("Voyageur électro", "Support / Batterie", 1, "Lame de la Voûte d'Azur", 1, NULL), 
+("Voyageur électro", "Support / Batterie", 2, "Clair de lune de Xiphos", 1, NULL), 
+("Voyageur électro", "Support / Batterie", 3, "Épée rituelle", 1, NULL), 
+("Voyageur électro", "Support / Batterie", 4, "Épée de Favonius", 1, NULL), 
+("Voyageur électro", "Support / Batterie", 5, "Passeur du Fleuve cendré", 5, NULL), 
+("Voyageur électro", "Support / Batterie", 6, "Croc suppurant", 5, NULL), 
+("Voyageur géo", "Support / Burst-DPS", 1, "Reflet de tranche-brume", 1, NULL),
+("Voyageur géo", "Support / Burst-DPS", 2, "Coupeur de jade primordial", 1, NULL),
+("Voyageur géo", "Support / Burst-DPS", 3, "Passeur du Fleuve cendré", 5, NULL),
+("Voyageur géo", "Support / Burst-DPS", 4, "Lame de la Voûte d'Azur", 1, NULL),
+("Voyageur géo", "Support / Burst-DPS", 5, "Lame kageuchi d'Amenoma", 1, NULL),
+("Voyageur géo", "Support / Burst-DPS", 6, "Épée de Favonius", 1, NULL),
+("Voyageur hydro", "Support / Enabler", 1, "Serment de la liberté", 1, NULL),
+("Voyageur hydro", "Support / Enabler", 2, "Clair de lune de Xiphos", 1, NULL),
+("Voyageur hydro", "Support / Enabler", 3, "Épée de Favonius", 1, NULL),
+("Voyageur hydro", "Support / Enabler", 4, "Piqûre de fer", 1, NULL),
+("Voyageur hydro", "Support / Enabler", 5, "Pluie florale", 5, NULL),
+("Voyageur hydro", "Support / Enabler", 6, "Lame d'aubier", 1, NULL),
+("Voyageur pyro", "Support", 1, "Serment de la liberté", 1, NULL),
+("Voyageur pyro", "Support", 2, "Chanson de patrouille de sommet", 1, "doit être build full DEF"),
+("Voyageur pyro", "Support", 3, "Lame d'aubier", 1, NULL),
+("Voyageur pyro", "Support", 4, "Épée de Favonius", 1, NULL);
+
 
 insert into meilleurs_artefacts
 VALUES("Albedo", "Batterie / Sub-DPS", 1, "Sablier", "DEF%", NULL),
@@ -2369,34 +2378,6 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Sablier", "DEF%", NULL),
 ("Venti", "Support / Sub-DPS (build crit)", 1, "Sablier", "ATQ%", NULL),
 ("Venti", "Support / Sub-DPS (build crit)", 1, "Coupe", "DGT Anémo", NULL),
 ("Venti", "Support / Sub-DPS (build crit)", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
-("Voyageur", "Batterie / Buffer Anémo", 1, "Sablier", "RE", NULL),
-("Voyageur", "Batterie / Buffer Anémo", 2, "Sablier", "ME", "si RE > 200%"),
-("Voyageur", "Batterie / Buffer Anémo", 1, "Coupe", "ME", NULL),
-("Voyageur", "Batterie / Buffer Anémo", 1, "Couronne", "ME", NULL),
-("Voyageur", "Batterie / Buffer Anémo", 2, "Couronne", "Taux Crit", "si arme de Favonius"),
-("Voyageur", "Support / Enabler Dendro", 1, "Sablier", "RE", NULL),
-("Voyageur", "Support / Enabler Dendro", 2, "Sablier", "ME", "si RE > 230%"),
-("Voyageur", "Support / Enabler Dendro", 1, "Coupe", "ME", NULL),
-("Voyageur", "Support / Enabler Dendro", 1, "Couronne", "ME", NULL),
-("Voyageur", "Support / Enabler Dendro", 2, "Couronne", "Taux Crit", "Si arme de Favonius"),
-("Voyageur", "Support / Batterie électro", 1, "Sablier", "RE", NULL),
-("Voyageur", "Support / Batterie électro", 1, "Coupe", "ME", NULL),
-("Voyageur", "Support / Batterie électro", 1, "Couronne", "Taux Crit", "si arme de Favonius"),
-("Voyageur", "Support / Batterie électro", 2, "Couronne", "ME", NULL),
-("Voyageur", "Support / Burst-DPS Géo", 1, "Sablier", "ATQ%", NULL),
-("Voyageur", "Support / Burst-DPS Géo", 1, "Coupe", "DGT Géo", NULL),
-("Voyageur", "Support / Burst-DPS Géo", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
-("Voyageur", "Support / Enabler Hydro", 1, "Sablier", "ME", NULL),
-("Voyageur", "Support / Enabler Hydro", 1, "Coupe", "ME", NULL),
-("Voyageur", "Support / Enabler Hydro", 1, "Couronne", "ME", NULL),
-("Voyageur", "Support / Enabler Hydro", 2, "Couronne", "Taux Crit", "si arme de Favonius"),
-("Voyageur", "Support Pyro", 1, "Sablier", "ATQ%", NULL),
-("Voyageur", "Support Pyro", 2, "Sablier", "RE", NULL),
-("Voyageur", "Support Pyro", 3, "Sablier", "DEF%", "si Chanson de patrouille de sommet"),
-("Voyageur", "Support Pyro", 1, "Coupe", "DGT Pyro", NULL),
-("Voyageur", "Support Pyro", 2, "Coupe", "DEF%", "si Chanson de patrouille de sommet"),
-("Voyageur", "Support Pyro", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
-("Voyageur", "Support Pyro", 2, "Couronne", "DEF%", "si Chanson de patrouille de sommet"),
 ("Wriothesley", "MDPS Cryo (Fonte)", 1, "Sablier", "ME", NULL),
 ("Wriothesley", "MDPS Cryo (Fonte)", 2, "Sablier", "ATQ%", NULL),
 ("Wriothesley", "MDPS Cryo (Fonte)", 1, "Coupe", "DGT Cryo", NULL),
@@ -2477,7 +2458,37 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Sablier", "DEF%", NULL),
 ("Zhongli", "Buffer / Shielder", 1, "Sablier", "PV%", NULL),
 ("Zhongli", "Buffer / Shielder", 1, "Coupe", "PV%", NULL),
 ("Zhongli", "Buffer / Shielder", 1, "Couronne", "PV%", NULL),
-("Zhongli", "Buffer / Shielder", 2, "Couronne", "Taux Crit", "si arme de Favonius");
+("Zhongli", "Buffer / Shielder", 2, "Couronne", "Taux Crit", "si arme de Favonius"),
+("Voyageur anémo", "Batterie / Buffer", 1, "Sablier", "RE", NULL),
+("Voyageur anémo", "Batterie / Buffer", 2, "Sablier", "ME", "si RE > 200%"),
+("Voyageur anémo", "Batterie / Buffer", 1, "Coupe", "ME", NULL),
+("Voyageur anémo", "Batterie / Buffer", 1, "Couronne", "ME", NULL),
+("Voyageur anémo", "Batterie / Buffer", 2, "Couronne", "Taux Crit", "si arme de Favonius"),
+("Voyageur dendro", "Support / Enabler", 1, "Sablier", "RE", NULL),
+("Voyageur dendro", "Support / Enabler", 2, "Sablier", "ME", "si RE > 230%"),
+("Voyageur dendro", "Support / Enabler", 1, "Coupe", "ME", NULL),
+("Voyageur dendro", "Support / Enabler", 1, "Couronne", "ME", NULL),
+("Voyageur dendro", "Support / Enabler", 2, "Couronne", "Taux Crit", "Si arme de Favonius"),
+("Voyageur électro", "Support / Batterie", 1, "Sablier", "RE", NULL),
+("Voyageur électro", "Support / Batterie", 1, "Coupe", "ME", NULL),
+("Voyageur électro", "Support / Batterie", 1, "Couronne", "Taux Crit", "si arme de Favonius"),
+("Voyageur électro", "Support / Batterie", 2, "Couronne", "ME", NULL),
+("Voyageur géo", "Support / Burst-DPS", 1, "Sablier", "ATQ%", NULL),
+("Voyageur géo", "Support / Burst-DPS", 1, "Coupe", "DGT Géo", NULL),
+("Voyageur géo", "Support / Burst-DPS", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Voyageur hydro", "Support / Enabler", 1, "Sablier", "ME", NULL),
+("Voyageur hydro", "Support / Enabler", 1, "Coupe", "ME", NULL),
+("Voyageur hydro", "Support / Enabler", 1, "Couronne", "ME", NULL),
+("Voyageur hydro", "Support / Enabler", 2, "Couronne", "Taux Crit", "si arme de Favonius"),
+("Voyageur pyro", "Support", 1, "Sablier", "ATQ%", NULL),
+("Voyageur pyro", "Support", 2, "Sablier", "RE", NULL),
+("Voyageur pyro", "Support", 3, "Sablier", "DEF%", "si Chanson de patrouille de sommet"),
+("Voyageur pyro", "Support", 1, "Coupe", "DGT Pyro", NULL),
+("Voyageur pyro", "Support", 2, "Coupe", "DEF%", "si Chanson de patrouille de sommet"),
+("Voyageur pyro", "Support", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
+("Voyageur pyro", "Support", 2, "Couronne", "DEF%", "si Chanson de patrouille de sommet");
+
+
 
 insert into meilleurs_sets
 VALUES("Albedo", "Batterie / Sub-DPS", 1, "Troupe dorée", 4, NULL),
@@ -2902,32 +2913,6 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Troupe dorée", 4, NULL),
 ("Venti", "Support / Sub-DPS (build crit)", 2, "Emblème du destin brisé", 4, NULL),
 ("Venti", "Support / Sub-DPS (build crit)", 3, "Ombre de la Verte Chasseuse", 2, NULL),
 ("Venti", "Support / Sub-DPS (build crit)", 3, "Rideau du Gladiateur", 2, NULL),
-("Voyageur", "Batterie / Buffer Anémo", 1, "Ombre de la Verte Chasseuse", 4, NULL),
-("Voyageur", "Batterie / Buffer Anémo", 2, "Ancien rituel royal", 4, NULL),
-("Voyageur", "Support / Enabler Dendro", 1, "Souvenir de forêt", 4, NULL),
-("Voyageur", "Support / Enabler Dendro", 2, "Ancien rituel royal", 4, NULL),
-("Voyageur", "Support / Enabler Dendro", 3, "Rêve doré", 4, NULL),
-("Voyageur", "Support / Enabler Dendro", 4, "Rêve doré", 2, NULL),
-("Voyageur", "Support / Enabler Dendro", 4, "Bande vagabonde", 2, NULL),
-("Voyageur", "Support / Batterie électro", 1, "Emblème du destin brisé", 4, NULL),
-("Voyageur", "Support / Batterie électro", 2, "Ancien rituel royal", 2, NULL),
-("Voyageur", "Support / Batterie électro", 2, "Colère du tonnerre", 2, NULL),
-("Voyageur", "Support / Batterie électro", 3, "Ancien rituel royal", 4, NULL),
-("Voyageur", "Support / Batterie électro", 4, "Rêve doré", 4, "si joué en compo suractivation ou surcharge"),
-("Voyageur", "Support / Burst-DPS Géo", 1, "Emblème du destin brisé", 4, NULL),
-("Voyageur", "Support / Burst-DPS Géo", 2, "Roche ancienne", 2, NULL),
-("Voyageur", "Support / Burst-DPS Géo", 2, "Ancien rituel royal", 2, NULL),
-("Voyageur", "Support / Burst-DPS Géo", 3, "Roche ancienne", 2, NULL),
-("Voyageur", "Support / Burst-DPS Géo", 3, "Rideau du Gladiateur", 2, NULL),
-("Voyageur", "Support / Burst-DPS Géo", 4, "Ancien rituel royal", 4, NULL),
-("Voyageur", "Support / Enabler Hydro", 1, "Fleur du paradis perdu", 4, NULL),
-("Voyageur", "Support / Enabler Hydro", 2, "Rêve doré", 4, NULL),
-("Voyageur", "Support / Enabler Hydro", 3, "Souvenir de forêt", 4, "si seul porteur de l'équipe"),
-("Voyageur", "Support / Enabler Hydro", 4, "Rêve doré", 2, NULL),
-("Voyageur", "Support / Enabler Hydro", 4, "Bande vagabonde", 2, NULL),
-("Voyageur", "Support Pyro", 1, "Parchemin du héros de la Cité de braise", 4, "si unique porteur dans l'équipe"),
-("Voyageur", "Support Pyro", 2, "Ténacité du Millelithe", 4, NULL),
-("Voyageur", "Support Pyro", 3, "Ancien rituel royal", 4, NULL),
 ("Wriothesley", "MDPS Cryo (Fonte)", 1, "Chasseur de la Maréchaussée", 4, NULL),
 ("Wriothesley", "MDPS Cryo (Fonte)", 2, "Réminiscence nostalgique", 4, "si CO-C1"),
 ("Wriothesley", "MDPS Cryo (Fonte)", 3, "Rêverie incomplète", 4, "Si compo Burnmelt"),
@@ -3017,7 +3002,35 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Troupe dorée", 4, NULL),
 ("Zhongli", "Buffer / Shielder", 1, "Ténacité du Millelithe", 4, NULL),
 ("Zhongli", "Buffer / Shielder", 2, "Ancien rituel royal", 4, NULL),
 ("Zhongli", "Buffer / Shielder", 3, "Roche ancienne", 4, "si joué en team mono élément"),
-("Zhongli", "Buffer / Shielder", 4, "Souvenir de forêt", 4, "en compo dendro et si aucun autre porteur");
+("Zhongli", "Buffer / Shielder", 4, "Souvenir de forêt", 4, "en compo dendro et si aucun autre porteur"),
+("Voyageur anémo", "Batterie / Buffer", 1, "Ombre de la Verte Chasseuse", 4, NULL),
+("Voyageur anémo", "Batterie / Buffer", 2, "Ancien rituel royal", 4, NULL),
+("Voyageur dendro", "Support / Enabler", 1, "Souvenir de forêt", 4, NULL),
+("Voyageur dendro", "Support / Enabler", 2, "Ancien rituel royal", 4, NULL),
+("Voyageur dendro", "Support / Enabler", 3, "Rêve doré", 4, NULL),
+("Voyageur dendro", "Support / Enabler", 4, "Rêve doré", 2, NULL),
+("Voyageur dendro", "Support / Enabler", 4, "Bande vagabonde", 2, NULL),
+("Voyageur électro", "Support / Batterie", 1, "Emblème du destin brisé", 4, NULL),
+("Voyageur électro", "Support / Batterie", 2, "Ancien rituel royal", 2, NULL),
+("Voyageur électro", "Support / Batterie", 2, "Colère du tonnerre", 2, NULL),
+("Voyageur électro", "Support / Batterie", 3, "Ancien rituel royal", 4, NULL),
+("Voyageur électro", "Support / Batterie", 4, "Rêve doré", 4, "si joué en compo suractivation ou surcharge"),
+("Voyageur géo", "Support / Burst-DPS", 1, "Emblème du destin brisé", 4, NULL),
+("Voyageur géo", "Support / Burst-DPS", 2, "Roche ancienne", 2, NULL),
+("Voyageur géo", "Support / Burst-DPS", 2, "Ancien rituel royal", 2, NULL),
+("Voyageur géo", "Support / Burst-DPS", 3, "Roche ancienne", 2, NULL),
+("Voyageur géo", "Support / Burst-DPS", 3, "Rideau du Gladiateur", 2, NULL),
+("Voyageur géo", "Support / Burst-DPS", 4, "Ancien rituel royal", 4, NULL),
+("Voyageur hydro", "Support / Enabler", 1, "Fleur du paradis perdu", 4, NULL),
+("Voyageur hydro", "Support / Enabler", 2, "Rêve doré", 4, NULL),
+("Voyageur hydro", "Support / Enabler", 3, "Souvenir de forêt", 4, "si seul porteur de l'équipe"),
+("Voyageur hydro", "Support / Enabler", 4, "Rêve doré", 2, NULL),
+("Voyageur hydro", "Support / Enabler", 4, "Bande vagabonde", 2, NULL),
+("Voyageur pyro", "Support", 1, "Parchemin du héros de la Cité de braise", 4, "si unique porteur dans l'équipe"),
+("Voyageur pyro", "Support", 2, "Ténacité du Millelithe", 4, NULL),
+("Voyageur pyro", "Support", 3, "Ancien rituel royal", 4, NULL);
+
+
 
 CALL `dropMonstre`("Blob", "Bave de Blob");
 CALL `dropMonstre`("Fleur mensongère", "Nectar de Fleur mensongère");
@@ -3266,9 +3279,7 @@ CALL `AjoutmateriauxPersonnages`("Yelan", "Éclat de lazurite varunada", "Croc r
 CALL `AjoutmateriauxPersonnages`("Yoimiya", "Éclat d'agate agnidus", "Perle brûlante", "Parchemin divinatoire", "Herbe à sanglots", "Enseignement de l'Éphémère", "Couronne du roi-dragon");
 CALL `AjoutmateriauxPersonnages`("Jin", "Éclat de topaze prithiva", "Régalia de faille", "Masque endommagé", "Lys verni", "Enseignement de la Diligence", "Coeur de cendre");
 CALL `AjoutmateriauxPersonnages`("Zhongli", "Éclat de topaze prithiva", "Pilier de basalte", "Bave de Blob", "Coeur de lapis", "Enseignement de l'Or", "Corne de Monoceros Caeli");
-CALL `AjoutmateriauxPersonnages`("", "", "", "", "", "Enseignement ", "");
-CALL `AjoutmateriauxPersonnages`("", "", "", "", "", "Enseignement ", "");
-CALL `AjoutmateriauxPersonnages`("", "", "", "", "", "Enseignement ", "");
+CALL `AjoutmateriauxPersonnages`("Voyageur", "Diamant scintillant", "", "Masque endommagé", "Chrysanthème à aubes", "", "");
 
 
 select * from materiaux where nom like "%cristallin%";
@@ -3279,11 +3290,11 @@ delete from materiaux where nom = "Regard d'enchevêtrant";
 
 
 select * from materiaux_personnages
-where personnage = "ororon"
+where personnage = "voyageur"
 order by type, niveau;
 
 delete from materiaux_personnages
-where personnage = "zhongli";
+where personnage = "voyageur";
 
 select * from drop_donjons
 where monstre like "%primordial%";

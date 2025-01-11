@@ -429,6 +429,12 @@ BEGIN
     SIGNAL SQLSTATE "45000"
         SET MESSAGE_TEXT = "Insertion refusée. Le type d'arme du personnage et de l'arme ne correspondent pas.";
     END IF;
+
+    IF (NEW.personnage = "Voyageur") THEN
+    SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Insertion refusée. Le voyageur sans élément ne peut pas avoir de préférence d'arme. Choisir un élément";
+    END IF;
+
     END #
 DELIMITER ;
 
@@ -469,6 +475,11 @@ BEGIN
         SET MESSAGE_TEXT = "Insertion refusée. Trop d'artefact inclu dans l'option rang";
     END IF;
 
+    IF (NEW.personnage = "Voyageur") THEN
+    SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Insertion refusée. Le voyageur sans élément ne peut pas avoir de préférence de sets. Choisir un élément";
+    END IF;
+
 END #
 DELIMITER ;
 
@@ -490,8 +501,24 @@ BEGIN
 END #
 DELIMITER ;
 
+-- trigger pour meilleur sets
+
+DELIMITER # 
+
+CREATE OR REPLACE TRIGGER before_insert_meilleurs_artefacts
+BEFORE INSERT
+ON meilleurs_artefacts
+FOR EACH ROW
+BEGIN
+    IF (NEW.personnage = "Voyageur") THEN
+    SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Insertion refusée. Le voyageur sans élément ne peut pas avoir de préférence d'artefacts. Choisir un élément";
+    END IF;
+END #
+DELIMITER ;
+
 -- trigger pour personnages. 
--- ne pas oublier le +3 des lvl
+
 DELIMITER #
 
 CREATE OR REPLACE TRIGGER before_insert_personnages
@@ -623,6 +650,15 @@ BEGIN
         SET MESSAGE_TEXT = "Pas de niveau d'élévation à ce niveau là.";
     END IF ;
 
+    IF((@type = "aptitude basique" OR @type = "aptitude element" OR @type = "aptitude ult") AND NEW.personnage = "Voyageur") THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Le voyageur simple ne peut pas avoir d'aptitude.";
+    END IF;
+
+    IF(@type = "phase" AND (NEW.personnage = "Voyageur anémo" OR NEW.personnage = "Voyageur géo" OR NEW.personnage = "Voyageur électro" OR NEW.personnage = "Voyageur dendro" OR NEW.personnage = "Voyageur hydro" OR NEW.personnage = "Voyageur pyro" OR NEW.personnage = "Voyageur cryo")) THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Le voyageur élémentaire n'a pas de matériaux d'évolution de phase'.";
+    END IF;
 END #
 DELIMITER ;
 
@@ -1011,14 +1047,14 @@ BEGIN
 
     SELECT `recuperationTypeMonstreMat`(p_pierre) INTO @type;
 
-    IF(@type != "boss") THEN
+    IF(@type != "boss" AND p_personnage != "Voyageur") THEN
         SET @erreur = 1;
     END IF ;
 
     -- vérifions que p_matboss est bien issu d'un matériel de boss.
     SELECT `recuperationTypeMonstreMat`(p_matBoss) INTO @type;
 
-    IF(@type != "boss") THEN
+    IF(@type != "boss" AND p_personnage != "Voyageur") THEN
         SET @erreur = 1;
     END IF ;
 
@@ -1041,14 +1077,14 @@ BEGIN
     SELECT `recuperationDonjonMat`(p_matelev) INTO @donjon;
     SELECT type INTO @type FROM donjons WHERE nom = @donjon;
 
-    IF(@type != "matériaux d'élévation d'aptitude") THEN 
+    IF(@type != "matériaux d'élévation d'aptitude" AND p_personnage != "Voyageur") THEN 
         SET @erreur = 1;
     END IF ;
 
     -- vérifions que p_matUltraBoss est bien issu d'un ultraboss
     SELECT donjon INTO @donjon FROM drop_donjons
     WHERE materiel = p_matUltraBoss AND jour IS NULL;
-    IF(@donjon IS NULL) THEN 
+    IF(@donjon IS NULL AND p_personnage != "Voyageur") THEN 
 
         SET @erreur = 1;
     END IF ;
@@ -1069,12 +1105,15 @@ BEGIN
         (p_personnage, "entre phase", 40, "Moras", 116000),
         (p_personnage, "entre phase", 40, "Leçon du héros", 29);
 
-        select evolution into @matPierre from materiaux where nom = p_pierre;
+        IF(p_personnage != "Voyageur") THEN 
+            select evolution into @matPierre from materiaux where nom = p_pierre;
+        ELSE 
+            select p_pierre into @matPierre;
+        END IF;
 
         INSERT INTO materiaux_personnages
         values(p_personnage, "phase", 40, "Moras", 40000),
         (p_personnage, "phase", 40, @matPierre, 3),
-        (p_personnage, "phase", 40, p_matBoss, 2),
         (p_personnage, "phase", 40, p_herbe, 10),
         (p_personnage, "phase", 40, p_matMonstre, 15),
         (p_personnage, "entre phase", 50, "Moras", 100000),
@@ -1085,18 +1124,20 @@ BEGIN
         INSERT INTO materiaux_personnages
         values(p_personnage, "phase", 50, "Moras", 60000),
         (p_personnage, "phase", 50, @matPierre, 6),
-        (p_personnage, "phase", 50, p_matBoss, 4),
         (p_personnage, "phase", 50, p_herbe, 20),
         (p_personnage, "phase", 50, @matMonstre, 12),
         (p_personnage, "entre phase", 60, "Moras", 170000),
         (p_personnage, "entre phase", 60, "Leçon du héros", 43);
 
-        select evolution into @matPierre from materiaux where nom = @matPierre;
+        IF(p_personnage != "Voyageur") THEN 
+            select evolution into @matPierre from materiaux where nom = @matPierre;
+        ELSE 
+            select p_pierre into @matPierre;
+        END IF ;
 
         INSERT INTO materiaux_personnages
         values(p_personnage, "phase", 60, "Moras", 80000),
         (p_personnage, "phase", 60, @matPierre, 3),
-        (p_personnage, "phase", 60, p_matBoss, 8),
         (p_personnage, "phase", 60, p_herbe, 30),
         (p_personnage, "phase", 60, @matMonstre, 18),
         (p_personnage, "entre phase", 70, "Moras", 240000),
@@ -1107,27 +1148,39 @@ BEGIN
         INSERT INTO materiaux_personnages
         values(p_personnage, "phase", 70, "Moras", 100000),
         (p_personnage, "phase", 70, @matPierre, 6),
-        (p_personnage, "phase", 70, p_matBoss, 12),
         (p_personnage, "phase", 70, p_herbe, 45),
         (p_personnage, "phase", 70, @matMonstre, 12),
         (p_personnage, "entre phase", 80, "Moras", 324000),
         (p_personnage, "entre phase", 80, "Leçon du héros", 81);
 
-        select evolution into @matPierre from materiaux where nom = @matPierre;
+        IF(p_personnage != "Voyageur") THEN 
+            select evolution into @matPierre from materiaux where nom = @matPierre;
+        ELSE 
+            select p_pierre into @matPierre;
+        END IF;
 
         INSERT INTO materiaux_personnages
         values(p_personnage, "phase", 80, "Moras", 120000),
         (p_personnage, "phase", 80, @matPierre, 6),
-        (p_personnage, "phase", 80, p_matBoss, 20),
         (p_personnage, "phase", 80, p_herbe, 60),
         (p_personnage, "phase", 80, @matMonstre, 24),
         (p_personnage, "entre phase", 90, "Moras", 688000),
         (p_personnage, "entre phase", 90, "Leçon du héros", 172);
 
-        -- matériaux élevation 
-        CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude basique", p_matMonstre, p_matelev, p_matUltraBoss);
-        CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude element", p_matMonstre, p_matelev, p_matUltraBoss);
-        CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude ult", p_matMonstre, p_matelev, p_matUltraBoss);
+        -- matériaux élevation et materieux boss
+        IF (p_personnage != "Voyageur") THEN 
+
+            INSERT INTO materiaux_personnages
+            values(p_personnage, "phase", 40, p_matBoss, 2),
+            (p_personnage, "phase", 50, p_matBoss, 4),
+            (p_personnage, "phase", 60, p_matBoss, 8),
+            (p_personnage, "phase", 70, p_matBoss, 12),
+            (p_personnage, "phase", 80, p_matBoss, 20);
+
+            CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude basique", p_matMonstre, p_matelev, p_matUltraBoss);
+            CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude element", p_matMonstre, p_matelev, p_matUltraBoss);
+            CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude ult", p_matMonstre, p_matelev, p_matUltraBoss);
+        END IF ;
     END IF ;
 END #
 DELIMITER ;
