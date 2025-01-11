@@ -919,9 +919,9 @@ VALUES("Essence de Blob", NULL),
 ("Corne érodée", NULL),
 ("Royon érodé", NULL),
 ("Plume érodée", NULL),
-("Champicorne brillant", NULL);
+("Champicorne brillant", NULL),
+("Jade cristallin", NULL);
 
-values
 INSERT INTO `drop_donjons`
 VALUES("Pépinière de cécilias","Tuile cassée de Décabarian", "lundi", "jeudi"),
 ("Pépinière de cécilias","Mur abattu de Décabarian", "lundi", "jeudi"),
@@ -3252,12 +3252,27 @@ CALL `AjoutmateriauxPersonnages`("Tartaglia", "Éclat de lazurite varunada", "Co
 CALL `AjoutmateriauxPersonnages`("Thomas", "Éclat d'agate agnidus", "Perle brûlante", "Insigne du Pilleur", "Champignon fluorescent", "Enseignement de l'Éphémère", "Papillon infernal");
 CALL `AjoutmateriauxPersonnages`("Tighnari", "Éclat d'émeraude nagadus", "Bec crochu majestueux", "Spores de Fongus", "Nilotpalotus", "Enseignement de l'Admonestation", "Signification d'une éternité");
 CALL `AjoutmateriauxPersonnages`("Venti", "Éclat de turquoise vayuda", "Graine d'ouragan", "Bave de Blob", "Cécilia", "Enseignement de la Poésie", "Queue de Borée");
+CALL `AjoutmateriauxPersonnages`("Wriothesley", "Éclat de jade shivada", "Appareil tourbillon", "Engrenage de maillage", "Unité de sous-détection", "Enseignement de l'Ordre", "Floraison première de l'oasis");
+CALL `AjoutmateriauxPersonnages`("Xiangling", "Éclat d'agate agnidus", "Graine de feu", "Bave de Blob", "Piment de Jueyun", "Enseignement de la Diligence", "Griffe de Stormterror");
+CALL `AjoutmateriauxPersonnages`("Xianyun", "Éclat de turquoise vayuda", "Ecaille nuageuse", "Parchemin divinatoire", "Jade cristallin", "Enseignement de l'Or", "Oeil de tourbillon sans lumière");
+CALL `AjoutmateriauxPersonnages`("Xiao", "Éclat de turquoise vayuda", "Jade juvénile", "Bave de Blob", "Fleur de Qingxin", "Enseignement de la Prospérité", "Ombre du guerrier");
+CALL `AjoutmateriauxPersonnages`("Xilonen", "Éclat de topaze prithiva", "Noyau source aux motifs dorés secrets", "Sifflet en bois de sentinelle", "Chrysanthème brillant", "Enseignement du Petit bois", "Miroir de mushin");
+CALL `AjoutmateriauxPersonnages`("Xingqiu", "Éclat de lazurite varunada", "Coeur d'eau pure", "Masque endommagé", "Fleur de soie", "Enseignement de l'Or", "Queue de Borée");
+CALL `AjoutmateriauxPersonnages`("Xinyan", "Éclat d'agate agnidus", "Graine de feu", "Insigne du Pilleur", "Muguet bleu", "Enseignement de l'Or", "Corne de Monoceros Caeli");
+CALL `AjoutmateriauxPersonnages`("Yae", "Éclat d'améthyste vajrada", "Fausse nageoire de l'héritier du dragon", "Garde-main ancien", "Ganoderma marin", "Enseignement de la Lumière", "Signification d'une éternité");
+CALL `AjoutmateriauxPersonnages`("Yanfei", "Éclat d'agate agnidus", "Jade juvénile", "Insigne du Pilleur", "Jade noctiluque", "Enseignement de l'Or", "Branche de jade cramoisi");
+CALL `AjoutmateriauxPersonnages`("Yaoyao", "Éclat d'émeraude nagadus", "Liane d'oblitération", "Bave de Blob", "Piment de Jueyun", "Enseignement de la Diligence", "Cloche de daka");
+CALL `AjoutmateriauxPersonnages`("Yelan", "Éclat de lazurite varunada", "Croc runique", "Insigne du Pilleur", "Conque d'étoile", "Enseignement de la Prospérité", "Écaille dorée");
+CALL `AjoutmateriauxPersonnages`("Yoimiya", "Éclat d'agate agnidus", "Perle brûlante", "Parchemin divinatoire", "Herbe à sanglots", "Enseignement de l'Éphémère", "Couronne du roi-dragon");
+CALL `AjoutmateriauxPersonnages`("Jin", "Éclat de topaze prithiva", "Régalia de faille", "Masque endommagé", "Lys verni", "Enseignement de la Diligence", "Coeur de cendre");
+CALL `AjoutmateriauxPersonnages`("Zhongli", "Éclat de topaze prithiva", "Pilier de basalte", "Bave de Blob", "Coeur de lapis", "Enseignement de l'Or", "Corne de Monoceros Caeli");
+CALL `AjoutmateriauxPersonnages`("", "", "", "", "", "Enseignement ", "");
+CALL `AjoutmateriauxPersonnages`("", "", "", "", "", "Enseignement ", "");
 CALL `AjoutmateriauxPersonnages`("", "", "", "", "", "Enseignement ", "");
 
 
-
-select * from materiaux where nom like "%nuageuse%";
-select * from materiaux where nom in (select materiel from drop_monstres where monstre like "%fontemarin%");
+select * from materiaux where nom like "%cristallin%";
+select * from materiaux where nom in (select materiel from drop_monstres where monstre like "%méka%");
 
 
 delete from materiaux where nom = "Regard d'enchevêtrant";
@@ -3268,7 +3283,7 @@ where personnage = "ororon"
 order by type, niveau;
 
 delete from materiaux_personnages
-where personnage = "mavuika";
+where personnage = "zhongli";
 
 select * from drop_donjons
 where monstre like "%primordial%";
