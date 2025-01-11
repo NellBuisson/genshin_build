@@ -1185,4 +1185,139 @@ BEGIN
 END #
 DELIMITER ;
 
+-- Procedure pour les materiaux des voyageurs (excepté le géo qui est une exception dans l'exception)
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE AjoutMateriauxAptVoyageur (p_personnage VARCHAR(20), p_matMonstre VARCHAR(60), p_matelev1 VARCHAR(60), p_matelev2 VARCHAR(60), p_matelev3 VARCHAR(60),p_matUltraBoss VARCHAR(60))
+BEGIN
+    SET @matMonstre = NULL;
+    SET @matElev1 = NULL;
+    SET @matElev2 = NULL;
+    SET @matElev3 = NULL;
+    SET @perso = NULL;
+
+    SELECT prenom INTO @perso FROM personnages
+        WHERE prenom = p_personnage AND prenom like "Voyageur %" AND prenom != "Voyageur géo";
+
+    IF (@perso != "") THEN
+        INSERT INTO materiaux_personnages
+            VALUES(p_personnage, "aptitude basique", 2, "Moras", 12500),
+            (p_personnage, "aptitude basique", 2, p_matelev1, 3),
+            (p_personnage, "aptitude basique", 2, p_matMonstre, 6),
+            (p_personnage, "aptitude element", 2, "Moras", 12500),
+            (p_personnage, "aptitude element", 2, p_matelev1, 3),
+            (p_personnage, "aptitude element", 2, p_matMonstre, 6),
+            (p_personnage, "aptitude ult", 2, "Moras", 12500),
+            (p_personnage, "aptitude ult", 2, p_matelev1, 3),
+            (p_personnage, "aptitude ult", 2, p_matMonstre, 6);
+
+
+        select evolution into @matMonstre from materiaux where nom = p_matMonstre;
+        select evolution into @matElev1 from materiaux where nom = p_matelev1;
+        select evolution into @matElev2 from materiaux where nom = p_matelev2;
+        select evolution into @matElev3 from materiaux where nom = p_matelev3;
+
+        INSERT INTO materiaux_personnages
+        VALUES(p_personnage, "aptitude basique", 3, "Moras", 17500),
+        (p_personnage, "aptitude basique", 3, @matElev2, 2),
+        (p_personnage, "aptitude basique", 3, @matMonstre, 3),
+        (p_personnage, "aptitude element", 3, "Moras", 17500),
+        (p_personnage, "aptitude element", 3, @matElev2, 2),
+        (p_personnage, "aptitude element", 3, @matMonstre, 3),
+        (p_personnage, "aptitude ult", 3, "Moras", 17500),
+        (p_personnage, "aptitude ult", 3, @matElev2, 2),
+        (p_personnage, "aptitude ult", 3, @matMonstre, 3),
+        (p_personnage, "aptitude basique", 4, "Moras", 25000),
+        (p_personnage, "aptitude basique", 4, @matElev3, 4),
+        (p_personnage, "aptitude basique", 4, @matMonstre, 4),
+        (p_personnage, "aptitude element", 4, "Moras", 25000),
+        (p_personnage, "aptitude element", 4, @matElev3, 4),
+        (p_personnage, "aptitude element", 4, @matMonstre, 4),
+        (p_personnage, "aptitude ult", 4, "Moras", 25000),
+        (p_personnage, "aptitude ult", 4, @matElev3, 4),
+        (p_personnage, "aptitude ult", 4, @matMonstre, 4),
+        (p_personnage, "aptitude basique", 5, "Moras", 30000),
+        (p_personnage, "aptitude basique", 5, @matElev1, 6),
+        (p_personnage, "aptitude basique", 5, @matMonstre, 6),
+        (p_personnage, "aptitude element", 5, "Moras", 30000),
+        (p_personnage, "aptitude element", 5, @matElev1, 6),
+        (p_personnage, "aptitude element", 5, @matMonstre, 6),
+        (p_personnage, "aptitude ult", 5, "Moras", 30000),
+        (p_personnage, "aptitude ult", 5, @matElev1, 6),
+        (p_personnage, "aptitude ult", 5, @matMonstre, 6),
+        (p_personnage, "aptitude basique", 6, "Moras", 37500),
+        (p_personnage, "aptitude basique", 6, @matElev2, 9),
+        (p_personnage, "aptitude basique", 6, @matMonstre, 9),
+        (p_personnage, "aptitude element", 6, "Moras", 37500),
+        (p_personnage, "aptitude element", 6, @matElev2, 9),
+        (p_personnage, "aptitude element", 6, @matMonstre, 9),
+        (p_personnage, "aptitude ult", 6, "Moras", 37500),
+        (p_personnage, "aptitude ult", 6, @matElev2, 9),
+        (p_personnage, "aptitude ult", 6, @matMonstre, 9);
+
+        select evolution into @matMonstre from materiaux where nom = @matMonstre;
+        select evolution into @matElev1 from materiaux where nom = @matElev1;
+        select evolution into @matElev2 from materiaux where nom = @matElev2;
+        select evolution into @matElev3 from materiaux where nom = @matElev3;
+
+        INSERT INTO materiaux_personnages
+        VALUES(p_personnage, "aptitude basique", 7, "Moras", 120000),
+        (p_personnage, "aptitude basique", 7, @matElev3, 4),
+        (p_personnage, "aptitude basique", 7, @matMonstre, 4),
+        (p_personnage, "aptitude basique", 7, p_matUltraBoss, 1),
+        (p_personnage, "aptitude element", 7, "Moras", 120000),
+        (p_personnage, "aptitude element", 7, @matElev3, 4),
+        (p_personnage, "aptitude element", 7, @matMonstre, 4),
+        (p_personnage, "aptitude element", 7, p_matUltraBoss, 1),
+        (p_personnage, "aptitude ult", 7, "Moras", 120000),
+        (p_personnage, "aptitude ult", 7, @matElev3, 4),
+        (p_personnage, "aptitude ult", 7, @matMonstre, 4),
+        (p_personnage, "aptitude ult", 7, p_matUltraBoss, 1),
+        (p_personnage, "aptitude basique", 8, "Moras", 260000),
+        (p_personnage, "aptitude basique", 8, @matElev1, 6),
+        (p_personnage, "aptitude basique", 8, @matMonstre, 6),
+        (p_personnage, "aptitude basique", 8, p_matUltraBoss, 1),
+        (p_personnage, "aptitude element", 8, "Moras", 260000),
+        (p_personnage, "aptitude element", 8, @matElev1, 6),
+        (p_personnage, "aptitude element", 8, @matMonstre, 6),
+        (p_personnage, "aptitude element", 8, p_matUltraBoss, 1),
+        (p_personnage, "aptitude ult", 8, "Moras", 260000),
+        (p_personnage, "aptitude ult", 8, @matElev1, 6),
+        (p_personnage, "aptitude ult", 8, @matMonstre, 6),
+        (p_personnage, "aptitude ult", 8, p_matUltraBoss, 1),
+        (p_personnage, "aptitude basique", 9, "Moras", 450000),
+        (p_personnage, "aptitude basique", 9, @matElev2, 12),
+        (p_personnage, "aptitude basique", 9, @matMonstre, 9),
+        (p_personnage, "aptitude basique", 9, p_matUltraBoss, 2),
+        (p_personnage, "aptitude element", 9, "Moras", 450000),
+        (p_personnage, "aptitude element", 9, @matElev2, 12),
+        (p_personnage, "aptitude element", 9, @matMonstre, 9),
+        (p_personnage, "aptitude element", 9, p_matUltraBoss, 2),
+        (p_personnage, "aptitude ult", 9, "Moras", 450000),
+        (p_personnage, "aptitude ult", 9, @matElev2, 12),
+        (p_personnage, "aptitude ult", 9, @matMonstre, 9),
+        (p_personnage, "aptitude ult", 9, p_matUltraBoss, 2),
+        (p_personnage, "aptitude basique", 10, "Moras", 700000),
+        (p_personnage, "aptitude basique", 10, @matElev3, 16),
+        (p_personnage, "aptitude basique", 10, @matMonstre, 12),
+        (p_personnage, "aptitude basique", 10, p_matUltraBoss, 2),
+        (p_personnage, "aptitude basique", 10, "Couronne de la sagesse", 1),
+        (p_personnage, "aptitude element", 10, "Moras", 700000),
+        (p_personnage, "aptitude element", 10, @matElev3, 16),
+        (p_personnage, "aptitude element", 10, @matMonstre, 12),
+        (p_personnage, "aptitude element", 10, p_matUltraBoss, 2),
+        (p_personnage, "aptitude element", 10, "Couronne de la sagesse", 1),
+        (p_personnage, "aptitude ult", 10, "Moras", 700000),
+        (p_personnage, "aptitude ult", 10, @matElev3, 16),
+        (p_personnage, "aptitude ult", 10, @matMonstre, 12),
+        (p_personnage, "aptitude ult", 10, p_matUltraBoss, 2),
+        (p_personnage, "aptitude ult", 10, "Couronne de la sagesse", 1);
+
+        END IF;
+
+END #
+DELIMITER ;
+
+
+
 set foreign_key_checks = 1;

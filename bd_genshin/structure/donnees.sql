@@ -527,8 +527,10 @@ VALUES
 ("Chef Brutoviandu", "normal"),
 ("Géosaure antique", "boss");
 
+
 INSERT INTO `materiaux`
-VALUES("Diamant scintillant", NULL),
+VALUES("Pierre angulaire des étoiles et des flammes", NULL),
+("Diamant scintillant", NULL),
 ("Essence de Blob", NULL),
 ("Mucus de Blob","Essence de Blob"),
 ("Bave de Blob","Mucus de Blob"),
@@ -3281,20 +3283,125 @@ CALL `AjoutmateriauxPersonnages`("Jin", "Éclat de topaze prithiva", "Régalia d
 CALL `AjoutmateriauxPersonnages`("Zhongli", "Éclat de topaze prithiva", "Pilier de basalte", "Bave de Blob", "Coeur de lapis", "Enseignement de l'Or", "Corne de Monoceros Caeli");
 CALL `AjoutmateriauxPersonnages`("Voyageur", "Diamant scintillant", "", "Masque endommagé", "Chrysanthème à aubes", "", "");
 
+-- ajout des matériaux personnages des différents types de voyaugeur parce que évidemmment ça ne pouvait pas être simple.
+CALL `AjoutMateriauxAptVoyageur`("Voyageur pyro", "Sifflet en bois de sentinelle", "Enseignement de la Compétition", "Enseignement du petit bois", "Enseignement du Conflit", "Pierre angulaire des étoiles et des flammes");
+CALL `AjoutMateriauxAptVoyageur`("Voyageur anémo", "Parchemin divinatoire", "Enseignement de la Liberté", "Enseignement de la Résistance", "Enseignement de la Poésie", "Souffle de Stormterror");
+CALL `AjoutMateriauxAptVoyageur`("Voyageur électro", "Garde-main ancien", "Enseignement de l'Éphémère", "Enseignement de l'Élégance", "Enseignement de la Lumière", "Couronne du roi-dragon");
+CALL `AjoutMateriauxAptVoyageur`("Voyageur hydro", "Perle transocéanique", "Enseignement de l'Équité", "Enseignement de la Justice", "Enseignement de l'Ordre", "Fougère du monde luxuriant");
+CALL `AjoutMateriauxAptVoyageur`("Voyageur dendro", "Spores de Fongus", "Enseignement de l'Admonestation", "Enseignement de l'Ingénuité", "Enseignement de l'Usage", "Mudra du général maléfique");
 
-select * from materiaux where nom like "%cristallin%";
-select * from materiaux where nom in (select materiel from drop_monstres where monstre like "%méka%");
+-- et maintenant le voyageur géo parce que pas d'exception sans d'exception d'exception
+
+INSERT INTO materiaux_personnages
+VALUES("Voyageur géo", "aptitude basique", 2, "Moras", 12500),
+("Voyageur géo", "aptitude basique", 2, p_matelev1, 3),
+("Voyageur géo", "aptitude basique", 2, p_matMonstre, 6),
+("Voyageur géo", "aptitude element", 2, "Moras", 12500),
+("Voyageur géo", "aptitude element", 2, p_matelev1, 3),
+("Voyageur géo", "aptitude element", 2, p_matMonstre, 6),
+("Voyageur géo", "aptitude ult", 2, "Moras", 12500),
+("Voyageur géo", "aptitude ult", 2, p_matelev1, 3),
+("Voyageur géo", "aptitude ult", 2, p_matMonstre, 6),
+("Voyageur géo", "aptitude basique", 3, "Moras", 17500),
+("Voyageur géo", "aptitude basique", 3, @matElev2, 2),
+("Voyageur géo", "aptitude basique", 3, @matMonstre, 3),
+("Voyageur géo", "aptitude element", 3, "Moras", 17500),
+("Voyageur géo", "aptitude element", 3, @matElev2, 2),
+("Voyageur géo", "aptitude element", 3, @matMonstre, 3),
+("Voyageur géo", "aptitude ult", 3, "Moras", 17500),
+("Voyageur géo", "aptitude ult", 3, @matElev2, 2),
+("Voyageur géo", "aptitude ult", 3, @matMonstre, 3),
+("Voyageur géo", "aptitude basique", 4, "Moras", 25000),
+("Voyageur géo", "aptitude basique", 4, @matElev3, 4),
+("Voyageur géo", "aptitude basique", 4, @matMonstre, 4),
+("Voyageur géo", "aptitude element", 4, "Moras", 25000),
+("Voyageur géo", "aptitude element", 4, @matElev3, 4),
+("Voyageur géo", "aptitude element", 4, @matMonstre, 4),
+("Voyageur géo", "aptitude ult", 4, "Moras", 25000),
+("Voyageur géo", "aptitude ult", 4, @matElev3, 4),
+("Voyageur géo", "aptitude ult", 4, @matMonstre, 4),
+("Voyageur géo", "aptitude basique", 5, "Moras", 30000),
+("Voyageur géo", "aptitude basique", 5, @matElev1, 6),
+("Voyageur géo", "aptitude basique", 5, @matMonstre, 6),
+("Voyageur géo", "aptitude element", 5, "Moras", 30000),
+("Voyageur géo", "aptitude element", 5, @matElev1, 6),
+("Voyageur géo", "aptitude element", 5, @matMonstre, 6),
+("Voyageur géo", "aptitude ult", 5, "Moras", 30000),
+("Voyageur géo", "aptitude ult", 5, @matElev1, 6),
+("Voyageur géo", "aptitude ult", 5, @matMonstre, 6),
+("Voyageur géo", "aptitude basique", 6, "Moras", 37500),
+("Voyageur géo", "aptitude basique", 6, @matElev2, 9),
+("Voyageur géo", "aptitude basique", 6, @matMonstre, 9),
+("Voyageur géo", "aptitude element", 6, "Moras", 37500),
+("Voyageur géo", "aptitude element", 6, @matElev2, 9),
+("Voyageur géo", "aptitude element", 6, @matMonstre, 9),
+("Voyageur géo", "aptitude ult", 6, "Moras", 37500),
+("Voyageur géo", "aptitude ult", 6, @matElev2, 9),
+("Voyageur géo", "aptitude ult", 6, @matMonstre, 9),
+("Voyageur géo", "aptitude basique", 7, "Moras", 120000),
+("Voyageur géo", "aptitude basique", 7, @matElev3, 4),
+("Voyageur géo", "aptitude basique", 7, @matMonstre, 4),
+("Voyageur géo", "aptitude basique", 7, p_matUltraBoss, 1),
+("Voyageur géo", "aptitude element", 7, "Moras", 120000),
+("Voyageur géo", "aptitude element", 7, @matElev3, 4),
+("Voyageur géo", "aptitude element", 7, @matMonstre, 4),
+("Voyageur géo", "aptitude element", 7, p_matUltraBoss, 1),
+("Voyageur géo", "aptitude ult", 7, "Moras", 120000),
+("Voyageur géo", "aptitude ult", 7, @matElev3, 4),
+("Voyageur géo", "aptitude ult", 7, @matMonstre, 4),
+("Voyageur géo", "aptitude ult", 7, p_matUltraBoss, 1),
+("Voyageur géo", "aptitude basique", 8, "Moras", 260000),
+("Voyageur géo", "aptitude basique", 8, @matElev1, 6),
+("Voyageur géo", "aptitude basique", 8, @matMonstre, 6),
+("Voyageur géo", "aptitude basique", 8, p_matUltraBoss, 1),
+("Voyageur géo", "aptitude element", 8, "Moras", 260000),
+("Voyageur géo", "aptitude element", 8, @matElev1, 6),
+("Voyageur géo", "aptitude element", 8, @matMonstre, 6),
+("Voyageur géo", "aptitude element", 8, p_matUltraBoss, 1),
+("Voyageur géo", "aptitude ult", 8, "Moras", 260000),
+("Voyageur géo", "aptitude ult", 8, @matElev1, 6),
+("Voyageur géo", "aptitude ult", 8, @matMonstre, 6),
+("Voyageur géo", "aptitude ult", 8, p_matUltraBoss, 1),
+("Voyageur géo", "aptitude basique", 9, "Moras", 450000),
+("Voyageur géo", "aptitude basique", 9, @matElev2, 12),
+("Voyageur géo", "aptitude basique", 9, @matMonstre, 9),
+("Voyageur géo", "aptitude basique", 9, p_matUltraBoss, 2),
+("Voyageur géo", "aptitude element", 9, "Moras", 450000),
+("Voyageur géo", "aptitude element", 9, @matElev2, 12),
+("Voyageur géo", "aptitude element", 9, @matMonstre, 9),
+("Voyageur géo", "aptitude element", 9, p_matUltraBoss, 2),
+("Voyageur géo", "aptitude ult", 9, "Moras", 450000),
+("Voyageur géo", "aptitude ult", 9, @matElev2, 12),
+("Voyageur géo", "aptitude ult", 9, @matMonstre, 9),
+("Voyageur géo", "aptitude ult", 9, p_matUltraBoss, 2),
+("Voyageur géo", "aptitude basique", 10, "Moras", 700000),
+("Voyageur géo", "aptitude basique", 10, @matElev3, 16),
+("Voyageur géo", "aptitude basique", 10, @matMonstre, 12),
+("Voyageur géo", "aptitude basique", 10, p_matUltraBoss, 2),
+("Voyageur géo", "aptitude basique", 10, "Couronne de la sagesse", 1),
+("Voyageur géo", "aptitude element", 10, "Moras", 700000),
+("Voyageur géo", "aptitude element", 10, @matElev3, 16),
+("Voyageur géo", "aptitude element", 10, @matMonstre, 12),
+("Voyageur géo", "aptitude element", 10, p_matUltraBoss, 2),
+("Voyageur géo", "aptitude element", 10, "Couronne de la sagesse", 1),
+("Voyageur géo", "aptitude ult", 10, "Moras", 700000),
+("Voyageur géo", "aptitude ult", 10, @matElev3, 16),
+("Voyageur géo", "aptitude ult", 10, @matMonstre, 12),
+("Voyageur géo", "aptitude ult", 10, p_matUltraBoss, 2),
+("Voyageur géo", "aptitude ult", 10, "Couronne de la sagesse", 1);
+
+
 
 
 delete from materiaux where nom = "Regard d'enchevêtrant";
 
 
 select * from materiaux_personnages
-where personnage = "voyageur"
+where personnage like "voyageur dendro"
 order by type, niveau;
 
 delete from materiaux_personnages
-where personnage = "voyageur";
+where personnage = "voyageur pyro";
 
 select * from drop_donjons
 where monstre like "%primordial%";
@@ -3302,7 +3409,8 @@ where monstre like "%primordial%";
 delete from drop_monstres
 where monstre like "%primordial%";
 
-
+select * from meilleurs_artefacts
+where personnage li "voyageur";
 delete from drop_donjons
 where donjon like "%gloire%" and materiel like "%or%";
 
