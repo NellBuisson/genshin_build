@@ -332,9 +332,6 @@ ADD CONSTRAINT perso_etoile CHECK(nbretoile BETWEEN 4 AND 5);
 ALTER TABLE monstres 
 ADD CONSTRAINT monstres_type CHECK(`type` = "boss" OR `type` = "normal");
 
-ALTER TABLE monstres 
-DROP CONSTRAINT monstres_type
-
 ALTER TABLE personnages 
 ADD CONSTRAINT perso_constellation CHECK(constellation BETWEEN 0 AND 6);
 
@@ -575,7 +572,7 @@ BEGIN
     END IF ;
 
     -- vérification niveau constellation
-    IF (OLD.constellation < NEW.constellation) THEN
+    IF (OLD.constellation > NEW.constellation) THEN
         SIGNAL SQLSTATE "45000"
         SET MESSAGE_TEXT = "On ne peut pas baisser la constellation d'un personnage";
     END IF ;
@@ -616,6 +613,11 @@ BEGIN
     IF (NEW.niveau < OLD.niveau OR NEW.niveau_atq_bas < OLD.niveau_atq_bas OR NEW.niveau_atq_elm < OLD.niveau_atq_elm OR NEW.niveau_atq_ult < OLD.niveau_atq_ult) THEN
         SIGNAL SQLSTATE "45000"
         SET MESSAGE_TEXT = "Modification refusé. Un personnage ne peut pas baisser de niveau.";
+    END IF ;
+
+    IF(NEW.prenom = "Voyageur" AND (NEW.constellation != 0 OR NEW.niveau_atq_bas != 1 OR NEW.niveau_atq_elm != 1 OR NEW.niveau_atq_ult != 1)) THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Modification refusé. Le voyageur simple ne peut pas avoir de constellation ou de niveau d'aptitude, il faut choisir un élément";
     END IF ;
 
 END #
@@ -1440,7 +1442,7 @@ DELIMITER #
 
 CREATE OR REPLACE PROCEDURE modifierPersonnage(p_prenom VARCHAR(20), p_constellation INT, p_niveau INT, p_atqBas INT, p_atqElm INT, p_atqUlt INT)
 BEGIN 
-    IF(p_constellation IS NOT NULL) THEN
+    IF(p_constellation != 0) THEN
         CALL `AugConstellation`(p_prenom, p_constellation);
     END IF;
 
@@ -1453,11 +1455,11 @@ BEGIN
     END IF ;
 
     IF(p_atqElm IS NOT NULL) THEN
-        CALL `AugApt`(p_prenom, "élément", p_atqBas);
+        CALL `AugApt`(p_prenom, "élément", p_atqElm);
     END IF ;
 
     IF(p_atqUlt IS NOT NULL) THEN
-        CALL `AugApt`(p_prenom, "ult", p_atqBas);
+        CALL `AugApt`(p_prenom, "ult", p_atqUlt);
     END IF ;
 
 END #
