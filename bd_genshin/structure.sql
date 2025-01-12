@@ -581,7 +581,8 @@ BEGIN
     IF(NEW.constellation >= 3 AND OLD.constellation < 3) THEN
         UPDATE materiaux_personnages
         SET niveau = niveau + 3
-        WHERE personnage = NEW.prenom AND type = "aptitude element";
+        WHERE personnage = NEW.prenom AND type = "aptitude element"
+        ORDER BY niveau DESC;
 
         IF(NEW.niveau_atq_elm = OLD.niveau_atq_elm) THEN
             SET NEW.niveau_atq_elm = NEW.niveau_atq_elm  + 3;
@@ -594,7 +595,8 @@ BEGIN
     
         UPDATE materiaux_personnages
         SET niveau = niveau + 3
-        WHERE personnage = NEW.prenom AND type = "aptitude ult";
+        WHERE personnage = NEW.prenom AND type = "aptitude ult"
+        ORDER BY niveau DESC;
         
         IF(NEW.niveau_atq_ult = OLD.niveau_atq_ult) THEN
             SET NEW.niveau_atq_ult = OLD.niveau_atq_ult +3;
