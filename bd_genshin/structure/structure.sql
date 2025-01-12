@@ -46,6 +46,7 @@ CREATE OR REPLACE TABLE `Armes` (
     `type_arme` VARCHAR(20),
     `effet` VARCHAR(900),
     `obtention` VARCHAR(40),
+    
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -54,11 +55,12 @@ CREATE OR REPLACE TABLE `Armes` (
 -- Structure table Armes Possédées
 
 CREATE OR REPLACE TABLE `Armes_Possedees` (
-    `nom` VARCHAR(50),
-    `id` INT,
-    `lvl` INT, 
+    `id` INT AUTO_INCREMENT,
+    `nom` VARCHAR(50) NOT NULL,
+    `lvl` INT NOT NULL, 
     `raffinage` INT,
-    PRIMARY KEY (`nom`,`id`)
+    `personnage` VARCHAR(20),
+    PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
@@ -74,8 +76,6 @@ CREATE OR REPLACE TABLE `Personnages`(
     `ssstat2` VARCHAR(10),
     `region` VARCHAR(20),
     `type_arme` VARCHAR(20),
-    `arme` VARCHAR(50),
-    `id_arme` INT,
     `possedee` BOOL,
     `constellation` INT,
     `niveau` INT DEFAULT 1,
@@ -130,17 +130,6 @@ CREATE OR REPLACE TABLE `Materiaux`(
 CREATE OR REPLACE TABLE `Artefacts`(
     `type` VARCHAR(20),
     PRIMARY KEY(`type`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
------------------------------------------------
--- Structure table Artefacts Possédés
-
-CREATE OR REPLACE TABLE `Artefacts_Possedes` (
-    `nom` VARCHAR(50),
-    `id` INT,
-    `lvl` INT, 
-    `raffinage` INT,
-    PRIMARY KEY (`nom`,`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
@@ -332,6 +321,9 @@ ALTER TABLE `armes`
 ALTER TABLE `armes_possedees` 
     ADD FOREIGN KEY (`nom`) REFERENCES armes(`nom`);
 
+ALTER TABLE `armes_possedees` 
+    ADD FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`);
+
 ALTER TABLE `donjons`
     ADD FOREIGN KEY (`region`) REFERENCES  regions(`nom`);
 
@@ -342,9 +334,6 @@ ALTER TABLE `materiaux`
 
 ALTER TABLE `sets` 
     ADD FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`);
-
-ALTER TABLE `personnages`
-    ADD FOREIGN KEY (`arme`,`id_arme`) REFERENCES armes_possedees(`nom`, `id`);
 
 
 -----------------------------------------------
@@ -371,6 +360,12 @@ ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
 
 ALTER TABLE meilleures_armes
 ADD CONSTRAINT meilleures_armes_raffinage CHECK(raffinage BETWEEN 1 AND 5);
+
+ALTER TABLE armes_possedees
+ADD CONSTRAINT armes_possedees_raffinage CHECK(raffinage BETWEEN 1 AND 5);
+
+ALTER TABLE armes_possedees
+ADD CONSTRAINT armes_possedees_lvl CHECK(lvl BETWEEN 1 AND 90);
 
 ALTER TABLE meilleurs_sets
 ADD CONSTRAINT meilleurs_sets_nbr_art CHECK(nbr_art = 2 OR nbr_art = 4);
@@ -628,9 +623,7 @@ DELIMITER ;
 
 
 
--- trigger pour materiaux personnages. 
---vérification d'un des types
---vérification des niveaux généraux        
+-- trigger pour materiaux personnages.     
 DELIMITER #
 
 CREATE OR REPLACE TRIGGER before_insert_materiaux_personnages
@@ -685,6 +678,67 @@ BEGIN
 END #
 DELIMITER ;
 
+-- trigger pour armes possedees 
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_insert_armes_possedees
+BEFORE INSERT
+ON armes_possedees
+FOR EACH ROW
+BEGIN
+    -- vérifier que le type d'arme de l'arme et celui du personnage corresponde.
+    IF(NEW.personnage IS NOT NULL) THEN
+        SET @typePerso = NULL;
+        SELECT type_arme INTO @typePerso FROM personnages
+            WHERE prenom = NEW.personnage;
+        
+        SET @typeArme = NULL;
+        SELECT type_arme INTO @typeArme FROM armes
+            WHERE nom = NEW.nom;
+        
+        IF(@typePerso != @TypeArme) THEN
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Ce n'est pas le bon type d'arme pour ce personnage.";
+        END IF ;
+    
+    END IF ;
+END #
+DELIMITER ;
+
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_update_armes_possedees
+BEFORE UPDATE
+ON armes_possedees
+FOR EACH ROW
+BEGIN
+    IF(NEW.personnage != OLD.personnage  AND NEW.personnage != "") THEN
+        SET @typePerso = NULL;
+        SELECT type_arme INTO @typePerso FROM personnages
+            WHERE prenom = NEW.personnage;
+
+        SET @typeArme = NULL;
+        SELECT type_arme INTO @typeArme FROM armes
+            WHERE nom = NEW.nom;
+        
+        IF(@typePerso != @TypeArme) THEN
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "Ce n'est pas le bon type d'arme pour ce personnage.";
+        END IF ;
+        
+        SET @Autre = NULL;
+        SELECT id INTO @Autre FROM armes_possedees
+            WHERE personnage = NEW.personnage;
+        
+        IF(@Autre != "") THEN
+            UPDATE armes_possedees
+            SET personnage = ""
+                WHERE personnage = NEW.personnage;
+        
+        END IF ;
+    END IF ;
+END #
+DELIMITER ;
 -----------------------------------------------
 ------------------ Fonction -------------------
 -----------------------------------------------
@@ -1188,6 +1242,8 @@ DELIMITER ;
 -- Procedure pour les materiaux des voyageurs (excepté le géo qui est une exception dans l'exception)
 DELIMITER #
 
+SELECT prenom FROM personnages
+        WHERE prenom = "Voyageur pyro" AND prenom like "Voyageur %" AND prenom != "Voyageur géo";
 CREATE OR REPLACE PROCEDURE AjoutMateriauxAptVoyageur (p_personnage VARCHAR(20), p_matMonstre VARCHAR(60), p_matelev1 VARCHAR(60), p_matelev2 VARCHAR(60), p_matelev3 VARCHAR(60),p_matUltraBoss VARCHAR(60))
 BEGIN
     SET @matMonstre = NULL;
