@@ -1,6 +1,6 @@
 -- Active: 1729445084290@@127.0.0.1@3306@genshin_build
 -- build tiré du site la gazette de Teyvat 
-INSERT INTO `bannieres`
+INSERT INTO `bannieres` 
 VALUES ("Permanente"),
 ("Arme Temporaire"),
 ("Perso Temporaire");

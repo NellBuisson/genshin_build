@@ -57,7 +57,7 @@ CREATE OR REPLACE TABLE `Armes` (
 CREATE OR REPLACE TABLE `Armes_Possedees` (
     `id` INT AUTO_INCREMENT,
     `nom` VARCHAR(50) NOT NULL,
-    `lvl` INT NOT NULL, 
+    `lvl` INT NOT NULL,  
     `raffinage` INT,
     `personnage` VARCHAR(20),
     PRIMARY KEY (`id`)
@@ -77,7 +77,7 @@ CREATE OR REPLACE TABLE `Personnages`(
     `region` VARCHAR(20),
     `type_arme` VARCHAR(20),
     `possedee` BOOL,
-    `constellation` INT,
+    `constellation` INT DEFAULT 0,
     `niveau` INT DEFAULT 1,
     `niveau_atq_bas` INT DEFAULT 1,
     `niveau_atq_elm` INT DEFAULT 1,
@@ -285,23 +285,6 @@ CREATE OR REPLACE TABLE `Meilleurs_Artefacts`(
     PRIMARY KEY(`personnage`, `type_build`, `option`, `artefact`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
------------------------------------------------
--- Structure table Artéfacts Associés
-
-CREATE OR REPLACE TABLE `Artefacts_Associes` (
-    `personnage` VARCHAR(20),
-    `artefact` VARCHAR(20),
-    `set` VARCHAR(60),
-    `stat` VARCHAR(20),
-    `ssstat1` VARCHAR(20),
-    `ssstat2` VARCHAR(20),
-    `ssstat3` VARCHAR(20),
-    `Lvl` INT NOT NULL,
-    FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
-    FOREIGN KEY (`artefact`) REFERENCES artefacts(`type`),
-    FOREIGN KEY (`set`) REFERENCES sets(`nom`),
-    PRIMARY KEY(`personnage`, `artefact`)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
 -------------Clefs étrangères -----------------
@@ -546,6 +529,10 @@ BEGIN
         END IF ;
     END IF ; 
 
+    IF(NEW.possedee = FALSE AND (NEW.constellation != 0 OR NEW.niveau != 1)) THEN
+        SET NEW.possedee = TRUE;
+    END IF ;
+
 END #
 
 DELIMITER ;
@@ -615,6 +602,20 @@ BEGIN
         IF(NEW.niveau_atq_ult = OLD.niveau_atq_ult) THEN
             SET NEW.niveau_atq_ult = OLD.niveau_atq_ult +3;
         END IF ;
+    END IF ;
+
+    IF(NEW.possedee = FALSE AND (NEW.constellation != 0 OR NEW.niveau != 1)) THEN
+        SET NEW.possedee = TRUE;
+    END IF ;
+
+    IF(NEW.nom != OLD.nom OR NEW.element != OLD.element OR NEW.nbretoile != OLD.nbretoile OR NEW.type_arme != OLD.type_arme) THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Modification refusé. Une des caractéristiques modifiées est non modifiable.";
+    END IF;
+
+    IF (NEW.niveau < OLD.niveau OR NEW.niveau_atq_bas < OLD.niveau_atq_bas OR NEW.niveau_atq_elm < OLD.niveau_atq_elm OR NEW.niveau_atq_ult < OLD.niveau_atq_ult) THEN
+        SIGNAL SQLSTATE "45000"
+        SET MESSAGE_TEXT = "Modification refusé. Un personnage ne peut pas baisser de niveau.";
     END IF ;
 
 END #
@@ -1374,6 +1375,93 @@ BEGIN
 END #
 DELIMITER ;
 
+-- Personnage obtenu
+
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE persoObtenu(p_prenom VARCHAR(20))
+BEGIN
+    UPDATE personnages
+    SET possedee = TRUE
+    WHERE prenom = p_prenom;
+END #
+DELIMITER ;
+
+-- modification de constellation
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE AugConstellation(p_prenom VARCHAR(20), p_cons INT)
+BEGIN
+    UPDATE personnages
+    SET constellation = p_cons
+    WHERE prenom = p_prenom;
+END #
+DELIMITER ;
+
+-- modification de lvl 
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE AugNiveau(p_prenom VARCHAR(20), p_niveau INT)
+BEGIN
+    UPDATE personnages
+    SET niveau = p_niveau
+    WHERE prenom = p_prenom;
+END #
+DELIMITER ;
+
+-- modifier lvl aptitude
+
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE AugApt(p_prenom VARCHAR(20), p_aptitude VARCHAR(20), p_niveau INT)
+BEGIN
+    IF(p_aptitude = "basique") THEN
+        UPDATE personnages
+        SET niveau_atq_bas = p_niveau
+        WHERE prenom = p_prenom;
+    END IF ;
+
+    IF(p_aptitude = "élément") THEN
+        UPDATE personnages
+        SET niveau_atq_elm = p_niveau
+        WHERE prenom = p_prenom;
+    END IF ;
+
+    IF(p_aptitude = "ult") THEN
+        UPDATE personnages
+        SET niveau_atq_ult = p_niveau
+        WHERE prenom = p_prenom;
+    END IF ;
+END #
+DELIMITER ;
+
+-- Modification des personnages adaptés aux données du joueur les modifier ajoute automatiquement le personnage dans ceux obtenus. Utilisé dans le cas où le perso a déjà été build
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE modifierPersonnage(p_prenom VARCHAR(20), p_constellation INT, p_niveau INT, p_atqBas INT, p_atqElm INT, p_atqUlt INT)
+BEGIN 
+    IF(p_constellation IS NOT NULL) THEN
+        CALL `AugConstellation`(p_prenom, p_constellation);
+    END IF;
+
+    IF(p_niveau IS NOT NULL) THEN
+        CALL `AugNiveau`(p_prenom, p_niveau);
+    END IF;
+
+    IF(p_atqBas IS NOT NULL) THEN
+        CALL `AugApt`(p_prenom, "basique", p_atqBas);
+    END IF ;
+
+    IF(p_atqElm IS NOT NULL) THEN
+        CALL `AugApt`(p_prenom, "élément", p_atqBas);
+    END IF ;
+
+    IF(p_atqUlt IS NOT NULL) THEN
+        CALL `AugApt`(p_prenom, "ult", p_atqBas);
+    END IF ;
+
+END #
+DELIMITER ;
 
 
 set foreign_key_checks = 1;
