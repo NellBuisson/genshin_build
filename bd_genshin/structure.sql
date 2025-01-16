@@ -52,13 +52,13 @@ CREATE OR REPLACE TABLE `Armes` (
 
 
 -----------------------------------------------
--- Structure table Armes Possédées
+-- Structure table Armes Attribuées
 
-CREATE OR REPLACE TABLE `Armes_Possedees` (
+CREATE OR REPLACE TABLE `Armes_Attribuees` (
     `id` INT AUTO_INCREMENT,
     `nom` VARCHAR(50) NOT NULL,
     `lvl` INT NOT NULL,  
-    `raffinage` INT,
+    `raffinage` INT DEFAULT 0,
     `personnage` VARCHAR(20),
     PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -301,10 +301,10 @@ ALTER TABLE `personnages`
 ALTER TABLE `armes` 
     ADD FOREIGN KEY (`type_arme`) REFERENCES types_arme(`nom`);
 
-ALTER TABLE `armes_possedees` 
+ALTER TABLE `armes_attribuees` 
     ADD FOREIGN KEY (`nom`) REFERENCES armes(`nom`);
 
-ALTER TABLE `armes_possedees` 
+ALTER TABLE `armes_attribuees` 
     ADD FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`);
 
 ALTER TABLE `donjons`
@@ -341,11 +341,11 @@ ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
 ALTER TABLE meilleures_armes
 ADD CONSTRAINT meilleures_armes_raffinage CHECK(raffinage BETWEEN 1 AND 5);
 
-ALTER TABLE armes_possedees
-ADD CONSTRAINT armes_possedees_raffinage CHECK(raffinage BETWEEN 1 AND 5);
+ALTER TABLE armes_attribuees
+ADD CONSTRAINT armes_attribuees_raffinage CHECK(raffinage BETWEEN 1 AND 5);
 
-ALTER TABLE armes_possedees
-ADD CONSTRAINT armes_possedees_lvl CHECK(lvl BETWEEN 1 AND 90);
+ALTER TABLE armes_attribuees
+ADD CONSTRAINT armes_attribuees_lvl CHECK(lvl BETWEEN 1 AND 90);
 
 ALTER TABLE meilleurs_sets
 ADD CONSTRAINT meilleurs_sets_nbr_art CHECK(nbr_art = 2 OR nbr_art = 4);
@@ -627,7 +627,6 @@ END #
 DELIMITER ;
 
 
-
 -- trigger pour materiaux personnages.     
 DELIMITER #
 
@@ -686,9 +685,9 @@ DELIMITER ;
 -- trigger pour armes possedees 
 DELIMITER #
 
-CREATE OR REPLACE TRIGGER before_insert_armes_possedees
+CREATE OR REPLACE TRIGGER before_insert_armes_attribuees
 BEFORE INSERT
-ON armes_possedees
+ON armes_attribuees
 FOR EACH ROW
 BEGIN
     -- vérifier que le type d'arme de l'arme et celui du personnage corresponde.
@@ -712,12 +711,12 @@ DELIMITER ;
 
 DELIMITER #
 
-CREATE OR REPLACE TRIGGER before_update_armes_possedees
+CREATE OR REPLACE TRIGGER before_update_armes_attribuees
 BEFORE UPDATE
-ON armes_possedees
+ON armes_attribuees
 FOR EACH ROW
 BEGIN
-    IF(NEW.personnage != OLD.personnage  AND NEW.personnage != "") THEN
+    IF(NEW.personnage != OLD.personnage OR NEW.personnage != "") THEN
         SET @typePerso = NULL;
         SELECT type_arme INTO @typePerso FROM personnages
             WHERE prenom = NEW.personnage;
@@ -732,14 +731,12 @@ BEGIN
         END IF ;
         
         SET @Autre = NULL;
-        SELECT id INTO @Autre FROM armes_possedees
+        SELECT id INTO @Autre FROM armes_attribuees
             WHERE personnage = NEW.personnage;
         
         IF(@Autre != "") THEN
-            UPDATE armes_possedees
-            SET personnage = ""
-                WHERE personnage = NEW.personnage;
-        
+            DELETE FROM armes_attribuees
+            WHERE personnage = NEW.personnage;
         END IF ;
     END IF ;
 END #
@@ -1247,8 +1244,6 @@ DELIMITER ;
 -- Procedure pour les materiaux des voyageurs (excepté le géo qui est une exception dans l'exception)
 DELIMITER #
 
-SELECT prenom FROM personnages
-        WHERE prenom = "Voyageur pyro" AND prenom like "Voyageur %" AND prenom != "Voyageur géo";
 CREATE OR REPLACE PROCEDURE AjoutMateriauxAptVoyageur (p_personnage VARCHAR(20), p_matMonstre VARCHAR(60), p_matelev1 VARCHAR(60), p_matelev2 VARCHAR(60), p_matelev3 VARCHAR(60),p_matUltraBoss VARCHAR(60))
 BEGIN
     SET @matMonstre = NULL;
@@ -1467,5 +1462,14 @@ BEGIN
 END #
 DELIMITER ;
 
+-- insérer une nouvelle arme attribuée
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE attribuerArme(p_perso VARCHAR(20), p_arme VARCHAR(50), p_lvl INT, p_raffinage INT)
+BEGIN
+    INSERT INTO armes_attribuees (personnage, nom, lvl, raffinage)
+    VALUES(p_perso, p_arme, p_lvl, p_raffinage);
+END #
+DELIMITER ;
 
 set foreign_key_checks = 1;

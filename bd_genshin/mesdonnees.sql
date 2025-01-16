@@ -93,5 +93,41 @@ CALL `modifierPersonnage`("Sara", 1, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Sayu", 2, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Thomas", 6, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Diona", 4, 40, NULL, NULL, NULL);
+CALL `modifierPersonnage`("Voyageur pyro", 0, 90, 3, 8, 7);
 
+INSERT INTO armes_possedees (personnage, nom, lvl, raffinage)
+values("Kinich","Trembleur de terre", 90, 2),
+("Neuvillette", "Tome du flux éternel", 90, 1),
+("Lyney", "Simulacre d'eau", 80, 1),
+("Alhaitham", "Pluie florale", 90, 2),
+("Nomade", "Mémoire de Tulaytullah", 90, 1),
+("Raiden", "Lumière du faucheur", 90, 1),
+("Eula", "Tombe-neige en argétoile", 90, 4),
+("Kazuha", "Piqûre de fer", 90, 5),
+("Tao", "Fléau du dragon", 90, 1),
+("Mona", "Mouvement vagabond", 60, 5),
+("Tartaglia", "Arc rouillé", 80, 4),
+("Zhongli", "Pampille noire", 90, 3),
+("Xiao", "Scion de la victoire", 90, 1),
+("Venti", "Dernière corde", 90, 5),
+("Diluc", "Mort-du-loup", 90, 1),
+("Voyageur", "Lame d'aubier", 90, 1),
+("Jean", "Passeur du Fleuve cendré", 90, 5),
+("Ayaka", "Lune ondulante de Futsu", 90, 1),
+("Kachina", "", , ),
+("", "", , ),
 
+-----------------------------------------------
+-----------------------------------------------
+--- Changement à partir de l'initialisation ---
+-----------------------------------------------
+-----------------------------------------------
+
+CALL `AugNiveau`("Mona", 90);
+CALL `AugNiveau`("Citlali", 70);
+CALL `AugApt`("Voyageur pyro", "basique", 4);
+CALL `AugApt`("Voyageur pyro", "ult", 8);
+CALL `modifierPersonnage`("Jean", NULL, NULL, 3, 7, 7);
+CALL `AugApt`("Venti", "element", 6);
+CALL `modifierPersonnage`("Kaeya", NULL, NULL, 3, 7, 5);
+CALL `modifierPersonnage`("Kachina", NULL, NULL, 4, 5, 5);
