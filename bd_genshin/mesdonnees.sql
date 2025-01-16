@@ -163,11 +163,6 @@ CALL `attribuerArme`("Thomas", "Lance en croix de Kitain", 1, 1);
 CALL `attribuerArme`("Diona", "Arc de chasse de Favonius", 40, 1);
 
 -- attribution des artefacts
-CALL `attribuerArtefact`("Kinich", "Fleur", "", );
-CALL `attribuerArtefact`("Kinich", "Plume", "", );
-CALL `attribuerArtefact`("Kinich", "Sablier", "", );
-CALL `attribuerArtefact`("Kinich", "Coupe", "", );
-CALL `attribuerArtefact`("Kinich", "Couronne", "", );
 
 
 

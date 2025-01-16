@@ -755,9 +755,9 @@ BEGIN
         SELECT id INTO @Autre FROM armes_attribuees
             WHERE personnage = NEW.personnage;
         
-        IF(@Autre != "") THEN
+        IF(@Autre != "" AND NEW.nom != OLD.nom) THEN
             DELETE FROM armes_attribuees
-            WHERE personnage = NEW.personnage;
+            WHERE personnage = NEW.personnage AND nom = OLD.nom;
         END IF ;
     END IF ;
 END #
@@ -1490,6 +1490,28 @@ CREATE OR REPLACE PROCEDURE attribuerArme(p_perso VARCHAR(20), p_arme VARCHAR(50
 BEGIN
     INSERT INTO armes_attribuees (personnage, nom, lvl, raffinage)
     VALUES(p_perso, p_arme, p_lvl, p_raffinage);
+END #
+DELIMITER ;
+
+-- augmenter une arme
+
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE augArme(p_perso VARCHAR(20), p_lvl INT, p_raffinage INT)
+BEGIN 
+    IF(p_raffinage IS NULL OR p_raffinage = 1) THEN
+        UPDATE armes_attribuees
+        SET lvl = p_lvl
+        WHERE personnage = p_perso;
+    ELSEIF (p_lvl IS NULL) THEN
+        UPDATE armes_attribuees
+        SET raffinage = p_raffinage
+        WHERE personnage = p_perso;
+    ELSE 
+        UPDATE armes_attribuees
+        SET lvl = p_lvl, raffinage = p_raffinage
+        WHERE personnage = p_perso;
+    END IF ;
 END #
 DELIMITER ;
 
