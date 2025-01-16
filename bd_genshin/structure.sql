@@ -142,6 +142,24 @@ CREATE OR REPLACE TABLE `Sets`(
     PRIMARY KEY(`nom`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-----------------------------------------------
+-- Structure table Artefacts Attribués
+
+CREATE OR REPLACE TABLE `Artefacts_Attribues` (
+    `personnage` VARCHAR(20),
+    `type` VARCHAR(20) NOT NULL,
+    `set` VARCHAR(60) NOT NULL,
+    `lvl` INT DEFAULT 0,  
+    `statP` VARCHAR(20) NOT NULL,
+    `ssStat1` VARCHAR(10) NOT NULL,
+    `ssStat2` VARCHAR(10) NOT NULL,
+    `ssStat3` VARCHAR(10),
+    `ssStat4` VARCHAR(10),
+    PRIMARY KEY (`personnage`, `type`),
+    FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
+    FOREIGN KEY (`type`) REFERENCES artefacts(`type`),
+    FOREIGN KEY (`set`) REFERENCES sets(`nom`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -----------------------------------------------
 -------------Tables de liaison-----------------
@@ -319,6 +337,7 @@ ALTER TABLE `sets`
     ADD FOREIGN KEY (`donjon`) REFERENCES donjons(`nom`);
 
 
+
 -----------------------------------------------
 --------- Contraintes d'intégrité -------------
 -----------------------------------------------
@@ -347,6 +366,8 @@ ADD CONSTRAINT armes_attribuees_raffinage CHECK(raffinage BETWEEN 1 AND 5);
 ALTER TABLE armes_attribuees
 ADD CONSTRAINT armes_attribuees_lvl CHECK(lvl BETWEEN 1 AND 90);
 
+ALTER TABLE artefacts_attribues
+ADD CONSTRAINT artefacts_attribues_lvl CHECK(lvl BETWEEN 0 AND 20);
 ALTER TABLE meilleurs_sets
 ADD CONSTRAINT meilleurs_sets_nbr_art CHECK(nbr_art = 2 OR nbr_art = 4);
 
@@ -682,7 +703,7 @@ BEGIN
 END #
 DELIMITER ;
 
--- trigger pour armes possedees 
+-- trigger pour armes attribuees
 DELIMITER #
 
 CREATE OR REPLACE TRIGGER before_insert_armes_attribuees
@@ -1470,6 +1491,29 @@ BEGIN
     INSERT INTO armes_attribuees (personnage, nom, lvl, raffinage)
     VALUES(p_perso, p_arme, p_lvl, p_raffinage);
 END #
+DELIMITER ;
+
+-- insérer un nouveau artefact attribué
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE attribuerArtefact(p_perso VARCHAR(20), p_art VARCHAR(20), p_set VARCHAR(60), p_lvl INT, p_statP )
+BEGIN 
+    SET @exist = NULL;
+
+    SELECT type INTO @exist FROM artefacts_attribues
+    WHERE personnage = p_perso AND `type` = p_art;
+
+    IF(@exist = NULL) THEN
+        INSERT INTO artefacts_attribues
+        VALUES(p_perso, p_art, p_set, p_lvl);
+    ELSE 
+        UPDATE artefacts_attribues
+        SET `set` = p_set, lvl = p_lvl
+        WHERE personnage = p_perso AND `type` = p_art;
+    END IF ;
+
+END #
+
 DELIMITER ;
 
 set foreign_key_checks = 1;

@@ -25,7 +25,7 @@ UPDATE donjons
 SET debloque = TRUE
 WHERE region = "Natlan";
 
--- actualisation de la possession des personnages
+-- actualisation de la possession des personnages et leurs niveau
 
 CALL `modifierPersonnage`("Kinich", 0, 90, 4, 6, 6);
 CALL `modifierPersonnage`("Neuvillette", 0, 90, 5, 8, 7);
@@ -95,27 +95,84 @@ CALL `modifierPersonnage`("Thomas", 6, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Diona", 4, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Voyageur pyro", 0, 90, 3, 8, 7);
 
-INSERT INTO armes_possedees (personnage, nom, lvl, raffinage)
-values("Kinich","Trembleur de terre", 90, 2),
-("Neuvillette", "Tome du flux éternel", 90, 1),
-("Lyney", "Simulacre d'eau", 80, 1),
-("Alhaitham", "Pluie florale", 90, 2),
-("Nomade", "Mémoire de Tulaytullah", 90, 1),
-("Raiden", "Lumière du faucheur", 90, 1),
-("Eula", "Tombe-neige en argétoile", 90, 4),
-("Kazuha", "Piqûre de fer", 90, 5),
-("Tao", "Fléau du dragon", 90, 1),
-("Mona", "Mouvement vagabond", 60, 5),
-("Tartaglia", "Arc rouillé", 80, 4),
-("Zhongli", "Pampille noire", 90, 3),
-("Xiao", "Scion de la victoire", 90, 1),
-("Venti", "Dernière corde", 90, 5),
-("Diluc", "Mort-du-loup", 90, 1),
-("Voyageur", "Lame d'aubier", 90, 1),
-("Jean", "Passeur du Fleuve cendré", 90, 5),
-("Ayaka", "Lune ondulante de Futsu", 90, 1),
-("Kachina", "", , ),
-("", "", , ),
+-- attribution des armes aux personnages
+CALL `attribuerArme`("Kinich","Trembleur de terre", 90, 2);
+CALL `attribuerArme`("Neuvillette", "Tome du flux éternel", 90, 1);
+CALL `attribuerArme`("Lyney", "Simulacre d'eau", 80, 1);
+CALL `attribuerArme`("Alhaitham", "Pluie florale", 90, 2);
+CALL `attribuerArme`("Nomade", "Mémoire de Tulaytullah", 90, 1);
+CALL `attribuerArme`("Raiden", "Lumière du faucheur", 90, 1);
+CALL `attribuerArme`("Eula", "Tombe-neige en argétoile", 90, 4);
+CALL `attribuerArme`("Kazuha", "Piqûre de fer", 90, 5);
+CALL `attribuerArme`("Tao", "Fléau du dragon", 90, 1);
+CALL `attribuerArme`("Mona", "Mouvement vagabond", 60, 5);
+CALL `attribuerArme`("Tartaglia", "Arc rouillé", 80, 4);
+CALL `attribuerArme`("Zhongli", "Pampille noire", 90, 3);
+CALL `attribuerArme`("Xiao", "Scion de la victoire", 90, 1);
+CALL `attribuerArme`("Venti", "Dernière corde", 90, 5);
+CALL `attribuerArme`("Diluc", "Mort-du-loup", 90, 1);
+CALL `attribuerArme`("Voyageur", "Lame d'aubier", 90, 1);
+CALL `attribuerArme`("Jean", "Passeur du Fleuve cendré", 90, 5);
+CALL `attribuerArme`("Ayaka", "Lune ondulante de Futsu", 90, 1);
+CALL `attribuerArme`("Kachina", "Trace d'arc-en-ciel", 50, 1);
+CALL `attribuerArme`("Fréminet", "Ombre tidale", 90, 1);
+CALL `attribuerArme`("Yanfei", "L'origine des Quatre Vents", 90, 2);
+CALL `attribuerArme`("Rosalia", "Lance de Favonius", 80, 5);
+CALL `attribuerArme`("Noëlle", "Ombre immaculée", 90, 1);
+CALL `attribuerArme`("Bennett", "Épée de Favonius", 90, 1);
+CALL `attribuerArme`("Fischl", "Ailes de la Voûte d'Azur", 90, 1);
+CALL `attribuerArme`("Beidou", "Espadon", 90, 1);
+CALL `attribuerArme`("Kaeya", "Rugissement du Lion", 90, 5);
+CALL `attribuerArme`("Barbara", "Malice", 90, 4);
+CALL `attribuerArme`("Qiqi", "Épée de Favonius", 90, 2);
+CALL `attribuerArme`("Chongyun", "« Méga épée magique du suzerain ultime »", 90, 5);
+CALL `attribuerArme`("Ningguang", "Contes de Dodoco", 90, 5);
+CALL `attribuerArme`("Citlali", "Écho de la grue", 40, 1);
+CALL `attribuerArme`("Nahida", "Mémoires de rituels", 90, 5);
+CALL `attribuerArme`("Aloy", "Dernière corde", 60, 1);
+CALL `attribuerArme`("Yae", "Mouvement vagabond", 1, 2);
+CALL `attribuerArme`("Keqing", "Flûte", 70, 1);
+CALL `attribuerArme`("Gaming", "Fluorescence", 1, 1);
+CALL `attribuerArme`("Gorou", "Arc de chasse de Favonius", 50, 4);
+CALL `attribuerArme`("Xinyan", "Épée-horloge", 1, 1);
+CALL `attribuerArme`("Sucrose", "Mémoires de rituels", 1, 1);
+CALL `attribuerArme`("Xingqiu", "Couteau à filets", 20, 5);
+CALL `attribuerArme`("Xiangling", "Fléau du dragon", 40, 1);
+CALL `attribuerArme`("Amber", "Arc courbé", 40, 2);
+CALL `attribuerArme`("Razor", "Ombre immaculée", 1, 1);
+CALL `attribuerArme`("Lisa", "Histoire des chasseurs de dragon", 1, 5);
+CALL `attribuerArme`("Lynette", "Épée de Favonius", 50, 1);
+CALL `attribuerArme`("Cyno", "Lance en croix de Kitain", 1, 1);
+CALL `attribuerArme`("Tighnari", "Lune paisible", 20, 1);
+CALL `attribuerArme`("Ayato", "Lame kageuchi d'Amenoma", 1, 1);
+CALL `attribuerArme`("Ororon", "Arc de chasse de Favonius", 1, 1);
+CALL `attribuerArme`("Sethos", "Lance-pierres", 1, 1);
+CALL `attribuerArme`("Chevreuse", "Lance de Favonius", 90, 1);
+CALL `attribuerArme`("Kaveh", "Fleur de mailles", 1, 4);
+CALL `attribuerArme`("Yaoyao", "Fléau du dragon", 1, 1);
+CALL `attribuerArme`("Faruzan", "Arc de chasse de Favonius", 1, 1);
+CALL `attribuerArme`("Layla", "Kagotsurube Isshin", 90, 1);
+CALL `attribuerArme`("Candace", "Lance Dosdragon", 90, 1);
+CALL `attribuerArme`("Collei", "Arc de chasse de Favonius", 1, 1);
+CALL `attribuerArme`("Jin", "Lance de Favonius", 1, 1);
+CALL `attribuerArme`("Kirara", "Épée de Favonius", 60, 1);
+CALL `attribuerArme`("Heizou", "Mouvement vagabond", 1, 1);
+CALL `attribuerArme`("Sara", "Arc rituel", 20, 1);
+CALL `attribuerArme`("Sayu", "Espadon rituel", 90, 3);
+CALL `attribuerArme`("Thomas", "Lance en croix de Kitain", 1, 1);
+CALL `attribuerArme`("Diona", "Arc de chasse de Favonius", 40, 1);
+
+-- attribution des artefacts
+CALL `attribuerArtefact`("Kinich", "Fleur", "", );
+CALL `attribuerArtefact`("Kinich", "Plume", "", );
+CALL `attribuerArtefact`("Kinich", "Sablier", "", );
+CALL `attribuerArtefact`("Kinich", "Coupe", "", );
+CALL `attribuerArtefact`("Kinich", "Couronne", "", );
+
+
+
+
+
 
 -----------------------------------------------
 -----------------------------------------------
