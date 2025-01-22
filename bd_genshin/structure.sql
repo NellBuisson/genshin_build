@@ -146,16 +146,17 @@ CREATE OR REPLACE TABLE `Sets`(
 -- Structure table Artefacts Attribués
 
 CREATE OR REPLACE TABLE `Artefacts_Attribues` (
-    `personnage` VARCHAR(20),
+    `id` INT AUTO_INCREMENT,
     `type` VARCHAR(20) NOT NULL,
     `set` VARCHAR(60) NOT NULL,
     `lvl` INT DEFAULT 0,  
-    `statP` VARCHAR(20) NOT NULL,
+    `statP` VARCHAR(10) NOT NULL,
     `ssStat1` VARCHAR(10) NOT NULL,
     `ssStat2` VARCHAR(10) NOT NULL,
     `ssStat3` VARCHAR(10),
     `ssStat4` VARCHAR(10),
-    PRIMARY KEY (`personnage`, `type`),
+    `personnage` VARCHAR(20),    
+    PRIMARY KEY (`id`),
     FOREIGN KEY (`personnage`) REFERENCES personnages(`prenom`),
     FOREIGN KEY (`type`) REFERENCES artefacts(`type`),
     FOREIGN KEY (`set`) REFERENCES sets(`nom`)
@@ -756,12 +757,15 @@ BEGIN
             WHERE personnage = NEW.personnage;
         
         IF(@Autre != "" AND NEW.nom != OLD.nom) THEN
-            DELETE FROM armes_attribuees
-            WHERE personnage = NEW.personnage AND nom = OLD.nom;
+            UPDATE armes_attribuees
+            SET personnage = NULL
+            WHERE id = @Autre;
         END IF ;
     END IF ;
 END #
 DELIMITER ;
+
+-- trigger pour artefacts attribues 
 -----------------------------------------------
 ------------------ Fonction -------------------
 -----------------------------------------------
@@ -1483,7 +1487,7 @@ BEGIN
 END #
 DELIMITER ;
 
--- insérer une nouvelle arme attribuée
+-- insérer une nouvelle arme attribuée (besoin d'améliorer pour gérer les changements d'arme ou une attribution d'une arme déjà existante)
 DELIMITER #
 
 CREATE OR REPLACE PROCEDURE attribuerArme(p_perso VARCHAR(20), p_arme VARCHAR(50), p_lvl INT, p_raffinage INT)
@@ -1493,7 +1497,7 @@ BEGIN
 END #
 DELIMITER ;
 
--- augmenter une arme
+-- augmenter une arme 
 
 DELIMITER #
 
@@ -1515,25 +1519,24 @@ BEGIN
 END #
 DELIMITER ;
 
--- insérer un nouveau artefact attribué
+-- insérer un nouvel artefact (besoin d'améliorer pour gérer les changements d'artefact ou une attribution d'un artefact déjà existante)
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE attribuerArtefact(p_perso VARCHAR(20), p_art VARCHAR(20), p_set VARCHAR(60), p_lvl INT, p_statP )
+CREATE OR REPLACE PROCEDURE attribuerArtefact(p_perso VARCHAR(20), p_art VARCHAR(20), p_set VARCHAR(60), p_lvl INT, p_statP VARCHAR(10), p_ss1 VARCHAR(10), p_ss2 VARCHAR(10),  p_ss3 VARCHAR(10), p_ss4 VARCHAR(10))
 BEGIN 
     SET @exist = NULL;
 
     SELECT type INTO @exist FROM artefacts_attribues
     WHERE personnage = p_perso AND `type` = p_art;
 
-    IF(@exist = NULL) THEN
-        INSERT INTO artefacts_attribues
-        VALUES(p_perso, p_art, p_set, p_lvl);
-    ELSE 
-        UPDATE artefacts_attribues
-        SET `set` = p_set, lvl = p_lvl
-        WHERE personnage = p_perso AND `type` = p_art;
+    IF(@exist != NULL) THEN
+        UPDATE armes_attribuees
+        SET personnage = NULL
+        WHERE personnage = p_perso;
     END IF ;
-
+    
+    INSERT INTO artefacts_attribues (`type`, `set`, lvl, statP, ssStatP1, ssStatP2,  ssStatP3, ssStatP4, personnage)
+    VALUES(p_art, p_set, p_lvl, p_statP, p_ss1, p_ss2,  p_ss3, p_ss4, p_perso);
 END #
 
 DELIMITER ;
