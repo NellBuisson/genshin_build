@@ -726,7 +726,18 @@ BEGIN
             SIGNAL SQLSTATE "45000"
             SET MESSAGE_TEXT = "Ce n'est pas le bon type d'arme pour ce personnage.";
         END IF ;
-    
+
+        -- vérifie que le personnage n'a qu'une arme attibuée
+
+        SET @Autre = NULL;
+        SELECT id INTO @Autre FROM armes_attribuees
+            WHERE personnage = NEW.personnage;
+        
+        IF(@Autre != "") THEN
+            UPDATE armes_attribuees
+            SET personnage = NULL
+            WHERE id = @Autre;
+        END IF ;
     END IF ;
 END #
 DELIMITER ;
