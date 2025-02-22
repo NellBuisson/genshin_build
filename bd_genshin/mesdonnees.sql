@@ -26,7 +26,7 @@ SET debloque = TRUE
 WHERE region = "Natlan";
 
 -- actualisation de la possession des personnages et leurs niveau
-
+ 
 CALL `modifierPersonnage`("Kinich", 0, 90, 4, 6, 6);
 CALL `modifierPersonnage`("Neuvillette", 0, 90, 5, 8, 7);
 CALL `modifierPersonnage`("Lyney", 0, 90, 6, 7, 8);
@@ -127,7 +127,7 @@ CALL `attribuerArme`("Barbara", "Malice", 90, 4);
 CALL `attribuerArme`("Qiqi", "Épée de Favonius", 90, 2);
 CALL `attribuerArme`("Chongyun", "« Méga épée magique du suzerain ultime »", 90, 5);
 CALL `attribuerArme`("Ningguang", "Contes de Dodoco", 90, 5);
-CALL `attribuerArme`("Citlali", "Écho de la grue", 40, 1);
+CALL `attribuerArme`("Citlali", "Écho de la grue", 50, 1);
 CALL `attribuerArme`("Nahida", "Mémoires de rituels", 90, 5);
 CALL `attribuerArme`("Aloy", "Dernière corde", 60, 1);
 CALL `attribuerArme`("Yae", "Mouvement vagabond", 1, 2);
@@ -160,13 +160,30 @@ CALL `attribuerArme`("Heizou", "Mouvement vagabond", 1, 1);
 CALL `attribuerArme`("Sara", "Arc rituel", 20, 1);
 CALL `attribuerArme`("Sayu", "Espadon rituel", 90, 3);
 CALL `attribuerArme`("Thomas", "Lance en croix de Kitain", 1, 1);
-CALL `attribuerArme`("Diona", "Arc de chasse de Favonius", 40, 1);
+CALL `attribuerArme`("Diona", "Arc rituel", 20, 5);
 
 -- attribution des artefacts
 
-
-
-
+CALL `attribuerArtefact`("Kinich", "Fleur", "Codex d'obsidienne", 20, NULL, "ATQ", "Taux Crit", "DGT Crit", "PV%");
+CALL `attribuerArtefact`("Kinich", "Plume", "Codex d'obsidienne", 20, NULL, "DEF", "DGT Crit", "ATQ%", "PV", NULL);
+CALL `attribuerArtefact`("Kinich", "Sablier", "Codex d'obsidienne", 20, "ATQ%", "ATQ", "PV", "ME", "Taux Crit");
+CALL `attribuerArtefact`("Kinich", "Coupe", "Bande vagabonde", 20, "DGT Dendro", "DGT Crit", "DEF", "ATQ", "PV");
+CALL `attribuerArtefact`("Kinich", "Couronne", "Codex d'obsidienne", 20, "DGT Crit", "DEF%", "DEF", "Taux Crit", "PV");
+CALL `attribuerArtefact`("Citlali", "Fleur", "Parchemin du héros de la Cité de braise", 16, NULL, "ATQ", "ME", "DEF", "Taux Crit");
+CALL `attribuerArtefact`("Citlali", "Plume", "Parchemin du héros de la Cité de braise", 20, NULL, "RE%", "ME", "PV", NULL);
+CALL `attribuerArtefact`("Citlali", "Sablier", "Parchemin du héros de la Cité de braise", 20, "ME", "PV", "Taux Crit", "ATQ%", "DEF");
+CALL `attribuerArtefact`("Citlali", "Coupe", "Sorcière des flammes ardentes", 20, "ME", "PV", "DEF%", "DEF", "ATQ%");
+CALL `attribuerArtefact`("Citlali", "Couronne", "Parchemin du héros de la Cité de braise", 16, "Taux Crit", "DEF", "RE%", "PV%", "ME");
+CALL `attribuerArtefact`("", "Fleur", "", , "", "", "", NULL, NULL);
+CALL `attribuerArtefact`("", "Plume", "", , "", "", "", NULL, NULL);
+CALL `attribuerArtefact`("", "Sablier", "", , "", "", "", NULL, NULL);
+CALL `attribuerArtefact`("", "Coupe", "", , "", "", "", NULL, NULL);
+CALL `attribuerArtefact`("", "Couronne", "", , "", "", "", NULL, NULL);
+CALL `attribuerArtefact`("", "Fleur", "", , "", "", "", NULL, NULL);
+CALL `attribuerArtefact`("", "Plume", "", , "", "", "", NULL, NULL);
+CALL `attribuerArtefact`("", "Sablier", "", , "", "", "", NULL, NULL);
+CALL `attribuerArtefact`("", "Coupe", "", , "", "", "", NULL, NULL);
+CALL `attribuerArtefact`("", "Couronne", "", , "", "", "", NULL, NULL);
 
 
 -----------------------------------------------
@@ -181,5 +198,118 @@ CALL `AugApt`("Voyageur pyro", "basique", 4);
 CALL `AugApt`("Voyageur pyro", "ult", 8);
 CALL `modifierPersonnage`("Jean", NULL, NULL, 3, 7, 7);
 CALL `AugApt`("Venti", "element", 6);
-CALL `modifierPersonnage`("Kaeya", NULL, NULL, 3, 7, 5);
-CALL `modifierPersonnage`("Kachina", NULL, NULL, 4, 5, 5);
+CALL `modifierPersonnage`("Kaeya", NULL, NULL, 3, 7, 7);
+CALL `modifierPersonnage`("Kachina", NULL, NULL, 4, 6, 6);
+CALL `augArme`("Lyney", 90, NULL);
+CALL `augArme`("Tartaglia", 90, NULL);
+CALL `augArme`("Kachina", 90, 2);
+CALL `augArme`("Ayato", NULL, 2);
+CALL `augArme`("Keqing", NULL, 5);
+CALL `augArme`("Yae", NULL, 3);
+CALL `augArme`("Sucrose", NULL, 5);
+CALL `modifierPersonnage`("Alhaitham", NULL, NULL, 5, 7, 6);
+CALL `AugApt`("Mona", "element", 3);
+CALL `augArme`("Ororon", 60, NULL);
+CALL `AugApt`("Neuvillette", "normal", 6);
+CALL `augArme`("Qiqi", NULL, 5);
+CALL `AugNiveau`("Arlecchino", 40);
+CALL `AugNiveau`("Citlali", 80);
+UPDATE armes_attribuees
+SET personnage = "Arlecchino"
+WHERE personnage = "Xiao";
+CALL `attribuerArme`("Xiao", "Lance de jade ailée", 40, 1);
+CALL `AugConstellation`("Jean", 2);
+CALL `AugConstellation`("Chevreuse", 6);
+CALL `AugConstellation`("Xingqiu", 6);
+CALL `AugConstellation`("Rosalia", 6);
+CALL `AugConstellation`("Diona", 5);
+CALL `attribuerArme`("Diona", "Arc rituel", 20, 5);
+CALL `modifierPersonnage`("Citlali", 0, 90, NULL, 4, 4);
+CALL `augArme`("Citlali", 40, NULL);
+CALL `AugNiveau`("Razor", 65);
+CALL `augArme`("Barbara", NULL, 5);
+CALL `augArme`("Xiao", 90, NULL);
+UPDATE armes_attribuees
+set personnage = NULL
+where personnage = "Xingqiu";
+CALL `attribuerArme`("Xingqiu", "Épée rituelle", 60, 5);
+CALL `augArme`("Xingqiu", 70, NULL);
+CALL `modifierPersonnage`("Rosalia", NULL, NULL, NULL, 8, 8);
+CALL `modifierPersonnage`("Kaeya", NULL, NULL, NULL, 8, 7);
+CALL `augArme`("Rosalia", 90, NULL);
+CALL `AugConstellation`("Gorou", 4);
+CALL `AugApt`("Neuvillette", "ult", 8);
+CALL `modifierPersonnage`("Arlecchino", NULL, 80, 6, 7, 7);
+CALL `AugConstellation`("Amber", 2);
+CALL `modifierPersonnage`("Kaeya", NULL, NULL, 7, 11, 11);
+CALL `AugApt`("Tartaglia", "ult", 8);
+CALL `augArme`("Kinich", NULL, 3);
+
+
+select rang, arme
+from meilleures_armes
+where personnage = "xingqiu";
+
+select personnage, rang
+from meilleures_armes
+where arme like "%arc d'exorcisme%";
+
+select *
+from armes_attribuees
+where personnage = "xingqiu";
+
+select type_arme, count(*)
+from personnages
+where possedee = true and niveau = 90
+group by type_arme;
+
+select personnage
+from materiaux_personnages mat
+inner join drop_donjons dro on mat.materiel = dro.materiel
+inner join personnages on personnage = prenom
+where (jour = "lundi" or jour2 = "lundi") and personnages.niveau = 90
+group by personnage;
+
+select prenom
+from materiaux_armes mat
+inner join drop_donjons dro on mat.materiel = dro.materiel
+inner join armes_attribuees armes on mat.arme = armes.nom
+inner join personnages on personnage = prenom
+where jour = "samedi" or jour2 = "samedi" and armes.lvl != 90
+group by personnage;
+
+select region
+from donjons d
+inner join sets on donjon = d.nom
+where sets.nom = "Fragment d'harmonie divergente";
+
+select personnage, min(rang)
+from meilleurs_sets
+where `set` like "%rideau du gladiateur%"
+GROUP BY personnage
+order by rang;
+
+select personnage, min(rang)
+from meilleures_armes
+where arme like "%épée du faucon%"
+GROUP BY personnage;
+select * 
+from meilleures_armes
+where personnage = "qiqi";
+
+select prenom
+from personnages
+inner join materiaux_personnages on prenom = personnage
+where materiel like "%fougère%" and personnages.niveau = 90
+group by prenom;
+
+select personnage, rang, arme
+from meilleures_armes
+where arme like "%Narz%";
+
+--problème au niveau du changement d'arme avec attribuerArme
+
+select personnage
+from meilleurs_sets
+where rang = 1 and `set` like "%échos d'une offrande%"
+group by personnage;

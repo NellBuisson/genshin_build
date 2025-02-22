@@ -1545,9 +1545,19 @@ BEGIN
         SET personnage = NULL
         WHERE personnage = p_perso;
     END IF ;
+
+    IF(p_statP = NULL AND p_art = "Fleur") THEN 
+        INSERT INTO artefacts_attribues (`type`, `set`, lvl, statP, ssStatP1, ssStatP2,  ssStatP3, ssStatP4, personnage)
+        VALUES(p_art, p_set, p_lvl, "PV", p_ss1, p_ss2,  p_ss3, p_ss4, p_perso);
+
+    ELSEIF(p_statP = NULL AND p_art = "Plume") THEN 
+        INSERT INTO artefacts_attribues (`type`, `set`, lvl, statP, ssStatP1, ssStatP2,  ssStatP3, ssStatP4, personnage)
+        VALUES(p_art, p_set, p_lvl, "ATQ", p_ss1, p_ss2,  p_ss3, p_ss4, p_perso);
+    ELSE
+        INSERT INTO artefacts_attribues (`type`, `set`, lvl, statP, ssStatP1, ssStatP2,  ssStatP3, ssStatP4, personnage)
+        VALUES(p_art, p_set, p_lvl, p_statP, p_ss1, p_ss2,  p_ss3, p_ss4, p_perso);
+    END IF ;
     
-    INSERT INTO artefacts_attribues (`type`, `set`, lvl, statP, ssStatP1, ssStatP2,  ssStatP3, ssStatP4, personnage)
-    VALUES(p_art, p_set, p_lvl, p_statP, p_ss1, p_ss2,  p_ss3, p_ss4, p_perso);
 END #
 
 DELIMITER ;
