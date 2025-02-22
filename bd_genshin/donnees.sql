@@ -926,7 +926,7 @@ VALUES("Pierre angulaire des étoiles et des flammes", NULL),
 ("Pourprinfleur fanée", NULL),
 ("Talisman d'une terre mystérieuse", NULL),
 ("Corne érodée", NULL),
-("Royon érodé", NULL),
+("Rayon érodé", NULL),
 ("Plume érodée", NULL),
 ("Champicorne brillant", NULL),
 ("Jade cristallin", NULL);
@@ -1088,6 +1088,10 @@ VALUES("Pépinière de cécilias","Tuile cassée de Décabarian", "lundi", "jeud
 ("Registre de stèle", "Corne érodée", NULL, NULL),
 ("Registre de stèle", "Rayon érodé", NULL, NULL),
 ("Registre de stèle", "Plume érodée", NULL, NULL);
+
+select *
+from materiaux
+where nom like "%érodée";
 
 
 call `elevationArme`("Épée du faucon", "Tuile cassée de Décabarian", "Corne lourde", "Pointe de flèche usée");
@@ -1293,7 +1297,7 @@ call `elevationArme`("Pointe de fer", "Entraves du Chevalier du Croc de Lion", "
 call `elevationArme`("Lance du débutant", "Entraves du Chevalier du Croc de Lion", "Dispositif du chaos", "Parchemin divinatoire");
 call `elevationArme`("Mille soleils brûlants", "Terreur du cœur sacrificiel flamboyant", "Axe de la source secrète", "Croc juvénile");
 call `elevationArme`("Veillée d'appel d'étoiles", "Décadence délirante du seigneur sacré", "Fragment de volonté brisée", "Sifflet en bois de sentinelle");
-
+call `elevationArme`("Tamayuratei no Ohanashi", "Masque du lieutenant pernicieux", "Bourgeon réfractif", "Garde-main ancien");
 
 
 
@@ -1981,8 +1985,19 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Uraku Misugiri", 1, NULL),
 ("Voyageur pyro", "Support", 1, "Serment de la liberté", 1, NULL),
 ("Voyageur pyro", "Support", 2, "Chanson de patrouille de sommet", 1, "doit être build full DEF"),
 ("Voyageur pyro", "Support", 3, "Lame d'aubier", 1, NULL),
-("Voyageur pyro", "Support", 4, "Épée de Favonius", 1, NULL);
-
+("Voyageur pyro", "Support", 4, "Épée de Favonius", 1, NULL),
+("Yan", "Support shielder", 1, "Atlas de la Voûte d'Azur", 1, NULL),
+("Yan", "Support shielder", 2, "Veillée d'appel d'étoiles", 1, NULL),
+("Yan", "Support shielder", 3, "Chaînes mortelles", 1, NULL),
+("Yan", "Support shielder", 4, "Histoire des chasseurs de dragon", 5, "si jouée avec des MDPS basés sur l'ATQ"),
+("Yan", "Support shielder", 5, "Oeil d'assermentation", 5, NULL),
+("Yan", "Support shielder", 6, "Pureté fluide", 1, NULL),
+("Mizuki", "Support Anémo", 1, "Matinée flânée sous le soleil", 1, NULL),
+("Mizuki", "Support Anémo", 2, "Anneau des Hakushin", 1, "Si compo électro"),
+("Mizuki", "Support Anémo", 3, "Mille rêves flottants", 1, NULL),
+("Mizuki", "Support Anémo", 4, "Code de Favonius", 1, NULL),
+("Mizuki", "Support Anémo", 5, "Mémoires de rituels", 1, NULL),
+("Mizuki", "Support Anémo", 6, "Étoile du soir errante", 1, NULL);
 
 insert into meilleurs_artefacts
 VALUES("Albedo", "Batterie / Sub-DPS", 1, "Sablier", "DEF%", NULL),
@@ -2491,8 +2506,14 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Sablier", "DEF%", NULL),
 ("Voyageur pyro", "Support", 1, "Coupe", "DGT Pyro", NULL),
 ("Voyageur pyro", "Support", 2, "Coupe", "DEF%", "si Chanson de patrouille de sommet"),
 ("Voyageur pyro", "Support", 1, "Couronne", "Taux Crit / DGT Crit", NULL),
-("Voyageur pyro", "Support", 2, "Couronne", "DEF%", "si Chanson de patrouille de sommet");
-
+("Voyageur pyro", "Support", 2, "Couronne", "DEF%", "si Chanson de patrouille de sommet"),
+("Yan", "Support Shielder", 1, "Sablier", "ATQ%", NULL),
+("Yan", "Support Shielder", 1, "Coupe", "ATQ%", NULL),
+("Yan", "Support Shielder", 1, "Couronne", "ATQ%", NULL),
+("Mizuki", "Support Anémo", 1, "Sablier", "RE", NULL),
+("Mizuki", "Support Anémo", 2, "Sablier", "ME", NULL),
+("Mizuki", "Support Anémo", 1, "Coupe", "ME", NULL),
+("Mizuki", "Support Anémo", 1, "Couronne", "ME", NULL);
 
 
 insert into meilleurs_sets
@@ -3033,8 +3054,10 @@ VALUES("Albedo", "Batterie / Sub-DPS", 1, "Troupe dorée", 4, NULL),
 ("Voyageur hydro", "Support / Enabler", 4, "Bande vagabonde", 2, NULL),
 ("Voyageur pyro", "Support", 1, "Parchemin du héros de la Cité de braise", 4, "si unique porteur dans l'équipe"),
 ("Voyageur pyro", "Support", 2, "Ténacité du Millelithe", 4, NULL),
-("Voyageur pyro", "Support", 3, "Ancien rituel royal", 4, NULL);
-
+("Voyageur pyro", "Support", 3, "Ancien rituel royal", 4, NULL),
+("Yan", "Support Shielder", 1, "Ombre de la Verte Chasseuse", 4, NULL),
+("Yan", "Support Shielder", 2, "Ancien rituel royal", 4, "Si compo triple anémo"),
+("Mizuki", "Support Anémo", 1, "Ombre de la Verte Chasseuse", 4, NULL);
 
 
 CALL `dropMonstre`("Blob", "Bave de Blob");
@@ -3245,6 +3268,7 @@ CALL `AjoutmateriauxPersonnages`("Lynette", "Éclat de turquoise vayuda", "Engre
 CALL `AjoutmateriauxPersonnages`("Lyney", "Éclat d'agate agnidus", "Résolution de l'empereur", "Insigne de nouvelle recrue", "Rose arc-en-ciel", "Enseignement de l'Équité", "Floraison première de l'oasis");
 CALL `AjoutmateriauxPersonnages`("Mavuika", "Éclat d'agate agnidus", "Noyau source aux motifs dorés secrets", "Sifflet en bois de sentinelle", "Pourprinfleur fanée", "Enseignement de la Compétition", "Corne érodée");
 CALL `AjoutmateriauxPersonnages`("Mika", "Éclat de jade shivada", "Pseudo-étamines", "Insigne de nouvelle recrue", "Baie à crochet", "Enseignement de la Poésie", "Miroir de mushin");
+CALL `AjoutmateriauxPersonnages`("Mizuki", "Éclat de turquoise vayuda", "Talisman d'une terre mystérieuse", "Garde-main ancien", "Ganoderma marin", "Enseignement de l'Éphémère", "Bougie vacillante");
 CALL `AjoutmateriauxPersonnages`("Mona", "Éclat de lazurite varunada", "Coeur d'eau pure", "Nectar de Fleur mensongère", "Champignon anémophile", "Enseignement de la Résistance", "Vertèbre de Borée");
 CALL `AjoutmateriauxPersonnages`("Mualani", "Éclat de lazurite varunada", "Marque de bénédiction liante", "Sifflet en bois de sentinelle", "Branchie mousseplume", "Enseignement de la Compétition", "Masse sans lumière");
 CALL `AjoutmateriauxPersonnages`("Nahida", "Éclat d'émeraude nagadus", "Liane d'oblitération", "Spores de Fongus", "Kalpalotus", "Enseignement de l'Ingénuité", "Fils de marionnette");
@@ -3278,6 +3302,7 @@ CALL `AjoutmateriauxPersonnages`("Xilonen", "Éclat de topaze prithiva", "Noyau 
 CALL `AjoutmateriauxPersonnages`("Xingqiu", "Éclat de lazurite varunada", "Coeur d'eau pure", "Masque endommagé", "Fleur de soie", "Enseignement de l'Or", "Queue de Borée");
 CALL `AjoutmateriauxPersonnages`("Xinyan", "Éclat d'agate agnidus", "Graine de feu", "Insigne du Pilleur", "Muguet bleu", "Enseignement de l'Or", "Corne de Monoceros Caeli");
 CALL `AjoutmateriauxPersonnages`("Yae", "Éclat d'améthyste vajrada", "Fausse nageoire de l'héritier du dragon", "Garde-main ancien", "Ganoderma marin", "Enseignement de la Lumière", "Signification d'une éternité");
+CALL `AjoutmateriauxPersonnages`("Yan", "Éclat de turquoise vayuda", "Noyau source aux motifs dorés secrets", "Nectar de Fleur mensongère", "Jade cristallin", "Enseignement de la Diligence", "Rayon érodé");
 CALL `AjoutmateriauxPersonnages`("Yanfei", "Éclat d'agate agnidus", "Jade juvénile", "Insigne du Pilleur", "Jade noctiluque", "Enseignement de l'Or", "Branche de jade cramoisi");
 CALL `AjoutmateriauxPersonnages`("Yaoyao", "Éclat d'émeraude nagadus", "Liane d'oblitération", "Bave de Blob", "Piment de Jueyun", "Enseignement de la Diligence", "Cloche de daka");
 CALL `AjoutmateriauxPersonnages`("Yelan", "Éclat de lazurite varunada", "Croc runique", "Insigne du Pilleur", "Conque d'étoile", "Enseignement de la Prospérité", "Écaille dorée");
@@ -3285,7 +3310,6 @@ CALL `AjoutmateriauxPersonnages`("Yoimiya", "Éclat d'agate agnidus", "Perle br�
 CALL `AjoutmateriauxPersonnages`("Jin", "Éclat de topaze prithiva", "Régalia de faille", "Masque endommagé", "Lys verni", "Enseignement de la Diligence", "Coeur de cendre");
 CALL `AjoutmateriauxPersonnages`("Zhongli", "Éclat de topaze prithiva", "Pilier de basalte", "Bave de Blob", "Coeur de lapis", "Enseignement de l'Or", "Corne de Monoceros Caeli");
 CALL `AjoutmateriauxPersonnages`("Voyageur", "Diamant scintillant", "", "Masque endommagé", "Chrysanthème à aubes", "", "");
-
 -- ajout des matériaux personnages des différents types de voyaugeur parce que évidemmment ça ne pouvait pas être simple.
 CALL `AjoutMateriauxAptVoyageur`("Voyageur pyro", "Sifflet en bois de sentinelle", "Enseignement de la Compétition", "Enseignement du petit bois", "Enseignement du Conflit", "Pierre angulaire des étoiles et des flammes");
 CALL `AjoutMateriauxAptVoyageur`("Voyageur anémo", "Parchemin divinatoire", "Enseignement de la Liberté", "Enseignement de la Résistance", "Enseignement de la Poésie", "Souffle de Stormterror");
