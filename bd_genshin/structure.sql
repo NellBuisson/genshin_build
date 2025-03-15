@@ -716,13 +716,10 @@ BEGIN
     IF(NEW.personnage IS NOT NULL) THEN
             SIGNAL SQLSTATE "45000"
             SET MESSAGE_TEXT = "A l'insertion, l'arme ne peut pas avoir de personnages attribués";
-        END IF ;
 
     END IF ;
 END #
 DELIMITER ;
-
-drop PROCEDURE augArme;
 
 
 DELIMITER #
@@ -760,6 +757,21 @@ END #
 DELIMITER ;
 
 -- trigger pour artefacts attribues 
+DELIMITER #
+
+CREATE OR REPLACE TRIGGER before_insert_artefacts_attribuees
+BEFORE INSERT
+ON artefacts_attribues
+FOR EACH ROW
+BEGIN
+    -- interdire l'insertion d'une arme avec un personnage déjà attribué
+    IF(NEW.personnage IS NOT NULL) THEN
+            SIGNAL SQLSTATE "45000"
+            SET MESSAGE_TEXT = "A l'insertion, l'arme ne peut pas avoir de personnages attribués";
+
+    END IF ;
+END #
+DELIMITER ;
 -----------------------------------------------
 ------------------ Fonction -------------------
 -----------------------------------------------
