@@ -1514,7 +1514,7 @@ BEGIN
 
     SELECT min(`id`) INTO @exist 
     FROM armes_attribuees
-    WHERE nom = p_nom and lvl = p_lvl and raffinage = p_raffinage;
+    WHERE nom = p_nom and lvl = p_lvl and raffinage = p_raffinage and personnage is NULL;
 
     IF(@exist != NULL) THEN
         UPDATE armes_attribuees
@@ -1527,6 +1527,36 @@ END #
 
 DELIMITER ;
 
+-- échanger l'arme de deux persos
+
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE echangerArme(p_perso1 VARCHAR(20), p_perso2 VARCHAR(20))
+BEGIN
+
+    SET @id1 = NULL;
+    SET @id2 = NULL;
+
+    select `id` into @id1 
+    from armes_attribuees
+    where personnage = p_perso1;
+
+    select `id` into @id2
+    from armes_attribuees
+    where personnage = p_perso2;
+
+    UPDATE armes_attribuees
+    SET personnage = p_perso1
+    WHERE `id` = @id2;
+
+    UPDATE armes_attribuees
+    SET personnage = p_perso2
+    WHERE `id` = @id1;
+
+
+END #
+
+DELIMITER ;
 
 
 
