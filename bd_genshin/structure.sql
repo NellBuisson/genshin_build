@@ -712,35 +712,18 @@ BEFORE INSERT
 ON armes_attribuees
 FOR EACH ROW
 BEGIN
-    -- vérifier que le type d'arme de l'arme et celui du personnage corresponde.
+    -- interdire l'insertion d'une arme avec un personnage déjà attribué
     IF(NEW.personnage IS NOT NULL) THEN
-        SET @typePerso = NULL;
-        SELECT type_arme INTO @typePerso FROM personnages
-            WHERE prenom = NEW.personnage;
-        
-        SET @typeArme = NULL;
-        SELECT type_arme INTO @typeArme FROM armes
-            WHERE nom = NEW.nom;
-        
-        IF(@typePerso != @TypeArme) THEN
             SIGNAL SQLSTATE "45000"
-            SET MESSAGE_TEXT = "Ce n'est pas le bon type d'arme pour ce personnage.";
+            SET MESSAGE_TEXT = "A l'insertion, l'arme ne peut pas avoir de personnages attribués";
         END IF ;
 
-        -- vérifie que le personnage n'a qu'une arme attibuée
-
-        SET @Autre = NULL;
-        SELECT id INTO @Autre FROM armes_attribuees
-            WHERE personnage = NEW.personnage;
-        
-        IF(@Autre != "") THEN
-            UPDATE armes_attribuees
-            SET personnage = NULL
-            WHERE id = @Autre;
-        END IF ;
     END IF ;
 END #
 DELIMITER ;
+
+drop PROCEDURE augArme;
+
 
 DELIMITER #
 
@@ -1501,18 +1484,14 @@ DELIMITER ;
 -- insérer une nouvelle arme attribuée (besoin d'améliorer pour gérer les changements d'arme ou une attribution d'une arme déjà existante)
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE attribuerArme(p_perso VARCHAR(20), p_arme VARCHAR(50), p_lvl INT, p_raffinage INT)
-BEGIN
-    INSERT INTO armes_attribuees (personnage, nom, lvl, raffinage)
-    VALUES(p_perso, p_arme, p_lvl, p_raffinage);
-END #
+
 DELIMITER ;
 
--- augmenter une arme 
+-- augmenter une arme d'un personnage
 
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE augArme(p_perso VARCHAR(20), p_lvl INT, p_raffinage INT)
+CREATE OR REPLACE PROCEDURE augArmePerso(p_perso VARCHAR(20), p_lvl INT, p_raffinage INT)
 BEGIN 
     IF(p_raffinage IS NULL OR p_raffinage = 1) THEN
         UPDATE armes_attribuees
@@ -1562,4 +1541,4 @@ END #
 
 DELIMITER ;
 
-set foreign_key_checks = 1;
+set foreign_key_checks = 1; 

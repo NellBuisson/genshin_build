@@ -96,94 +96,6 @@ CALL `modifierPersonnage`("Diona", 4, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Voyageur pyro", 0, 90, 3, 8, 7);
 
 -- attribution des armes aux personnages
-CALL `attribuerArme`("Kinich","Trembleur de terre", 90, 2);
-CALL `attribuerArme`("Neuvillette", "Tome du flux éternel", 90, 1);
-CALL `attribuerArme`("Lyney", "Simulacre d'eau", 80, 1);
-CALL `attribuerArme`("Alhaitham", "Pluie florale", 90, 2);
-CALL `attribuerArme`("Nomade", "Mémoire de Tulaytullah", 90, 1);
-CALL `attribuerArme`("Raiden", "Lumière du faucheur", 90, 1);
-CALL `attribuerArme`("Eula", "Tombe-neige en argétoile", 90, 4);
-CALL `attribuerArme`("Kazuha", "Piqûre de fer", 90, 5);
-CALL `attribuerArme`("Tao", "Fléau du dragon", 90, 1);
-CALL `attribuerArme`("Mona", "Mouvement vagabond", 60, 5);
-CALL `attribuerArme`("Tartaglia", "Arc rouillé", 80, 4);
-CALL `attribuerArme`("Zhongli", "Pampille noire", 90, 3);
-CALL `attribuerArme`("Xiao", "Scion de la victoire", 90, 1);
-CALL `attribuerArme`("Venti", "Dernière corde", 90, 5);
-CALL `attribuerArme`("Diluc", "Mort-du-loup", 90, 1);
-CALL `attribuerArme`("Voyageur", "Lame d'aubier", 90, 1);
-CALL `attribuerArme`("Jean", "Passeur du Fleuve cendré", 90, 5);
-CALL `attribuerArme`("Ayaka", "Lune ondulante de Futsu", 90, 1);
-CALL `attribuerArme`("Kachina", "Trace d'arc-en-ciel", 50, 1);
-CALL `attribuerArme`("Fréminet", "Ombre tidale", 90, 1);
-CALL `attribuerArme`("Yanfei", "L'origine des Quatre Vents", 90, 2);
-CALL `attribuerArme`("Rosalia", "Lance de Favonius", 80, 5);
-CALL `attribuerArme`("Noëlle", "Ombre immaculée", 90, 1);
-CALL `attribuerArme`("Bennett", "Épée de Favonius", 90, 1);
-CALL `attribuerArme`("Fischl", "Ailes de la Voûte d'Azur", 90, 1);
-CALL `attribuerArme`("Beidou", "Espadon", 90, 1);
-CALL `attribuerArme`("Kaeya", "Rugissement du Lion", 90, 5);
-CALL `attribuerArme`("Barbara", "Malice", 90, 4);
-CALL `attribuerArme`("Qiqi", "Épée de Favonius", 90, 2);
-CALL `attribuerArme`("Chongyun", "« Méga épée magique du suzerain ultime »", 90, 5);
-CALL `attribuerArme`("Ningguang", "Contes de Dodoco", 90, 5);
-CALL `attribuerArme`("Citlali", "Écho de la grue", 50, 1);
-CALL `attribuerArme`("Nahida", "Mémoires de rituels", 90, 5);
-CALL `attribuerArme`("Aloy", "Dernière corde", 60, 1);
-CALL `attribuerArme`("Yae", "Mouvement vagabond", 1, 2);
-CALL `attribuerArme`("Keqing", "Flûte", 70, 1);
-CALL `attribuerArme`("Gaming", "Fluorescence", 1, 1);
-CALL `attribuerArme`("Gorou", "Arc de chasse de Favonius", 50, 4);
-CALL `attribuerArme`("Xinyan", "Épée-horloge", 1, 1);
-CALL `attribuerArme`("Sucrose", "Mémoires de rituels", 1, 1);
-CALL `attribuerArme`("Xingqiu", "Couteau à filets", 20, 5);
-CALL `attribuerArme`("Xiangling", "Fléau du dragon", 40, 1);
-CALL `attribuerArme`("Amber", "Arc courbé", 40, 2);
-CALL `attribuerArme`("Razor", "Ombre immaculée", 1, 1);
-CALL `attribuerArme`("Lisa", "Histoire des chasseurs de dragon", 1, 5);
-CALL `attribuerArme`("Lynette", "Épée de Favonius", 50, 1);
-CALL `attribuerArme`("Cyno", "Lance en croix de Kitain", 1, 1);
-CALL `attribuerArme`("Tighnari", "Lune paisible", 20, 1);
-CALL `attribuerArme`("Ayato", "Lame kageuchi d'Amenoma", 1, 1);
-CALL `attribuerArme`("Ororon", "Arc de chasse de Favonius", 1, 1);
-CALL `attribuerArme`("Sethos", "Lance-pierres", 1, 1);
-CALL `attribuerArme`("Chevreuse", "Lance de Favonius", 90, 1);
-CALL `attribuerArme`("Kaveh", "Fleur de mailles", 1, 4);
-CALL `attribuerArme`("Yaoyao", "Fléau du dragon", 1, 1);
-CALL `attribuerArme`("Faruzan", "Arc de chasse de Favonius", 1, 1);
-CALL `attribuerArme`("Layla", "Kagotsurube Isshin", 90, 1);
-CALL `attribuerArme`("Candace", "Lance Dosdragon", 90, 1);
-CALL `attribuerArme`("Collei", "Arc de chasse de Favonius", 1, 1);
-CALL `attribuerArme`("Jin", "Lance de Favonius", 1, 1);
-CALL `attribuerArme`("Kirara", "Épée de Favonius", 60, 1);
-CALL `attribuerArme`("Heizou", "Mouvement vagabond", 1, 1);
-CALL `attribuerArme`("Sara", "Arc rituel", 20, 1);
-CALL `attribuerArme`("Sayu", "Espadon rituel", 90, 3);
-CALL `attribuerArme`("Thomas", "Lance en croix de Kitain", 1, 1);
-CALL `attribuerArme`("Diona", "Arc rituel", 20, 5);
-
--- attribution des artefacts
-
-CALL `attribuerArtefact`("Kinich", "Fleur", "Codex d'obsidienne", 20, "PV", "ATQ", "Taux Crit", "DGT Crit", "PV%");
-CALL `attribuerArtefact`("Kinich", "Plume", "Codex d'obsidienne", 20, "ATQ", "DEF", "DGT Crit", "ATQ%", "PV");
-CALL `attribuerArtefact`("Kinich", "Sablier", "Codex d'obsidienne", 20, "ATQ%", "ATQ", "PV", "ME", "Taux Crit");
-CALL `attribuerArtefact`("Kinich", "Coupe", "Bande vagabonde", 20, "DGT Dendro", "DGT Crit", "DEF", "ATQ", "PV");
-CALL `attribuerArtefact`("Kinich", "Couronne", "Codex d'obsidienne", 20, "DGT Crit", "DEF%", "DEF", "Taux Crit", "PV");
-CALL `attribuerArtefact`("Citlali", "Fleur", "Parchemin du héros de la Cité de braise", 20, NULL, "ATQ", "ME", "DEF", "Taux Crit");
-CALL `attribuerArtefact`("Citlali", "Plume", "Parchemin du héros de la Cité de braise", 20, NULL, "RE", "ME", "PV", "Taux Crit");
-CALL `attribuerArtefact`("Citlali", "Sablier", "Parchemin du héros de la Cité de braise", 20, "ME", "PV", "Taux Crit", "ATQ%", "DEF");
-CALL `attribuerArtefact`("Citlali", "Coupe", "Briseur de glace", 20, "ME", "DGT Crit", "Taux Crit", "ATQ%", "RE");
-CALL `attribuerArtefact`("Citlali", "Couronne", "Parchemin du héros de la Cité de braise", 20, "Taux Crit", "DEF", "RE%", "PV%", "ME");
-CALL `attribuerArtefact`("", "Fleur", "", , "", "", "", NULL, NULL);
-CALL `attribuerArtefact`("", "Plume", "", , "", "", "", NULL, NULL);
-CALL `attribuerArtefact`("", "Sablier", "", , "", "", "", NULL, NULL);
-CALL `attribuerArtefact`("", "Coupe", "", , "", "", "", NULL, NULL);
-CALL `attribuerArtefact`("", "Couronne", "", , "", "", "", NULL, NULL);
-CALL `attribuerArtefact`("", "Fleur", "", , "", "", "", NULL, NULL);
-CALL `attribuerArtefact`("", "Plume", "", , "", "", "", NULL, NULL);
-CALL `attribuerArtefact`("", "Sablier", "", , "", "", "", NULL, NULL);
-CALL `attribuerArtefact`("", "Coupe", "", , "", "", "", NULL, NULL);
-CALL `attribuerArtefact`("", "Couronne", "", , "", "", "", NULL, NULL);
 
 
 -----------------------------------------------
@@ -193,12 +105,20 @@ CALL `attribuerArtefact`("", "Couronne", "", , "", "", "", NULL, NULL);
 -----------------------------------------------
 
 CALL `modifierPersonnage`("Citlali", 0, 90, 6, 6, 6);
-CALL `augArme`("Citlali", 90, 1);
 CALL `AugApt`("Kinich", "élément", 7);
-CALL `augArme`("Kinich", NULL, 4);
 CALL `modifierPersonnage`("Arlecchino", 0, 90, 6, 8, 8);
-
-
+CALL `modifierPersonnage`("Kinich", NULL, NULL, NULL, 8, 7);
 
 --problème au niveau du changement d'arme avec attribuerArme
+
+select personnage
+from materiaux_personnages
+where materiel like "%griffe de stormterror%"
+group by personnage;
+
+select art.personnage, rang, artefact, stat
+from meilleurs_sets s
+inner join meilleurs_artefacts art on s.personnage = art.personnage
+where `set` like "%emblème du destin brisé%" and artefact = "couronne"
+group by personnage;
 
