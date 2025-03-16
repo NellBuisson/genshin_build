@@ -1582,34 +1582,12 @@ BEGIN
 END #
 DELIMITER ;
 
+-- créer un nouvel artefact
 
-
-
-
-
-
-
-
-
-
-
-
--- insérer un nouvel artefact (besoin d'améliorer pour gérer les changements d'artefact ou une attribution d'un artefact déjà existante)
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE attribuerArtefact(p_perso VARCHAR(20), p_art VARCHAR(20), p_set VARCHAR(60), p_lvl INT, p_statP VARCHAR(10), p_ss1 VARCHAR(10), p_ss2 VARCHAR(10),  p_ss3 VARCHAR(10), p_ss4 VARCHAR(10))
+CREATE OR REPLACE PROCEDURE creerArtefact(p_art VARCHAR(20), p_set VARCHAR(60), p_lvl INT, p_statP VARCHAR(10), p_ss1 VARCHAR(10), p_ss2 VARCHAR(10),  p_ss3 VARCHAR(10), p_ss4 VARCHAR(10))
 BEGIN 
-    SET @exist = NULL;
-
-    SELECT type INTO @exist FROM artefacts_attribues
-    WHERE personnage = p_perso AND `type` = p_art;
-
-    IF(@exist != NULL) THEN
-        UPDATE armes_attribuees
-        SET personnage = NULL
-        WHERE personnage = p_perso;
-    END IF ;
-
     IF(p_art = "Fleur") THEN 
         INSERT INTO artefacts_attribues (`type`, `set`, lvl, statP, ssStat1, ssStat2,  ssStat3, ssStat4, personnage)
         VALUES(p_art, p_set, p_lvl, "PV", p_ss1, p_ss2, p_ss3, p_ss4, p_perso);
@@ -1621,7 +1599,54 @@ BEGIN
         INSERT INTO artefacts_attribues (`type`, `set`, lvl, statP, ssStat1, ssStat2,  ssStat3, ssStat4, personnage)
         VALUES(p_art, p_set, p_lvl, p_statP, p_ss1, p_ss2,  p_ss3, p_ss4, p_perso);
     END IF ;
+END #
+
+DELIMITER ;
+
+-- attribution d'un artefact à un personnage
+
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE attribuerArtefact(p_perso VARCHAR(20), p_art VARCHAR(20), p_set VARCHAR(60), p_lvl INT, p_statP VARCHAR(10), p_ss1 VARCHAR(10), p_ss2 VARCHAR(10),  p_ss3 VARCHAR(10), p_ss4 VARCHAR(10))
+BEGIN 
+    SET @exist = NULL;
+
+    SELECT min(`id`) INTO @exist 
+    FROM artefacts_attribues
+    WHERE `type` = p_art and `set` = p_set and `statP`= p_statP and `ssStat1`= p_ss1 and `ssStat2`=p_ss2 and `ssStat3`=p_ss3 and `ssStat4`= p_ss4 and personnage is NULL;
+
+    UPDATE artefacts_attribues
+    SET personnage = p_perso
+    WHERE `id` = @exist;
     
+END #
+
+DELIMITER ;
+
+
+-- échanger un artefact entre deux personnages
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE echangerArtefact(p_perso1 VARCHAR(20), p_perso2 VARCHAR(20), p_type VARCHAR(20))
+BEGIN 
+    SET @id1 = NULL;
+    SET @id2 = NULL;
+
+    select `id` into @id1 
+    from artefacts_attribues
+    where personnage = p_perso1 and `type` = p_type;
+
+    select `id` into @id2
+    from artefacts_attribues
+    where personnage = p_perso2 and `type` = p_type;
+
+    UPDATE artefacts_attribues
+    SET personnage = p_perso1
+    WHERE `id` = @id2;
+
+    UPDATE artefacts_attribues
+    SET personnage = p_perso2
+    WHERE `id` = @id1;
 END #
 
 DELIMITER ;
