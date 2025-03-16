@@ -1582,6 +1582,18 @@ BEGIN
 END #
 DELIMITER ;
 
+
+
+
+
+
+
+
+
+
+
+
+
 -- insérer un nouvel artefact (besoin d'améliorer pour gérer les changements d'artefact ou une attribution d'un artefact déjà existante)
 DELIMITER #
 
