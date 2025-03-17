@@ -1496,7 +1496,7 @@ DELIMITER ;
 -- créer une arme qui n'a pas de perso attribuer
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE possedeArme(p_nom VARCHAR(50), p_lvl INT, p_raffinage INT)
+CREATE OR REPLACE PROCEDURE creerArme(p_nom VARCHAR(50), p_lvl INT, p_raffinage INT)
 BEGIN
     INSERT INTO  `armes_attribuees`(nom, lvl, raffinage)
     VALUES(p_nom, p_lvl, p_raffinage);
@@ -1505,6 +1505,7 @@ END #
 
 DELIMITER ;
 
+
 -- attribuer une arme à un personnage
 DELIMITER #
 
@@ -1512,11 +1513,12 @@ CREATE OR REPLACE PROCEDURE attribuerArme(p_perso VARCHAR(20), p_nom VARCHAR(50)
 BEGIN
     SET @exist = NULL;
 
-    SELECT min(`id`) INTO @exist 
+    SELECT `id` INTO @exist 
     FROM armes_attribuees
-    WHERE nom = p_nom and lvl = p_lvl and raffinage = p_raffinage and personnage is NULL;
+    WHERE nom = p_nom and lvl = p_lvl and raffinage = p_raffinage and personnage is NULL
+    GROUP BY nom;
 
-    IF(@exist != NULL) THEN
+    IF(@exist IS NOT NULL) THEN
         UPDATE armes_attribuees
         SET personnage = p_perso
         WHERE `id` = @exist;
