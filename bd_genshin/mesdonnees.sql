@@ -100,8 +100,51 @@ CALL `modifierPersonnage`("Diona", 4, 40, NULL, NULL, NULL);
 CALL `AugNiveau`("Wriothesley", 1);
 
 -- attribution des armes aux personnages
+CALL `creerArme`("Écho de la grue", 90, 1);
+CALL `attribuerArme`("Citlali", "Écho de la grue", 90, 1);
+CALL `creerArme`("Trembleur de terre", 90, 5);
+CALL `attribuerArme`("Kinich", "Trembleur de terre", 90, 5);
+CALL `creerArme`("Semblance de la lune écarlate", 90, 1);
+CALL `attribuerArme`("Arlecchino", "Semblance de la lune écarlate", 90, 1);
+CALL `creerArme`("Tome du flux éternel", 90, 1);
+CALL `attribuerArme`("Neuvillette", "Tome du flux éternel", 90, 1);
+CALL `creerArme`("Simulacre d'eau", 90, 1);
+CALL `attribuerArme`("Lyney", "Simulacre d'eau", 90, 1);
+CALL `creerArme`("Pluie florale", 90, 2);
+CALL `attribuerArme`("Alhaitham", "Pluie florale", 90, 2);
+CALL `creerArme`("Mémoire de Tulaytullah", 90, 1);
+CALL `attribuerArme`("Nomade", "Mémoire de Tulaytullah", 90, 1);
+CALL `creerArme`("Lumière du faucheur", 90, 1);
+CALL `attribuerArme`("Raiden", "Lumière du faucheur", 90, 1);
+CALL `creerArme`("Tombe-neige en argétoile", 90, 4);
+CALL `attribuerArme`("Eula", "Tombe-neige en argétoile", 90, 4);
+CALL `creerArme`("Piqûre de fer", 90, 5);
+CALL `attribuerArme`("Kazuha", "Piqûre de fer", 90, 5);
+CALL `creerArme`("Fléau du dragon", 90, 1);
+CALL `attribuerArme`("Tao", "Fléau du dragon", 90, 1);
+CALL `creerArme`("Mouvement vagabond", 90, 5);
+CALL `attribuerArme`("Mona", "Mouvement vagabond", 90, 5);
+CALL `creerArme`("Arc rouillé", 90, 5);
+CALL `attribuerArme`("Tartaglia", "Arc rouillé", 90, 5);
+CALL `creerArme`("Pampille noire", 90, 5);
+CALL `attribuerArme`("Zhongli", "Pampille noire", 90, 5);
+CALL `creerArme`("Lance de jade ailée", 90, 1);
+CALL `attribuerArme`("Xiao", "Lance de jade ailée", 90, 1);
+CALL `creerArme`("Dernière corde", 90, 5);
+CALL `attribuerArme`("Venti", "Dernière corde", 90, 5);
+CALL `creerArme`("Mort-du-loup", 90, 1);
+CALL `attribuerArme`("Diluc", "Mort-du-loup", 90, 1);
+CALL `creerArme`("Lame d'aubier", 90, 2);
+CALL `attribuerArme`("Voyageuse pyro", "Lame d'aubier", 90, 2);
+CALL `creerArme`();
+CALL `attribuerArme`();
+CALL `creerArme`();
+CALL `attribuerArme`();
 
 
+
+select *
+from armes_attribuees;
 -----------------------------------------------
 -----------------------------------------------
 --- Changement à partir de l'initialisation ---
