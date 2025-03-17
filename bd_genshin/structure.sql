@@ -1584,6 +1584,37 @@ BEGIN
 END #
 DELIMITER ;
 
+-- augmenter le niveauune arme qui n'est pas attribué à un personnage
+DELIMITER #
+
+CREATE OR REPLACE PROCEDURE augArme(p_nom VARCHAR(50), p_lvl_ancien INT, p_lvl_new INT ,p_raffinage_ancien INT, p_raffinage_new INT)
+BEGIN 
+        SET @bon = NULL;
+        SELECT `id` INTO @bon
+        FROM armes_attribuees
+        WHERE nom = p_nom AND lvl = p_lvl_ancien AND raffinage = p_raffinage_ancien 
+        GROUP BY nom;
+
+    IF(p_lvl_new is null) THEN
+
+        UPDATE armes_attribuees
+        SET raffinage = p_raffinage_new
+        WHERE `id` = @bon;
+
+    ELSEIF (p_raffinage_new is null) THEN
+
+        UPDATE armes_attribuees
+        SET lvl = p_lvl_new
+        WHERE `id` = @bon;
+
+    ELSE 
+        UPDATE armes_attribuees
+        SET lvl = p_lvl_new, raffinage = p_raffinage_new
+        WHERE `id` = @bon;
+    END IF;
+
+END #
+DELIMITER ;
 -- créer un nouvel artefact
 
 DELIMITER #
