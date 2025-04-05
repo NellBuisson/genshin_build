@@ -63,9 +63,9 @@ CALL `modifierPersonnage`("Qiqi", 2, 84, 3, 5, 8);
 CALL `modifierPersonnage`("Nahida", 0, 80, 2, 2, 2);
 CALL `modifierPersonnage`("Ningguang", 6, 80, 5, 9, 9);
 CALL `modifierPersonnage`("Razor", 4, 80, NULL, NULL, NULL);
-CALL `AugNiveau`("Aloy", 60);
-CALL `AugNiveau`("Yae", 60);
-CALL `AugNiveau`("Keqing", 60);
+CALL `augNiveau`("Aloy", 60);
+CALL `augNiveau`("Yae", 60);
+CALL `augNiveau`("Keqing", 60);
 CALL `modifierPersonnage`("Gaming", 1, 60, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Gorou", 4, 60, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Xinyan", 5, 60, NULL, NULL, NULL);
@@ -75,12 +75,12 @@ CALL `modifierPersonnage`("Xiangling", 6, 60, NULL, 9, 8);
 CALL `modifierPersonnage`("Amber", 2, 60, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Lisa", 1, 60, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Lynette", 3, 50, NULL, NULL, NULL);
-CALL `AugNiveau`("Cyno", 40);
+CALL `augNiveau`("Cyno", 40);
 CALL `modifierPersonnage`("Tighnari", 1, 40, NULL, NULL, NULL);
-CALL `AugNiveau`("Ayato", 40);
+CALL `augNiveau`("Ayato", 40);
 CALL `modifierPersonnage`("Yan", 3, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Ororon", 1, 40, NULL, NULL, NULL);
-CALL `AugNiveau`("Sethos", 40);
+CALL `augNiveau`("Sethos", 40);
 CALL `modifierPersonnage`("Chevreuse", 6, 40, NULL, 4, NULL);
 CALL `modifierPersonnage`("Kaveh", 1, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Mika", 4, 40, NULL, NULL, NULL);
@@ -89,15 +89,15 @@ CALL `modifierPersonnage`("Faruzan", 2, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Layla", 2, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Candace", 2, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Collei", 4, 40, NULL, NULL, NULL);
-CALL `AugNiveau`("Shinobu", 40);
+CALL `augNiveau`("Shinobu", 40);
 CALL `modifierPersonnage`("Jin", 3, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Kirara", 3, 40, NULL, NULL, NULL);
-CALL `AugNiveau`("Heizou", 40);
+CALL `augNiveau`("Heizou", 40);
 CALL `modifierPersonnage`("Sara", 1, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Sayu", 2, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Thomas", 6, 40, NULL, NULL, NULL);
 CALL `modifierPersonnage`("Diona", 4, 40, NULL, NULL, NULL);
-CALL `AugNiveau`("Wriothesley", 1);
+CALL `augNiveau`("Wriothesley", 1);
 
 -- attribution des armes aux personnages
 CALL `creerArme`("Écho de la grue", 90, 1);
@@ -242,9 +242,10 @@ CALL `creerArme`("L'origine des Quatre Vents", 90, 2);
 CALL `attribuerArme`("Wriothesley", "L'origine des Quatre Vents", 90, 2);
 
 
+
 -----------------------------------------------
 -----------------------------------------------
 --- Changement à partir de l'initialisation ---
 -----------------------------------------------
 -----------------------------------------------
-
+CALL `augArmePerso`("Yae", 1, 4);

@@ -358,6 +358,9 @@ ADD CONSTRAINT perso_constellation CHECK(constellation BETWEEN 0 AND 6);
 ALTER TABLE pull_personnages
 ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
 
+ALTER TABLE pull_armes
+ADD CONSTRAINT pull_date CHECK(datefin>datedeb);
+
 ALTER TABLE meilleures_armes
 ADD CONSTRAINT meilleures_armes_raffinage CHECK(raffinage BETWEEN 1 AND 5);
 
@@ -498,7 +501,7 @@ BEGIN
 END #
 DELIMITER ;
 
--- trigger pour meilleur sets
+-- trigger pour meilleur art
 
 DELIMITER # 
 
@@ -1068,8 +1071,7 @@ DELIMITER ;
 -- création de la sous procedure pour les materiaux d'aptitude
 DELIMITER #
 
-
-CREATE OR REPLACE PROCEDURE AjoutMateriauxAptitude (p_personnage VARCHAR(20), p_type VARCHAR(20), p_matMonstre VARCHAR(60), p_matelev VARCHAR(60), p_matUltraBoss VARCHAR(60))
+CREATE OR REPLACE PROCEDURE ajoutMateriauxAptitude (p_personnage VARCHAR(20), p_type VARCHAR(20), p_matMonstre VARCHAR(60), p_matelev VARCHAR(60), p_matUltraBoss VARCHAR(60))
 BEGIN
     SET @matMonstre = NULL;
     SET @matElev = NULL;
@@ -1124,7 +1126,7 @@ DELIMITER ;
 -- procedure princiale
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE AjoutmateriauxPersonnages(p_personnage VARCHAR(20), p_pierre VARCHAR(60), p_matBoss VARCHAR(60), p_matMonstre VARCHAR(60), p_herbe VARCHAR(60), p_matelev VARCHAR(60), p_matUltraBoss VARCHAR(60)) 
+CREATE OR REPLACE PROCEDURE ajoutmateriauxPersonnages(p_personnage VARCHAR(20), p_pierre VARCHAR(60), p_matBoss VARCHAR(60), p_matMonstre VARCHAR(60), p_herbe VARCHAR(60), p_matelev VARCHAR(60), p_matUltraBoss VARCHAR(60)) 
 BEGIN
     SET @erreur = 0;
     SET @type = "";
@@ -1264,9 +1266,9 @@ BEGIN
             (p_personnage, "phase", 70, p_matBoss, 12),
             (p_personnage, "phase", 80, p_matBoss, 20);
 
-            CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude basique", p_matMonstre, p_matelev, p_matUltraBoss);
-            CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude element", p_matMonstre, p_matelev, p_matUltraBoss);
-            CALL `AjoutMateriauxAptitude`(p_personnage, "aptitude ult", p_matMonstre, p_matelev, p_matUltraBoss);
+            CALL `ajoutMateriauxAptitude`(p_personnage, "aptitude basique", p_matMonstre, p_matelev, p_matUltraBoss);
+            CALL `ajoutMateriauxAptitude`(p_personnage, "aptitude element", p_matMonstre, p_matelev, p_matUltraBoss);
+            CALL `ajoutMateriauxAptitude`(p_personnage, "aptitude ult", p_matMonstre, p_matelev, p_matUltraBoss);
         END IF ;
     END IF ;
 END #
@@ -1275,7 +1277,7 @@ DELIMITER ;
 -- Procedure pour les materiaux des voyageurs (excepté le géo qui est une exception dans l'exception)
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE AjoutMateriauxAptVoyageur (p_personnage VARCHAR(20), p_matMonstre VARCHAR(60), p_matelev1 VARCHAR(60), p_matelev2 VARCHAR(60), p_matelev3 VARCHAR(60),p_matUltraBoss VARCHAR(60))
+CREATE OR REPLACE PROCEDURE ajoutMateriauxAptVoyageur (p_personnage VARCHAR(20), p_matMonstre VARCHAR(60), p_matelev1 VARCHAR(60), p_matelev2 VARCHAR(60), p_matelev3 VARCHAR(60),p_matUltraBoss VARCHAR(60))
 BEGIN
     SET @matMonstre = NULL;
     SET @matElev1 = NULL;
@@ -1420,7 +1422,7 @@ DELIMITER ;
 -- modification de constellation
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE AugConstellation(p_prenom VARCHAR(20), p_cons INT)
+CREATE OR REPLACE PROCEDURE augConstellation(p_prenom VARCHAR(20), p_cons INT)
 BEGIN
     UPDATE personnages
     SET constellation = p_cons
@@ -1431,7 +1433,7 @@ DELIMITER ;
 -- modification de lvl 
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE AugNiveau(p_prenom VARCHAR(20), p_niveau INT)
+CREATE OR REPLACE PROCEDURE augNiveau(p_prenom VARCHAR(20), p_niveau INT)
 BEGIN
     UPDATE personnages
     SET niveau = p_niveau
@@ -1443,7 +1445,7 @@ DELIMITER ;
 
 DELIMITER #
 
-CREATE OR REPLACE PROCEDURE AugApt(p_prenom VARCHAR(20), p_aptitude VARCHAR(20), p_niveau INT)
+CREATE OR REPLACE PROCEDURE augApt(p_prenom VARCHAR(20), p_aptitude VARCHAR(20), p_niveau INT)
 BEGIN
     IF(p_aptitude = "basique") THEN
         UPDATE personnages
@@ -1493,7 +1495,7 @@ BEGIN
 END #
 DELIMITER ;
 
--- créer une arme qui n'a pas de perso attribuer
+-- créer une arme qui n'a pas de perso attribué
 DELIMITER #
 
 CREATE OR REPLACE PROCEDURE creerArme(p_nom VARCHAR(50), p_lvl INT, p_raffinage INT)
@@ -1517,14 +1519,7 @@ BEGIN
     FROM armes_attribuees
     WHERE nom = p_nom and lvl = p_lvl and raffinage = p_raffinage and personnage is NULL
     GROUP BY nom;
-
-    IF(@exist IS NOT NULL) THEN
-        UPDATE armes_attribuees
-        SET personnage = p_perso
-        WHERE `id` = @exist;
     
-    END IF ;
-
 END #
 
 DELIMITER ;
